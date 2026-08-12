@@ -30,7 +30,7 @@ public class BulletBase : MonoBehaviour
     }
     public bool CheckDisTance()
     {
-        float offset = Distance2D(transform.position, rootPos);
+        float offset = Helper.Distance2D(transform.position, rootPos);
         return (offset >  range * range) ? true : false;
     }
     //TODO cho lai vao pool

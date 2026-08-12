@@ -39,16 +39,16 @@ public class Player : Character
             {
                 if (!isAttacking && isAttackable)
                 {
-                    Idle();
+                    SetTarget();
                 }
             }   
         }
         //TODO khong dung press ma dung trigger target
-        if (attackpress)
-        {
-            if(!isAttackable) return;
-            Attack();
-            // attackpress = false;
-        }
+        // if (attackpress)
+        // {
+        //     if(!isAttackable) return;
+        //     Attack();
+        //     // attackpress = false;
+        // }
     }
 }

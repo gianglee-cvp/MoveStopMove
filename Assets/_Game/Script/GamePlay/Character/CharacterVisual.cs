@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.UIElements;
 using UnityEngine;
 [Serializable]
 public struct baseItem
@@ -46,7 +47,6 @@ public class CharacterVisual : MonoBehaviour
     {
         currentWeapon.OnDeactive();
         BulletBase bullet = Instantiate(item.bulletPrefab);
-        // item.currentBullet = bullet;
         bullet.Init(shootPoint , character.Range , des);        
         currentBullet = bullet;
     }
@@ -59,6 +59,12 @@ public class CharacterVisual : MonoBehaviour
     {
         currentWeapon.Active();
     }
+    public void RotateToTarget(Vector3 des)
+    {
+        Vector3 direction = des - transform.position;
+        direction.y = 0f;
+        transform.rotation = Quaternion.LookRotation(direction);
+    }
     //TODO xoa 
     public float distance = 10f; 
     void OnDrawGizmos() 
@@ -68,4 +74,5 @@ public class CharacterVisual : MonoBehaviour
         Vector3 end = start + transform.forward * distance; 
         Gizmos.DrawLine(start, end); 
     }
+
 }

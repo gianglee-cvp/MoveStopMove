@@ -1,6 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 public enum CharacterAnimType
 {
     Idle = 0, 
@@ -15,6 +18,10 @@ public enum CharacterAnimType
 public class Character : MonoBehaviour
 {
     [SerializeField] protected Transform tf; 
+    public Vector3 pos
+    {
+        get => tf.position;
+    }
     [SerializeField] protected CharacterVisual characterVisual;
 
 
@@ -24,6 +31,10 @@ public class Character : MonoBehaviour
 
     protected Coroutine attackCO;
     [SerializeField] protected float range;
+    protected float offsetRange = 0f;
+    //TODO đổi thành protected
+    public List<Character> listTarget = new List<Character>();
+    protected Character currentTarget;
     public float Range
     {
         get => range;
@@ -33,7 +44,17 @@ public class Character : MonoBehaviour
     public virtual void OnInit()
     {
         characterVisual.OnInit();
+        listTarget.Clear();
+        currentTarget = null;
         ChangeAnim(CharacterAnimType.Idle);
+    }
+    public virtual void Idle()
+    {
+        ChangeAnim(CharacterAnimType.Idle);
+        characterVisual.ActiveWeapon();
+        isAttacking = false;
+        isAttackable  = true;
+        isMoving = false;
     }
     public virtual void Attack()
     {
@@ -66,16 +87,54 @@ public class Character : MonoBehaviour
         }
         Idle();
     }
-    public virtual void Idle()
-    {
-        ChangeAnim(CharacterAnimType.Idle);
-        characterVisual.ActiveWeapon();
-        isAttacking = false;
-        isAttackable  = true;
-        isMoving = false;
-    }
+
     public virtual void ChangeAnim(CharacterAnimType type)
     {
         characterVisual.ChangeAnim(type);
     }
+    public virtual void AddTarget(Character ch)
+    {
+        listTarget.Add(ch);
+    }
+    public virtual void SetTarget()
+    {
+        int cnt = listTarget.Count;
+        if(cnt == 0)
+        {
+            Idle();
+        }
+        else
+        {
+            List<int> removeTarget = new List<int>();
+            bool hasTarget = false;
+
+            for(int i = 0 ; i < cnt ; i++)
+            {
+                Character target = listTarget[i];
+                bool targetOutRange = Helper.CheckDistanceOutRange(pos,target.pos,range + offsetRange);
+
+                if(!hasTarget && !targetOutRange)
+                {
+                    hasTarget = true;
+                    characterVisual.RotateToTarget(target.tf.position);
+                    Attack();
+                }
+                else if(targetOutRange)
+                {
+                    removeTarget.Add(i);
+                }
+            }
+
+            if(!hasTarget) Idle();
+
+            int removeCnt = removeTarget.Count;
+            if(removeCnt == 0 ) return;
+
+            for(int i = removeCnt -1 ; i >=0 ; i --)
+            {
+                listTarget.RemoveAt(removeTarget[i]);
+            }
+        }
+    }
+    
 }
