@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class WeaponBase : MonoBehaviour
+public class WeaponBase : GameUnit
 {
-    [SerializeField] protected Transform tf;
     [SerializeField] protected Vector3 localTF; 
     [SerializeField] protected Vector3 localRT;
     public bool CheckActiveWeapon()
@@ -13,7 +12,7 @@ public class WeaponBase : MonoBehaviour
     public void OnInit(Transform rightHandTf)
     {
         gameObject.SetActive(true);
-        tf.SetParent(rightHandTf , false);
+        // tf.SetParent(rightHandTf , false);
         tf.localPosition = localTF;
         tf.localRotation = Quaternion.Euler(localRT); 
     }

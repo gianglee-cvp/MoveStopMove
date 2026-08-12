@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33efd4de6c243b24a81e1e2f72e85c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponBase
+  poolType: 100
   tf: {fileID: 4809331884283017763}
   localTF: {x: -0.108, y: 0.106, z: 0.048}
   localRT: {x: 12.10726, y: 346.31238, z: 233.85971}

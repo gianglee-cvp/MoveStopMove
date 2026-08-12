@@ -6,7 +6,7 @@ public enum BulletType
     Boomerang = 2
 }
 
-public class BulletBase : MonoBehaviour
+public class BulletBase : GameUnit
 {
     protected virtual BulletType Type => BulletType.Knight;
     [SerializeField] protected float speed = 10f;
@@ -22,15 +22,15 @@ public class BulletBase : MonoBehaviour
         range = rangeAttack;
         rootPos  = rootPosion;
 
-        transform.position =  start.position;
-        transform.rotation = start.rotation;
+        TF.position =  start.position;
+        TF.rotation = start.rotation;
     }
     public virtual void Throw(Vector3 des)
     {
     }
     public bool CheckDisTance()
     {
-        float offset = Helper.Distance2D(transform.position, rootPos);
+        float offset = Helper.Distance2D(TF.position, rootPos);
         return (offset >  range * range) ? true : false;
     }
     //TODO cho lai vao pool
@@ -39,22 +39,16 @@ public class BulletBase : MonoBehaviour
         Debug.Log("destroy");
         Destroy(gameObject);
     }
-    public float Distance2D(Vector3 pos , Vector3 des)
-    {
-        Vector2 pos2D =  new Vector2(pos.x , pos.z);
-        Vector2 des2D  = new Vector2(des.x , des.z);
-        return (des2D - pos2D).sqrMagnitude;
-    }
     private void OnDrawGizmos() 
     { 
         // Vị trí hiện tại 
         Gizmos.color = Color.green; 
-        Gizmos.DrawSphere(transform.position, 0.15f); 
+        Gizmos.DrawSphere(TF.position, 0.15f); 
         // Vị trí đích 
         Gizmos.color = Color.red; 
         Gizmos.DrawSphere(rootPos, 0.15f); 
         // Đường nối giữa 2 điểm 
         Gizmos.color = Color.yellow; 
-        Gizmos.DrawLine(transform.position, rootPos); 
+        Gizmos.DrawLine(TF.position, rootPos); 
     }
 }

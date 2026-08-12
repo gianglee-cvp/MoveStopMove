@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542b3bfa2f23eb645b48e0cf4c1a5512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Knight
+  poolType: 200
   speed: 10
   range: 15
   rb: {fileID: 7785193722117282455}
@@ -127,6 +128,10 @@ PrefabInstance:
     - target: {fileID: 5329444403135537305, guid: 71f4deb0a40a60e438beb2e321851883, type: 3}
       propertyPath: m_Name
       value: Arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8476107346451990475, guid: 71f4deb0a40a60e438beb2e321851883, type: 3}
+      propertyPath: poolType
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

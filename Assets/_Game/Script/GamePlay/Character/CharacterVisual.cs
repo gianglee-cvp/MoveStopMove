@@ -22,7 +22,13 @@ public class CharacterVisual : MonoBehaviour
     {
         if(currentWeapon == null)
         {
-            currentWeapon = Instantiate(item.weaponPrefab);
+            // currentWeapon = Instantiate(item.weaponPrefab);
+            currentWeapon = SimplePool.Spawn<WeaponBase>(
+                PoolType.Weapon_0,
+                righHandTF.position,
+                Quaternion.identity,
+                righHandTF
+            );
         }
         currentWeapon.OnInit(righHandTF);
     } 
