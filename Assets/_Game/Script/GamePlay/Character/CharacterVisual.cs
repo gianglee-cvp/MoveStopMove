@@ -1,35 +1,37 @@
 using System;
-using System.Data.Common;
-using Unity.VisualScripting;
 using UnityEngine;
 [Serializable]
 public struct baseItem
 {
-    public WeaponBase currentWeapon;
-    public BulletBase currentBullet;
+    public WeaponBase weaponPrefab;
+    public BulletBase bulletPrefab;
 }
 public class CharacterVisual : MonoBehaviour
 {
     protected CharacterAnimType currentAnim;
-    [SerializeField] protected WeaponBase currentWeapon;
     [SerializeField] protected baseItem item;
     [SerializeField] protected Animator animator; 
     [SerializeField] protected Transform righHandTF;    
     [SerializeField] protected Transform shootPoint;
     [SerializeField] protected Character character;
-    protected bool isAttacking => character.CheckAttack();
+    [SerializeField] protected BulletBase currentBullet;
+    [SerializeField] protected WeaponBase currentWeapon;
 
     public void OnInit()
     {
+        if(currentWeapon == null)
+        {
+            currentWeapon = Instantiate(item.weaponPrefab);
+        }
         currentWeapon.OnInit(righHandTF);
-    }
+    } 
     public void ChangeAnim(CharacterAnimType newAnim)
     {
         if(currentAnim != newAnim)
         {
-            animator.ResetTrigger(currentAnim.ToString());
+            animator.SetBool(currentAnim.ToString(), false);
             currentAnim = newAnim;
-            animator.SetTrigger(newAnim.ToString());
+            animator.SetBool(newAnim.ToString(),true);
         }
     }
     public void ChangeAcessory()
@@ -40,25 +42,30 @@ public class CharacterVisual : MonoBehaviour
     {
         transform.rotation = Quaternion.LookRotation(move);
     }
-    public void Attack()
+    public void InitThrow(Vector3 des)
     {
-        ChangeAnim(CharacterAnimType.Attack);
-    }
-    public void InitThrow()
-    {
-        item.currentWeapon.OnDeactive();
-        BulletBase bullet = Instantiate(item.currentBullet);
-        bullet.Init(shootPoint);        
-        item.currentBullet = bullet;
+        currentWeapon.OnDeactive();
+        BulletBase bullet = Instantiate(item.bulletPrefab);
+        // item.currentBullet = bullet;
+        bullet.Init(shootPoint , character.Range , des);        
+        currentBullet = bullet;
     }
     public void Throw(Vector3 des)
     {
-        InitThrow();
-        item.currentBullet.Throw(des);
+        InitThrow(des);
+        currentBullet.Throw(des);
     }
     public void ActiveWeapon()
     {
-        item.currentWeapon.OnInit(righHandTF);
-        // character.SetAttackState(false);
+        currentWeapon.Active();
+    }
+    //TODO xoa 
+    public float distance = 10f; 
+    void OnDrawGizmos() 
+    { 
+        Gizmos.color = Color.green; 
+        Vector3 start = transform.position; 
+        Vector3 end = start + transform.forward * distance; 
+        Gizmos.DrawLine(start, end); 
     }
 }

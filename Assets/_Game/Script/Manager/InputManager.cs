@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class InputManager : Singleton<InputManager>
 {
-    private InputSystem inputActions;
+    protected InputSystem inputActions;
     public InputAction MoveAction { get; private set; }
 
     public void OnInit()
