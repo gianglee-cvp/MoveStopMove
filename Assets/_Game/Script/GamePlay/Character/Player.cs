@@ -31,9 +31,7 @@ public class Player : Character
                     isMoving = true;
                 }
                 //TODO them bien speed
-                // tf.Translate(move * 5f * Time.deltaTime);
                 tf.position += move * 5f * Time.deltaTime;
-                // characterVisual.ChangeRotation(move);
                 tf.rotation = Quaternion.LookRotation(move);
                 if(isAttacking) CancelAttack();
             }
@@ -45,13 +43,6 @@ public class Player : Character
                 }
             }   
         }
-        //TODO khong dung press ma dung trigger target
-        // if (attackpress)
-        // {
-        //     if(!isAttackable) return;
-        //     Attack();
-        //     // attackpress = false;
-        // }
     }
     public override Character SetTarget()
     {

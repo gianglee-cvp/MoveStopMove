@@ -41,11 +41,11 @@ public class BulletBase : GameUnit
         float offset = Helper.Distance2D(TF.position, rootPos);
         return (offset >  range * range) ? true : false;
     }
-    //TODO cho lai vao pool
     public void DeSpawn()
     {
         Debug.Log("destroy");
-        Destroy(gameObject);
+        SimplePool.DeSpawn(this);
+        // Destroy(gameObject);
     }
     private void OnDrawGizmos() 
     { 

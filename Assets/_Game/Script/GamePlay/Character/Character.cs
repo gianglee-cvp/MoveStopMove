@@ -41,8 +41,6 @@ public class Character : MonoBehaviour
     {
         get => range;
     }
-    //TODO attack theo range khong phai bool 
-    public bool attackpress => Keyboard.current.spaceKey.wasPressedThisFrame; 
     public virtual void OnInit()
     {
         characterVisual.OnInit();
@@ -131,7 +129,7 @@ public class Character : MonoBehaviour
     }
     public virtual float GetOffsetRange()
     {
-        //TODO cho vao cache
+        //TODO cho vao cache;
         return GetComponent<CapsuleCollider>().radius * scale;
     }
     public virtual void OnDead()
