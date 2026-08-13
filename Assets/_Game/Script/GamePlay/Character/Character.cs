@@ -64,7 +64,7 @@ public class Character : MonoBehaviour
             Idle();
             return;
         } 
-        characterVisual.RotateToTarget(currentTarget.pos);
+        RotateToTarget(currentTarget.pos);
         isAttacking  = true;
         isAttackable = false;
         isMoving = false;
@@ -139,5 +139,11 @@ public class Character : MonoBehaviour
         Debug.Log("dead");
         //TODO Despawn
         ChangeAnim(CharacterAnimType.Dead);
+    }
+    public void RotateToTarget(Vector3 des)
+    {
+        Vector3 direction = des - transform.position;
+        direction.y = 0f;
+        tf.rotation = Quaternion.LookRotation(direction);
     }
 }

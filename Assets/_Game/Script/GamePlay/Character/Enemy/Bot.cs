@@ -27,6 +27,12 @@ public partial class Bot : Character
 
         ChangeState(idleState);
     }
+    public override void Attack()
+    {
+        SetDestination(tf.position);
+        base.Attack();
+    }
+
     public void ShowTargetIndicator()
     {
         if (!indicator.activeSelf)
@@ -50,17 +56,5 @@ public partial class Bot : Character
     {
         this.destination = destination;
         agent.SetDestination(destination);
-    }
-
-    //TODO khong quay ơ trong visual nua , quay root thoi 
-    public void UpdateRotation()
-    {
-        if (tf == null || characterVisual == null)
-        {
-            return;
-        }
-
-        tf.rotation = characterVisual.transform.rotation;
-        characterVisual.transform.localRotation = Quaternion.identity;
     }
 }   

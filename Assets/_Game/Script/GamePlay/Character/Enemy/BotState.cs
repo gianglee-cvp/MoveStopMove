@@ -71,7 +71,6 @@ public partial class Bot
 
         if (!isAttacking && isAttackable)
         {
-            SetDestination(tf.position);
             Attack();
         }
     }
@@ -99,8 +98,6 @@ public partial class Bot
         {
             CancelAttack();
         }
-
-        UpdateRotation();
     }
 
     private bool TryGetRandomPatrolPoint(out Vector3 patrolPoint)

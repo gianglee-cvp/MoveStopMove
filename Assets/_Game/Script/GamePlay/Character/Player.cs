@@ -17,7 +17,7 @@ public class Player : Character
         if (moveAction.enabled)
         {
             moveAmount = moveAction.ReadValue<Vector2>().normalized;
-            Vector3 move = new Vector3(moveAmount.x , 0 , moveAmount.y);
+            Vector3 move = new Vector3(moveAmount.x , 0 , moveAmount.y).normalized;
             if(move.sqrMagnitude > 0.001f)
             {
                 if(isAttacking)
@@ -31,9 +31,10 @@ public class Player : Character
                     isMoving = true;
                 }
                 //TODO them bien speed
-                tf.Translate(move * 5f * Time.deltaTime);
-                characterVisual.ChangeRotation(move);
-                
+                // tf.Translate(move * 5f * Time.deltaTime);
+                tf.position += move * 5f * Time.deltaTime;
+                // characterVisual.ChangeRotation(move);
+                tf.rotation = Quaternion.LookRotation(move);
                 if(isAttacking) CancelAttack();
             }
             else 

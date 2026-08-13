@@ -45,10 +45,6 @@ public class CharacterVisual : MonoBehaviour
     {
         
     }
-    public void ChangeRotation(Vector3 move)
-    {
-        transform.rotation = Quaternion.LookRotation(move);
-    }
     public void InitThrow(Vector3 rootPos)
     {
         currentWeapon.OnDeactive();
@@ -65,12 +61,6 @@ public class CharacterVisual : MonoBehaviour
     public void ActiveWeapon()
     {
         currentWeapon.Active();
-    }
-    public void RotateToTarget(Vector3 des)
-    {
-        Vector3 direction = des - transform.position;
-        direction.y = 0f;
-        transform.rotation = Quaternion.LookRotation(direction);
     }
     //TODO xoa 
     public float distance = 10f; 
