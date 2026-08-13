@@ -23,6 +23,8 @@ public class PoolAmount
 }
 public enum PoolType
 {
+    Player = 0,
+    Enemy = 1,
     Weapon_0 = 100,
     Bullet_0 = 200
 }

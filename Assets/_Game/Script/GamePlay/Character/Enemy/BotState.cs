@@ -100,23 +100,7 @@ public partial class Bot
         }
     }
 
-    private bool TryGetRandomPatrolPoint(out Vector3 patrolPoint)
-    {
-        for (int i = 0; i < patrolSampleAttempts; i++)
-        {
-            Vector2 randomCircle = Random.insideUnitCircle * patrolRadius;
-            Vector3 randomPoint = spawnPos + new Vector3(randomCircle.x, 0f, randomCircle.y);
 
-            if (UnityEngine.AI.NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, patrolRadius, UnityEngine.AI.NavMesh.AllAreas))
-            {
-                patrolPoint = hit.position;
-                return true;
-            }
-        }
-
-        patrolPoint = spawnPos;
-        return false;
-    }
     #endregion
     public void ChangeState(IState<Bot> newState)
     {
@@ -127,5 +111,22 @@ public partial class Bot
             currentState = newState;
             currentState?.OnEnter(this);
         }
+    }
+    private bool TryGetRandomPatrolPoint(out Vector3 patrolPoint)
+    {
+        for (int i = 0; i < patrolSampleAttempts; i++)
+        {
+            Vector2 randomCircle = Random.insideUnitCircle * patrolRadius;
+            Vector3 randomPoint = spawnPos + new Vector3(randomCircle.x, 0f, randomCircle.y);
+
+            if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, patrolRadius, NavMesh.AllAreas))
+            {
+                patrolPoint = hit.position;
+                return true;
+            }
+        }
+
+        patrolPoint = spawnPos;
+        return false;
     }
 }

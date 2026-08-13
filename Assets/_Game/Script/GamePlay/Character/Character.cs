@@ -15,13 +15,11 @@ public enum CharacterAnimType
     Ulti = 6
 }
 
-public class Character : MonoBehaviour
+public class Character : GameUnit
 {
-
-    [SerializeField] protected Transform tf; 
     public Vector3 pos
     {
-        get => tf.position;
+        get => TF.position;
     }
     [SerializeField] protected CharacterVisual characterVisual;
     [SerializeField] protected float scale; // TODO thay doi khi cho vao level up
@@ -67,7 +65,7 @@ public class Character : MonoBehaviour
         isAttackable = false;
         isMoving = false;
         ChangeAnim(CharacterAnimType.Attack);
-        attackCO = StartCoroutine(Throw(tf.position)); 
+        attackCO = StartCoroutine(Throw(TF.position)); 
     }
     protected IEnumerator Throw(Vector3 pos)
     {
@@ -142,6 +140,6 @@ public class Character : MonoBehaviour
     {
         Vector3 direction = des - transform.position;
         direction.y = 0f;
-        tf.rotation = Quaternion.LookRotation(direction);
+        TF.rotation = Quaternion.LookRotation(direction);
     }
 }

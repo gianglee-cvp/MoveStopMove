@@ -31,8 +31,8 @@ public class Player : Character
                     isMoving = true;
                 }
                 //TODO them bien speed
-                tf.position += move * 5f * Time.deltaTime;
-                tf.rotation = Quaternion.LookRotation(move);
+                TF.position += move * 5f * Time.deltaTime;
+                TF.rotation = Quaternion.LookRotation(move);
                 if(isAttacking) CancelAttack();
             }
             else 

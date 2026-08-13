@@ -1,5 +1,4 @@
 using UnityEngine;
-using NavMesh;
 using _Framework.StateMachine;
 using UnityEngine.AI;
 public partial class Bot : Character
@@ -9,7 +8,7 @@ public partial class Bot : Character
 
     [SerializeField] protected NavMeshAgent agent ;
     private Vector3 destination;
-    public bool IsDestionation => Vector3.Distance(tf.position, destination + (tf.position.y - destination.y) * Vector3.up) < 0.1f;
+    public bool IsDestionation => Vector3.Distance(TF.position, destination + (TF.position.y - destination.y) * Vector3.up) < 0.1f;
 
     protected Vector3 spawnPos;
 
@@ -23,13 +22,13 @@ public partial class Bot : Character
     public override void OnInit()
     {
         base.OnInit();
-        spawnPos = tf != null ? tf.position : transform.position;
+        spawnPos = TF != null ? TF.position : transform.position;
 
         ChangeState(idleState);
     }
     public override void Attack()
     {
-        SetDestination(tf.position);
+        SetDestination(TF.position);
         base.Attack();
     }
 
@@ -57,4 +56,10 @@ public partial class Bot : Character
         this.destination = destination;
         agent.SetDestination(destination);
     }
+    public override void OnDead()
+    {
+        base.OnDead();
+        BotManager.Instance.DeSpawnBot(this);
+    }
+
 }   

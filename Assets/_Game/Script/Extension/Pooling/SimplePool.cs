@@ -88,7 +88,7 @@ public class Pool
         GameUnit unit; 
         if(inactive.Count <=0)
         {
-            unit = GameObject.Instantiate(prefab );
+            unit = GameObject.Instantiate(prefab);
         }
         else
         {

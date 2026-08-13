@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4174216620f286d49b460322a632a747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bot
-  tf: {fileID: 1702384135469855216}
+  poolType: 1
   characterVisual: {fileID: 7912455261346254033}
   scale: 1
   isMoving: 0
