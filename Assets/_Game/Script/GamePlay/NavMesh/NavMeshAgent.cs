@@ -19,11 +19,16 @@ namespace NavMesh
         public bool IsDestionation => Vector3.Distance(tf.position, destination + (tf.position.y - destination.y) * Vector3.up) < 0.1f;
 
         //set diem den
+        public void InitAgent(Bot bot)
+        {
+            agent = bot.GetComponent<NavMeshAgent>();
+        }
         public void SetDestination(Vector3 destination)
         {
             this.destination = destination;
             agent.SetDestination(destination);
         }
+        
     }
 
 }

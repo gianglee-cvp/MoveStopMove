@@ -17,6 +17,7 @@ public enum CharacterAnimType
 
 public class Character : MonoBehaviour
 {
+
     [SerializeField] protected Transform tf; 
     public Vector3 pos
     {
@@ -52,7 +53,6 @@ public class Character : MonoBehaviour
     public virtual void Idle()
     {
         ChangeAnim(CharacterAnimType.Idle);
-        characterVisual.ActiveWeapon();
         isAttacking = false;
         isAttackable  = true;
         isMoving = false;
@@ -73,17 +73,16 @@ public class Character : MonoBehaviour
     }
     protected IEnumerator Throw(Vector3 pos)
     {
-        //TODO cho vao constant
-        yield return new WaitForSeconds(0.24f);
+        yield return new WaitForSeconds(Constant.THROW_DELAY_TIME);
         if (isAttacking)
         {
             characterVisual.Throw(pos);
         }
         isAttacking = false;
-        //todo cho vao constant
-        yield return new WaitForSeconds(0.4f);
-        attackCO = null;
+        yield return new WaitForSeconds(Constant.ATTACK_RECOVERY_TIME);
         Idle();
+        characterVisual.ActiveWeapon();
+        attackCO = null;
     }
     public virtual void CancelAttack()
     {

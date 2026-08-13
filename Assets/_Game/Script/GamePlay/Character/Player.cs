@@ -58,7 +58,7 @@ public class Player : Character
         currentTarget = base.SetTarget();
         if(oldTarget != currentTarget && currentTarget != null)
         {
-            EnemyBase enemy = currentTarget as EnemyBase;
+            Bot enemy = currentTarget as Bot;
             enemy.ShowTargetIndicator();
         }
         return currentTarget;
@@ -66,7 +66,7 @@ public class Player : Character
     public override void RemoveTarget(int index)
     {
         base.RemoveTarget(index);
-        EnemyBase enemy = currentTarget as EnemyBase;
+        Bot enemy = currentTarget as Bot;
         enemy?.HideTargetIndicator();
     }
 }
