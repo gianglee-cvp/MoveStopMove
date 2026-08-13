@@ -6,7 +6,6 @@ public class Test : MonoBehaviour
     public PoolControl poolControl;
     public void Awake()
     {
-        Debug.Log("1");
         poolControl.OnInit();
         InputManager.Instance.OnInit();
         character.OnInit();

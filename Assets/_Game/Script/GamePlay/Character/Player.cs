@@ -13,6 +13,7 @@ public class Player : Character
     }
     void Update()
     {   
+        SetTarget();
         if (moveAction.enabled)
         {
             moveAmount = moveAction.ReadValue<Vector2>().normalized;
@@ -39,7 +40,7 @@ public class Player : Character
             {
                 if (!isAttacking && isAttackable)
                 {
-                    SetTarget();
+                    Attack();
                 }
             }   
         }
@@ -50,5 +51,22 @@ public class Player : Character
         //     Attack();
         //     // attackpress = false;
         // }
+    }
+    public override Character SetTarget()
+    {
+        Character oldTarget = currentTarget;
+        currentTarget = base.SetTarget();
+        if(oldTarget != currentTarget && currentTarget != null)
+        {
+            EnemyBase enemy = currentTarget as EnemyBase;
+            enemy.ShowTargetIndicator();
+        }
+        return currentTarget;
+    }
+    public override void RemoveTarget(int index)
+    {
+        base.RemoveTarget(index);
+        EnemyBase enemy = currentTarget as EnemyBase;
+        enemy?.HideTargetIndicator();
     }
 }

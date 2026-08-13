@@ -6,11 +6,13 @@ public static class Helper
     {
         Vector2 pos2D =  new Vector2(pos.x , pos.z);
         Vector2 des2D  = new Vector2(des.x , des.z);
+        // Debug.Log(Vector2.Distance(des2D,pos2D));
         return (des2D - pos2D).sqrMagnitude;
     }
     public static bool CheckDistanceOutRange(Vector3 pos , Vector3 des , float range)
     {
-        return(Distance2D(pos,des) < range *range) ? false : true;
+        // Debug.Log(range);
+        return(Distance2D(pos,des) < range * range) ? false : true;
     }
     
 }

@@ -12,7 +12,7 @@ public enum CharacterAnimType
     Win = 3,
     Dance = 4,
     Dead = 5,
-    Ulti =6
+    Ulti = 6
 }
 
 public class Character : MonoBehaviour
@@ -23,6 +23,7 @@ public class Character : MonoBehaviour
         get => tf.position;
     }
     [SerializeField] protected CharacterVisual characterVisual;
+    [SerializeField] protected float scale; // TODO thay doi khi cho vao level up
 
 
     [SerializeField] protected bool isMoving = false;
@@ -58,6 +59,12 @@ public class Character : MonoBehaviour
     }
     public virtual void Attack()
     {
+        if(currentTarget == null)
+        {
+            Idle();
+            return;
+        } 
+        characterVisual.RotateToTarget(currentTarget.pos);
         isAttacking  = true;
         isAttackable = false;
         isMoving = false;
@@ -96,45 +103,42 @@ public class Character : MonoBehaviour
     {
         listTarget.Add(ch);
     }
-    public virtual void SetTarget()
+    public virtual Character SetTarget()
     {
-        int cnt = listTarget.Count;
-        if(cnt == 0)
+        int cnt = listTarget.Count; 
+        if(cnt == 0) return null;
+        Character finalTarget  = null;
+        for(int i = cnt -1 ;  i >=0 ; i--)
         {
-            Idle();
-        }
-        else
-        {
-            List<int> removeTarget = new List<int>();
-            bool hasTarget = false;
-
-            for(int i = 0 ; i < cnt ; i++)
+            Character target = listTarget[i];
+            offsetRange = target.GetOffsetRange();
+            bool targetOutRange = Helper.CheckDistanceOutRange(pos,target.pos,range + offsetRange);
+            if (targetOutRange)
             {
-                Character target = listTarget[i];
-                bool targetOutRange = Helper.CheckDistanceOutRange(pos,target.pos,range + offsetRange);
-
-                if(!hasTarget && !targetOutRange)
-                {
-                    hasTarget = true;
-                    characterVisual.RotateToTarget(target.tf.position);
-                    Attack();
-                }
-                else if(targetOutRange)
-                {
-                    removeTarget.Add(i);
-                }
+                RemoveTarget(i);
             }
-
-            if(!hasTarget) Idle();
-
-            int removeCnt = removeTarget.Count;
-            if(removeCnt == 0 ) return;
-
-            for(int i = removeCnt -1 ; i >=0 ; i --)
+            else
             {
-                listTarget.RemoveAt(removeTarget[i]);
+                finalTarget = listTarget[i];
             }
         }
+        currentTarget = finalTarget;
+        return finalTarget; 
+        
     }
-    
+    public virtual void RemoveTarget(int index)
+    {
+        listTarget.RemoveAt(index);
+    }
+    public virtual float GetOffsetRange()
+    {
+        //TODO cho vao cache
+        return GetComponent<CapsuleCollider>().radius * scale;
+    }
+    public virtual void OnDead()
+    {
+        Debug.Log("dead");
+        //TODO Despawn
+        ChangeAnim(CharacterAnimType.Dead);
+    }
 }

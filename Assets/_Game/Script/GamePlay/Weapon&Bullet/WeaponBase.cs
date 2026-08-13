@@ -19,7 +19,6 @@ public class WeaponBase : GameUnit
     public void OnDeactive()
     {
         gameObject.SetActive(false);
-        Debug.Log("b");
     }
     public void Active()
     {

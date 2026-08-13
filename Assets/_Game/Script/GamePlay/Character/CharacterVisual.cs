@@ -49,17 +49,18 @@ public class CharacterVisual : MonoBehaviour
     {
         transform.rotation = Quaternion.LookRotation(move);
     }
-    public void InitThrow(Vector3 des)
+    public void InitThrow(Vector3 rootPos)
     {
         currentWeapon.OnDeactive();
-        BulletBase bullet = Instantiate(item.bulletPrefab);
-        bullet.Init(shootPoint , character.Range , des);        
+        // BulletBase bullet = Instantiate(item.bulletPrefab);
+        BulletBase bullet = SimplePool.Spawn<BulletBase>(PoolType.Bullet_0,shootPoint.position, shootPoint.rotation,null);
+        bullet.Init(shootPoint.forward , character.Range , rootPos , character);        
         currentBullet = bullet;
     }
-    public void Throw(Vector3 des)
+    public void Throw(Vector3 rootPos)
     {
-        InitThrow(des);
-        currentBullet.Throw(des);
+        InitThrow(rootPos);
+        currentBullet.Throw();
     }
     public void ActiveWeapon()
     {
