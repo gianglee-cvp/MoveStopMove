@@ -1,36 +1,97 @@
 using UnityEngine;
 using System.Collections.Generic;
+
 public class BotManager : Singleton<BotManager>
 {
-    //TODO load data tu scriptable object
-    protected int totalBotCount = 20;
-    protected int inMapBotCount = 5;
+    [SerializeField] protected float spawnRadius = 100f;
+    [SerializeField] protected float respawnCheckInterval;
+    [SerializeField] protected int totalBotCount;
+    [SerializeField] protected int inMapBotCount;
     protected int currentBotCount => listBotActive.Count;
     protected List<GameUnit> listBotActive = new List<GameUnit>();
-    //TODO cho vao init level manager
+    protected float respawnTimer;
+
+    void Update()
+    {
+        if (currentBotCount >= inMapBotCount || totalBotCount <= currentBotCount)
+        {
+            return;
+        }
+
+        respawnTimer += Time.deltaTime;
+        if (respawnTimer < respawnCheckInterval)
+        {
+            return;
+        }
+
+        respawnTimer = 0f;
+        RespawnMissingBots();
+    }
+
     public void Init()
     {
+        respawnTimer = 0f;
+        ClearBots();
         SpawnBot(inMapBotCount);
-        for(int i = 0 ; i < inMapBotCount ; i++)
+    }
+    public void ApplyLevelData(SingleLevelData data)
+    {
+        if (data == null)
         {
-            Bot bot = listBotActive[i] as Bot;
-            bot.OnInit();
+            return;
         }
+        totalBotCount = Mathf.Max(0, data.totalBotCount);
+        inMapBotCount = Mathf.Clamp(data.inMapBotCount, 0, totalBotCount);
+        respawnTimer = 0f;
     }
     public void SpawnBot(int cnt)
     {
-        //TODO sua lai logic random 
-        
-        for(int i = 0 ; i < cnt ; i++)
+        for (int i = 0; i < cnt; i++)
         {
-            Vector3 pos = new Vector3(Random.Range(-100f,100f),0,Random.Range(-100f,100f));
-            GameUnit bot = SimplePool.Spawn<Bot>(PoolType.Enemy, pos, Quaternion.identity,null);
-            listBotActive.Add(bot);
+            SpawnOneBotRandom();
         }
     }
+    protected void RespawnMissingBots()
+    {
+        int respawnCount = Mathf.Min(inMapBotCount - currentBotCount, totalBotCount - currentBotCount);
+        for (int i = 0; i < respawnCount; i++)
+        {
+            SpawnOneBotRandom();
+        }
+    }
+
+    protected void SpawnOneBotRandom()
+    {
+        Vector3 spawnPosition = Helper.GetRandomSpawnPosition(spawnRadius);
+        GameUnit bot = SimplePool.Spawn<Bot>(PoolType.Enemy, spawnPosition, Quaternion.identity, null);
+
+        listBotActive.Add(bot);
+        Bot spawnedBot = bot as Bot;
+        spawnedBot?.OnInit();
+    }
+
     public void DeSpawnBot(GameUnit bot)
     {
         listBotActive.Remove(bot);
+        totalBotCount = Mathf.Max(0, totalBotCount - 1);
+        DeSpawnUnit(bot);
+    }
+
+    protected virtual void DeSpawnUnit(GameUnit bot)
+    {
         SimplePool.DeSpawn(bot);
+    }
+
+    public void ClearBots()
+    {
+        for (int i = listBotActive.Count - 1; i >= 0; i--)
+        {
+            GameUnit bot = listBotActive[i];
+            if (bot != null)
+            {
+                DeSpawnUnit(bot);
+            }
+        }
+        listBotActive.Clear();
     }
 }

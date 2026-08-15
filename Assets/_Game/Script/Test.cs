@@ -6,12 +6,11 @@ public class Test : MonoBehaviour
     public Character character;
     public List<Character> list = new List<Character>();
     public PoolControl poolControl;
-    public BotManager botManager;
     public void Awake()
     {
         poolControl.OnInit();
         InputManager.Instance.OnInit();
-        botManager.Init();
+        LevelManager.Instance.Init();
         // character.OnInit();
         foreach(var ch in list)
         {

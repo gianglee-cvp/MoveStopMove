@@ -1,7 +1,13 @@
 using UnityEngine;
+using System.Collections.Generic;
 public static class Helper
 {
-    //TODO cho vafo ulti 
+    public static Vector3 GetRandomSpawnPosition(float radius)
+    {
+        Vector2 offset2D = Random.insideUnitCircle * radius;
+        return new Vector3(offset2D.x, 0f, offset2D.y);
+    }
+
     public static float Distance2D(Vector3 pos , Vector3 des)
     {
         Vector2 pos2D =  new Vector2(pos.x , pos.z);
@@ -14,5 +20,4 @@ public static class Helper
         // Debug.Log(range);
         return !(Distance2D(pos,des) < range * range);
     }
-    
 }

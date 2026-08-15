@@ -108,7 +108,8 @@ public class Character : GameUnit
             Character target = listTarget[i];
             offsetRange = target.GetOffsetRange();
             bool targetOutRange = Helper.CheckDistanceOutRange(pos,target.pos,range + offsetRange);
-            if (targetOutRange)
+            bool isTargetDead = !target.gameObject.activeSelf;
+            if (targetOutRange || isTargetDead)
             {
                 RemoveTarget(i);
             }
