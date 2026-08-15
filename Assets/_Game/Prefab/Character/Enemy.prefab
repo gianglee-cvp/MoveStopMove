@@ -2081,9 +2081,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ceadabe89b48b54992d5d9a12395500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterVisual
-  item:
-    weaponPrefab: {fileID: 8476107346451990475, guid: 71f4deb0a40a60e438beb2e321851883, type: 3}
-    bulletPrefab: {fileID: 7445563168623899420, guid: 1038ee923aa48034395aea504bd8b2e2, type: 3}
+  currentSkin:
+    color: 0
+    pant: 0
+    hairType: 0
+    weapon: 0
+  colorRenderer: {fileID: 8415641389678887963}
+  pantRenderer: {fileID: 4525196246650703407}
   animator: {fileID: 1291735572740242389}
   righHandTF: {fileID: 4176015523274708358}
   shootPoint: {fileID: 2707585514239448250}

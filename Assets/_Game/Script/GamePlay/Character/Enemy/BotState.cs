@@ -106,7 +106,7 @@ public partial class Bot
     {
         if (currentState != newState)
         {
-            Debug.Log(gameObject.name +$"ChangeState: {currentState?.GetType().Name} -> {newState?.GetType().Name}");
+            // Debug.Log(gameObject.name +$"ChangeState: {currentState?.GetType().Name} -> {newState?.GetType().Name}");
             currentState?.OnExit(this);
             currentState = newState;
             currentState?.OnEnter(this);

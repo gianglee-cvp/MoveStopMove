@@ -27,9 +27,7 @@ public class BulletBase : GameUnit
     public void OnTriggerEnter(Collider other)
     {
         Character target = CacheComponent<Collider,Character>.Get(other);
-        Debug.Log("dead2");
         if(owner == null ||target == null || target == owner ) return;
-        Debug.Log("dead1");
         target.OnDead();
         DeSpawn();
     }

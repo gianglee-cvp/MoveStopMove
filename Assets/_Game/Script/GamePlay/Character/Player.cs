@@ -8,6 +8,7 @@ public class Player : Character
     public override void OnInit()
     {
         base.OnInit();
+        characterVisual.ApplySkin();
         moveAction = InputManager.Instance.MoveAction;
         moveAction.Enable();
     }

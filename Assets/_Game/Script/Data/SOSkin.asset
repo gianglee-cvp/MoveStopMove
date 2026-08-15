@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21762b707cda99c4aabee5de557dd6f1, type: 3}
   m_Name: SOSkin
   m_EditorClassIdentifier: Assembly-CSharp::SOSkin
-  Color: []
+  Color:
+  - {fileID: 2100000, guid: 0a35ae42ba412174c95383f7fc309ead, type: 2}
+  - {fileID: 2100000, guid: 55a7652a7c7f1eb41bb93bb437b65875, type: 2}
+  - {fileID: 2100000, guid: 0ed5d17a5660abd498cb10201f427f04, type: 2}
+  - {fileID: 2100000, guid: 636faa3cfa7028848aaaf26230665d46, type: 2}
+  - {fileID: 2100000, guid: dfd85dc9ce515704e882e70d43e96994, type: 2}
+  - {fileID: 2100000, guid: f116b6242baec654387f6801d99afe1d, type: 2}
   listPant:
+  - {fileID: 0}
   - {fileID: 2800000, guid: 274b961dfb542504c9302e84f0e738aa, type: 3}
   - {fileID: 2800000, guid: 7ac843fb4fe30e343a72a12eb7abb609, type: 3}
   - {fileID: 2800000, guid: 32a8507d8f6e11e459f61ed4f0a9ab26, type: 3}
@@ -24,5 +31,28 @@ MonoBehaviour:
   - {fileID: 2800000, guid: a43eb2f6a77e8b04ba74817f5ae20dbf, type: 3}
   - {fileID: 2800000, guid: e6e8412764ace5144802e94f7f66bf3c, type: 3}
   listHair: []
-  listWeapon: []
+  listWeapon:
+  - {fileID: 8476107346451990475, guid: 71f4deb0a40a60e438beb2e321851883, type: 3}
+  - {fileID: 186201616510957359, guid: e849fd0d5f3ff264ebb26a480129ae6b, type: 3}
+  - {fileID: 4994973022153613852, guid: 4164b5dfff0ef1c44809ecd399e96628, type: 3}
+  - {fileID: 814358129643990204, guid: 79b50c3bc4fc4344398c6ef47559240e, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  listBullet:
+  - {fileID: 7445563168623899420, guid: 1038ee923aa48034395aea504bd8b2e2, type: 3}
+  - {fileID: 276168288825024153, guid: 1d035d2eaa13a1545ae59e3bb8996c52, type: 3}
+  - {fileID: 4370393134360725016, guid: fb54c9950909a0742a056fb2fe7f3868, type: 3}
+  - {fileID: 4007530091295269805, guid: 1f402054716ffd44bb304ec3f5f8caeb, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   listName: {fileID: 11400000, guid: 7a9833b5a4afe754aa8294c244699cf9, type: 2}

@@ -133,8 +133,6 @@ public class Character : GameUnit
     }
     public virtual void OnDead()
     {
-        Debug.Log("dead");
-        //TODO Despawn
         ChangeAnim(CharacterAnimType.Dead);
     }
     public void RotateToTarget(Vector3 des)

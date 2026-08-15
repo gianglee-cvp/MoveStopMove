@@ -20,6 +20,7 @@ public enum ColorType
 }
 public enum PantType
 {
+    None =0,
     Batman = 1,
     chambi = 2,
     comy = 3,
@@ -43,6 +44,21 @@ public enum HairType
     Horn = 8,
     Rau = 9 
 }
+public enum WeaponType
+{
+    Arrow = 0,
+    Axe_0 = 1,
+    Axe_1 = 2,
+    Boomerang = 3,
+    Candy_0 = 4,
+    Candy_1 = 5,
+    Candy_2 = 6,
+    Candy_4 = 7,
+    Hammer = 8,
+    Knife = 9,
+    Uzi = 10,
+    Z = 11
+}
 [CreateAssetMenu(fileName = "SOSkin", menuName = "Game/SOSkin")]
 public class SOSkin : ScriptableObject
 {
@@ -50,6 +66,7 @@ public class SOSkin : ScriptableObject
     [SerializeField] private Texture2D[] listPant;
     [SerializeField] private GameObject[] listHair;
     [SerializeField] private WeaponBase[] listWeapon;
+    [SerializeField] private BulletBase[] listBullet;
     [SerializeField] private SOSkinName listName;
 
     public Material GetMaterial(ColorType color)
@@ -63,6 +80,14 @@ public class SOSkin : ScriptableObject
     public GameObject GetHair(HairType type)
     {
         return listHair[(int)type];
+    }
+    public WeaponBase GetWeapon(WeaponType type)
+    {
+        return listWeapon[(int)type];
+    }
+    public BulletBase GetBullet(WeaponType type)
+    {
+        return listBullet[(int)type];
     }
     public string GetName(SkinType type , int index)
     {

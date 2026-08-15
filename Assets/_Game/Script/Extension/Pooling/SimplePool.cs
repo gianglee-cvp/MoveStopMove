@@ -4,6 +4,10 @@ using UnityEngine;
 public static class SimplePool 
 {
     public static Dictionary<PoolType,Pool> poolInstance = new Dictionary<PoolType, Pool>(); 
+    public static bool IsPreloaded(PoolType poolType)
+    {
+        return poolInstance.ContainsKey(poolType) && poolInstance[poolType] != null;
+    }
     public static void Preload(GameUnit prefab , int amount, Transform parent)
     {
         if(prefab == null)
