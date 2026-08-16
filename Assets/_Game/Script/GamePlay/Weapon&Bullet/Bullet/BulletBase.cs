@@ -41,7 +41,7 @@ public class BulletBase : GameUnit
     }
     public void DeSpawn()
     {
-        Debug.Log("destroy");
+        // Debug.Log("destroy");
         SimplePool.DeSpawn(this);
         // Destroy(gameObject);
     }

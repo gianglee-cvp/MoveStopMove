@@ -1,17 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class Test : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public Character character;
     public List<Character> list = new List<Character>();
     public PoolControl poolControl;
     public void Awake()
     {
         poolControl.OnInit();
+        DataManager.Instance.OnInit();
         InputManager.Instance.OnInit();
-        LevelManager.Instance.Init();
-        // character.OnInit();
+        LevelManager.Instance.OnInit();
         foreach(var ch in list)
         {
             ch.OnInit();

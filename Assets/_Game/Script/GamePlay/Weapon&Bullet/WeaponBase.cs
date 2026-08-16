@@ -4,11 +4,6 @@ public class WeaponBase : GameUnit
 {
     [SerializeField] protected Vector3 localTF; 
     [SerializeField] protected Vector3 localRT;
-    public bool CheckActiveWeapon()
-    {
-        Debug.Log(gameObject.activeSelf);
-        return gameObject.activeSelf == false;
-    }
     public void OnInit(Transform rightHandTf)
     {
         gameObject.SetActive(true);

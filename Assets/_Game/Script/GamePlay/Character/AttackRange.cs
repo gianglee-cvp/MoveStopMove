@@ -7,7 +7,7 @@ public class AttackRange : MonoBehaviour
     {
         Character ch = CacheComponent<Collider,Character>.Get(other);
         if(ch == null) return;
-        Debug.Log("trigger");
+        // Debug.Log("trigger");
         character.AddTarget(ch);
     }
 }

@@ -7,12 +7,22 @@ public class Skin
     public PantType pant;
     public HairType hairType;
     public WeaponType weapon;
-
+    public Skin(ColorType color , PantType pant , HairType hair , WeaponType weapon)
+    {
+        this.color = color;
+        this.pant = pant;
+        this.hairType = hair;
+        this.weapon = weapon;
+    }
 }
 public class CharacterVisual : MonoBehaviour
 {
     protected CharacterAnimType currentAnim;
-    [SerializeField] protected Skin currentSkin = new Skin();
+    [SerializeField] protected Skin currentSkin;
+    public Skin CurrentSkin
+    {
+        get => currentSkin;
+    }
     [SerializeField] protected Renderer colorRenderer;
     [SerializeField] protected Renderer pantRenderer;
     [SerializeField] protected Animator animator;
@@ -26,18 +36,22 @@ public class CharacterVisual : MonoBehaviour
 
     public void OnInit()
     {
-        LoadSkin();
+    }
+    public void ApplyNewSkin(Skin skin)
+    {
+        currentSkin = skin;
         ApplySkin();
     }
-    public void LoadSkin()
+    public void ApplyRandomSkin()
     {
-        currentSkin.color = ColorType.Red;
-        currentSkin.pant = PantType.Batman;
-        currentSkin.hairType = HairType.Arrow;
-        currentSkin.weapon = WeaponType.Axe_1;
-        CheckBulletAndWeaponPreloaded();
+        //TODO làm generic trong helper hàm enum không hard code cho max nữa 
+        ApplyNewSkin(new Skin(
+            (ColorType)UnityEngine.Random.Range(0,(int)ColorType.Black),
+            (PantType)UnityEngine.Random.Range(0, (int)PantType.vantim),
+            (HairType)UnityEngine.Random.Range(0, 0),
+            (WeaponType)UnityEngine.Random.Range(0, (int)WeaponType.Axe_1)
+        ));
     }
-
     public void ApplySkin()
     {
         ChangeColorType(currentSkin.color);
@@ -45,7 +59,6 @@ public class CharacterVisual : MonoBehaviour
         ChangeHairType(currentSkin.hairType);
         ChangeWeaponType(currentSkin.weapon);
         ChangeBulletType(currentSkin.weapon);
-        Debug.Log($"ApplySkin: {currentSkin.color} - {currentSkin.pant} - {currentSkin.hairType} - {currentSkin.weapon}");
     }
     private void CheckBulletAndWeaponPreloaded()
     {
@@ -80,6 +93,7 @@ public class CharacterVisual : MonoBehaviour
         {
             SimplePool.DeSpawn(currentWeapon);
         }
+        CheckBulletAndWeaponPreloaded();
         currentWeaponPoolType = (PoolType)((int)PoolType.Weapon_0 + (int)newWeapon);
         currentWeapon = SimplePool.Spawn<WeaponBase>(currentWeaponPoolType, righHandTF.position, Quaternion.identity, righHandTF);
         currentWeapon.OnInit(righHandTF);
@@ -97,10 +111,6 @@ public class CharacterVisual : MonoBehaviour
             currentAnim = newAnim;
             animator.SetBool(newAnim.ToString(),true);
         }
-    }
-    public void ChangeAcessory()
-    {
-
     }
     public void InitThrow(Vector3 rootPos)
     {

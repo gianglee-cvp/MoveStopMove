@@ -145,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 433f96249426da94dba45b40dadf9f88, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.44498
+      value: 5.59
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 433f96249426da94dba45b40dadf9f88, type: 3}
       propertyPath: m_LocalPosition.z
@@ -205,7 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 112272327}
-  - component: {fileID: 112272328}
+  - component: {fileID: 112272332}
   - component: {fileID: 112272329}
   - component: {fileID: 112272330}
   - component: {fileID: 112272331}
@@ -231,24 +231,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &112272328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112272325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a1f8cebb54c4e4ebb11842d9fa5710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Test
-  character: {fileID: 3926598129969529535}
-  list:
-  - {fileID: 3926598129969529535}
-  - {fileID: 2120299728}
-  - {fileID: 1481489022}
-  poolControl: {fileID: 1899577879}
 --- !u!114 &112272329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +273,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f100b3a034eb2439f91b5c6fece99e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DataManager
+  fileName: data.game
   soSkin: {fileID: 11400000, guid: aa3958765b8e9f34dbf2be15e8cc5542, type: 2}
+--- !u!114 &112272332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112272325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48617695c34bf7449863d56ab63542b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  list:
+  - {fileID: 3926598129969529535}
+  poolControl: {fileID: 1899577879}
 --- !u!1 &307479817
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b561aab753cf0714bb0797e14b87cb01, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.04
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b561aab753cf0714bb0797e14b87cb01, type: 3}
       propertyPath: m_LocalPosition.z
@@ -415,7 +413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0f56c01ef548e5044aacd0ce0d1817d5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.44498
+      value: 2.754
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0f56c01ef548e5044aacd0ce0d1817d5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -829,17 +827,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b90a7cc6d85206c4fb9d1be424bf367f, type: 3}
---- !u!114 &1481489022 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1361216709600304708, guid: b90a7cc6d85206c4fb9d1be424bf367f, type: 3}
-  m_PrefabInstance: {fileID: 1481489011}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4174216620f286d49b460322a632a747, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bot
 --- !u!1 &1544035829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,7 +1006,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f5bc404c3d52bfa418eb511422498d3c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.324
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f5bc404c3d52bfa418eb511422498d3c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1237,7 +1224,7 @@ MonoBehaviour:
     amount: 20
     parent: {fileID: 1899577880}
   - prefab: {fileID: 3406920538738542236, guid: f4f760eaffc19f44abb1c1759898a519, type: 3}
-    amount: 1
+    amount: 0
     parent: {fileID: 1899577880}
 --- !u!4 &1899577880
 Transform:
@@ -1278,11 +1265,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b060e6268c7228b4fa37991659bd777a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b060e6268c7228b4fa37991659bd777a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.048
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b060e6268c7228b4fa37991659bd777a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1333,17 +1320,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b060e6268c7228b4fa37991659bd777a, type: 3}
---- !u!114 &2120299728 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1361216709600304708, guid: b90a7cc6d85206c4fb9d1be424bf367f, type: 3}
-  m_PrefabInstance: {fileID: 2486305344746504302}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4174216620f286d49b460322a632a747, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bot
 --- !u!1001 &2486305344746504302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2485,6 +2461,10 @@ PrefabInstance:
     - target: {fileID: 8902162966529603974, guid: 4164b5dfff0ef1c44809ecd399e96628, type: 3}
       propertyPath: m_Name
       value: Axe_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8902162966529603974, guid: 4164b5dfff0ef1c44809ecd399e96628, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

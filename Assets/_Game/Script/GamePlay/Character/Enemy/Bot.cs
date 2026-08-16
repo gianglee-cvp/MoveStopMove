@@ -22,9 +22,9 @@ public partial class Bot : Character
     public override void OnInit()
     {
         base.OnInit();
-        spawnPos = TF != null ? TF.position : transform.position;
-        //TODO đổi thành random skin
-        characterVisual.ApplySkin();
+        spawnPos = TF.position;
+        //TODO đổi sang hàm random
+        characterVisual.ApplyRandomSkin();
         ChangeState(idleState);
     }
     public override void Attack()

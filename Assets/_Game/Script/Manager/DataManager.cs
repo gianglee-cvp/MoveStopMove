@@ -1,47 +1,72 @@
+using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using NUnit.Framework.Constraints;
 
 public class DataManager : Singleton<DataManager>
 {
+    [Header("File Storage Config")]
+    [SerializeField] private string fileName;
+    private FileDataHandler dataHandler;
+
+    protected GameData gameData;
+    protected List<IData> allDataObject;
     [SerializeField] private SOSkin soSkin;
 
-    // public Skin GetSkin(Skin source)
-    // {
-    //     Skin skin = source == null ? new Skin() : source.Clone();
+    public void OnInit()
+    {
+        //Note : cac IData phai duoc tao truoc datamanager va init sau data manager neu co ham load trong init
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        allDataObject = FindAllDataObject();
+        Debug.Log("All object" + allDataObject.Count);
+        LoadGame();
+    }
 
-    //     if (soSkin == null)
-    //     {
-    //         return skin;
-    //     }
 
-    //     skin.material = soSkin.GetMaterial(skin.color);
-    //     skin.pantTexture = soSkin.GetPant(skin.pant);
-    //     skin.hairPrefab = soSkin.GetHair(skin.hair);
-    //     skin.weaponPrefab = soSkin.GetWeapon(skin.weapon);
-    //     skin.bulletPrefab = soSkin.GetBullet(skin.weapon);
-    //     return skin;
-    // }
-    public Material GetMaterial(ColorType color)
+    public void NewGame()
     {
-        return soSkin.GetMaterial(color);
+        gameData = new GameData();
     }
-    public Texture2D GetPant(PantType type)
+    public void LoadGame()
     {
-        return soSkin.GetPant(type);
+        //TODO load tu json 
+        gameData = dataHandler.Load();
+        if(gameData == null)
+        {
+            Debug.Log("No Data");
+            NewGame();
+        }
+        // push sang cac object data 
+        foreach(IData dataObject in allDataObject)
+        {
+            dataObject.LoadGame(gameData);
+        }
     }
-    public GameObject GetHair(HairType type)
+    public void SaveGame()
     {
-        return soSkin.GetHair(type);
+        Debug.Log("Save Game");
+        // lay data ve
+        foreach(IData dataObject in allDataObject)
+        {
+            dataObject.SaveGame(ref gameData);
+        }
+        //luu vao json
+        dataHandler.Save(gameData);
     }
-    public WeaponBase GetWeapon(WeaponType type)
+    public void OnApplicationQuit()
     {
-        return soSkin.GetWeapon(type);
+        SaveGame();
     }
-    public BulletBase GetBullet(WeaponType type)
+    public Material GetMaterial(ColorType color) => soSkin.GetMaterial(color);
+    public Texture2D GetPant(PantType type) => soSkin.GetPant(type);
+    public GameObject GetHair(HairType type) => soSkin.GetHair(type);
+    public WeaponBase GetWeapon(WeaponType type) => soSkin.GetWeapon(type);
+    public BulletBase GetBullet(WeaponType type) => soSkin.GetBullet(type);
+    public string GetName(SkinType type , int index) => soSkin.GetName(type,index);
+    private List<IData> FindAllDataObject()
     {
-        return soSkin.GetBullet(type);
+        IEnumerable<IData> objects = FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None).OfType<IData>();
+        return new List<IData>(objects);
     }
-    public string GetName(SkinType type , int index)
-    {
-        return soSkin.GetName(type,index);
-    }
+
 }

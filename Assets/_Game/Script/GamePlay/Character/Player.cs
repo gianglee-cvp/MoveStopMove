@@ -1,19 +1,28 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : Character
+public class Player : Character,IData
 {
+    //TODO bỏ logic input
     protected InputAction moveAction;
     protected Vector2 moveAmount;
+    public int gold;
     public override void OnInit()
     {
         base.OnInit();
-        characterVisual.ApplySkin();
         moveAction = InputManager.Instance.MoveAction;
         moveAction.Enable();
     }
     void Update()
-    {   
+    {
+        //TODO xoa 
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            gold ++;
+            DataManager.Instance.SaveGame();
+            characterVisual.ApplySkin();
+            
+        }
         SetTarget();
         if (moveAction.enabled)
         {
@@ -61,5 +70,18 @@ public class Player : Character
         base.RemoveTarget(index);
         Bot enemy = currentTarget as Bot;
         enemy?.HideTargetIndicator();
+    }
+    public void LoadGame(GameData data)
+    {
+        gold = data.gold;
+        characterVisual.ApplyNewSkin(data.GetSkinEquipped());
+        Debug.Log("Load gold data" + gold);
+    }
+    public void SaveGame(ref GameData data)
+    {
+        data.gold = gold;
+        data.SaveSkin(characterVisual.CurrentSkin);
+        Debug.Log("Save gold data" + gold);
+        
     }
 }

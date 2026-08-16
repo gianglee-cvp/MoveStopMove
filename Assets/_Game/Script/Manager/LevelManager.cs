@@ -7,7 +7,7 @@ public class LevelManager : Singleton<LevelManager>
 
     protected GameObject currentMap;
 
-    public void Init()
+    public void OnInit()
     {
         LoadLevel(currentLevelIndex);
     }
