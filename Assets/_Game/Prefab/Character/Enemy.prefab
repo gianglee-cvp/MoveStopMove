@@ -2090,6 +2090,7 @@ MonoBehaviour:
   pantRenderer: {fileID: 4525196246650703407}
   animator: {fileID: 1291735572740242389}
   righHandTF: {fileID: 4176015523274708358}
+  headTF: {fileID: 9079156266853994207}
   shootPoint: {fileID: 2707585514239448250}
   character: {fileID: 1361216709600304708}
   currentBullet: {fileID: 0}

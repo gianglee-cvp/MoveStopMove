@@ -59,7 +59,7 @@ public class DataManager : Singleton<DataManager>
     }
     public Material GetMaterial(ColorType color) => soSkin.GetMaterial(color);
     public Texture2D GetPant(PantType type) => soSkin.GetPant(type);
-    public GameObject GetHair(HairType type) => soSkin.GetHair(type);
+    public Hair GetHair(HairType type) => soSkin.GetHair(type);
     public WeaponBase GetWeapon(WeaponType type) => soSkin.GetWeapon(type);
     public BulletBase GetBullet(WeaponType type) => soSkin.GetBullet(type);
     public string GetName(SkinType type , int index) => soSkin.GetName(type,index);

@@ -27,12 +27,15 @@ public class CharacterVisual : MonoBehaviour
     [SerializeField] protected Renderer pantRenderer;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Transform righHandTF;
+    [SerializeField] protected Transform headTF;
     [SerializeField] protected Transform shootPoint;
+
     [SerializeField] protected Character character;
     protected PoolType currentBulletPoolType;
     protected PoolType currentWeaponPoolType;
     [SerializeField] protected BulletBase currentBullet;
     [SerializeField] protected WeaponBase currentWeapon;
+    [SerializeField] protected Hair currentHair;
 
     public void OnInit()
     {
@@ -44,12 +47,12 @@ public class CharacterVisual : MonoBehaviour
     }
     public void ApplyRandomSkin()
     {
-        //TODO làm generic trong helper hàm enum không hard code cho max nữa 
+        //TODO làm generic trong helper hàm enum không hard code cho max nữa, dùng length
         ApplyNewSkin(new Skin(
             (ColorType)UnityEngine.Random.Range(0,(int)ColorType.Black),
             (PantType)UnityEngine.Random.Range(0, (int)PantType.vantim),
             (HairType)UnityEngine.Random.Range(0, 0),
-            (WeaponType)UnityEngine.Random.Range(0, (int)WeaponType.Axe_1)
+            (WeaponType)UnityEngine.Random.Range(0, (int)WeaponType.Z)
         ));
     }
     public void ApplySkin()
@@ -64,6 +67,7 @@ public class CharacterVisual : MonoBehaviour
     {
         BulletBase bulletPrefab = DataManager.Instance.GetBullet(currentSkin.weapon);
         WeaponBase weaponPrefab = DataManager.Instance.GetWeapon(currentSkin.weapon);
+
         if (!SimplePool.IsPreloaded(weaponPrefab.poolType))
         {
             SimplePool.Preload(weaponPrefab,5, null);
@@ -85,7 +89,57 @@ public class CharacterVisual : MonoBehaviour
     }
     public void ChangeHairType(HairType newHair)
     {
-        //TODO change hair type
+        if (currentSkin == null)
+        {
+            Debug.LogError($"[{name}] ChangeHairType failed: currentSkin is null", this);
+            return;
+        }
+
+        if (DataManager.Instance == null)
+        {
+            Debug.LogError($"[{name}] ChangeHairType failed: DataManager.Instance is null", this);
+            return;
+        }
+
+        //TODO Despawn cai cu 
+        if(currentHair != null)
+        {
+            SimplePool.DeSpawn(currentHair);
+        }
+
+        Hair prefab = DataManager.Instance.GetHair(newHair);
+        if (prefab == null)
+        {
+            Debug.LogError($"[{name}] ChangeHairType failed: prefab is null. newHair={newHair}, currentSkinHair={currentSkin.hairType}", this);
+            return;
+        }
+
+        PoolType expectedPoolType = (PoolType)((int)PoolType.Hair_0 + (int)newHair);
+        Debug.Log($"[{name}] ChangeHairType start. newHair={newHair}, currentSkinHair={currentSkin.hairType}, prefab={prefab.name}, prefabPoolType={prefab.poolType}, expectedPoolType={expectedPoolType}", this);
+
+        if (!SimplePool.IsPreloaded(prefab.poolType))
+        {
+            Debug.LogWarning($"[{name}] Preloading hair prefab. prefab={prefab.name}, prefabPoolType={prefab.poolType}, expectedPoolType={expectedPoolType}", this);
+            SimplePool.Preload(prefab,3,null);
+        }
+
+        Debug.Log($"[{name}] Hair preload state. prefabPoolPreloaded={SimplePool.IsPreloaded(prefab.poolType)}, expectedPoolPreloaded={SimplePool.IsPreloaded(expectedPoolType)}", this);
+        if (prefab.poolType != expectedPoolType)
+        {
+            Debug.LogError($"[{name}] Hair pool mismatch. prefab={prefab.name}, prefabPoolType={prefab.poolType}, expectedPoolType={expectedPoolType}, newHair={newHair}", this);
+        }
+
+        PoolType type = expectedPoolType;
+        currentHair = SimplePool.Spawn<Hair>(type, headTF.position, Quaternion.identity, headTF);
+        if (currentHair == null)
+        {
+            Debug.LogError($"[{name}] Hair spawn failed. requestedPoolType={type}, prefab={prefab.name}, prefabPoolType={prefab.poolType}, headTFNull={headTF == null}", this);
+            return;
+        }
+
+        Debug.Log($"[{name}] Hair spawned successfully. spawnedName={currentHair.name}, requestedPoolType={type}", this);
+        currentHair.OnInit();
+
     }   
     public void ChangeWeaponType(WeaponType newWeapon)
     {

@@ -64,7 +64,7 @@ public class SOSkin : ScriptableObject
 {
     [SerializeField] private Material[] Color;
     [SerializeField] private Texture2D[] listPant;
-    [SerializeField] private GameObject[] listHair;
+    [SerializeField] private Hair[] listHair;
     [SerializeField] private WeaponBase[] listWeapon;
     [SerializeField] private BulletBase[] listBullet;
     [SerializeField] private SOSkinName listName;
@@ -77,7 +77,7 @@ public class SOSkin : ScriptableObject
     {
         return listPant[(int)type];
     }
-    public GameObject GetHair(HairType type)
+    public Hair GetHair(HairType type)
     {
         return listHair[(int)type];
     }

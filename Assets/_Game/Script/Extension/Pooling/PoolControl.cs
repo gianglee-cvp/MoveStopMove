@@ -49,4 +49,17 @@ public enum PoolType
     Bullet_9 = 209,
     Bullet_10 = 210,
     Bullet_11 = 211,
+
+    Hair_0 = 300,
+    Hair_1 = 301,
+    Hair_2 = 302,
+    Hair_3 = 303,
+    Hair_4 = 304,
+    Hair_5 = 305,
+    Hair_6 = 306,
+    Hair_7 = 307,
+    Hair_8 = 308,
+    Hair_9 = 309,
+    Hair_10 = 310
+
 }

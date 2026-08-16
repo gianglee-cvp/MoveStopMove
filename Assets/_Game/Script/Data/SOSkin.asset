@@ -30,7 +30,17 @@ MonoBehaviour:
   - {fileID: 2800000, guid: dee6dfc71353a41449ed00481650f338, type: 3}
   - {fileID: 2800000, guid: a43eb2f6a77e8b04ba74817f5ae20dbf, type: 3}
   - {fileID: 2800000, guid: e6e8412764ace5144802e94f7f66bf3c, type: 3}
-  listHair: []
+  listHair:
+  - {fileID: 4820548538780120525, guid: a1f3b6c708644db4a847f9ecfb122185, type: 3}
+  - {fileID: 4390420954180356338, guid: 04e191bd77a58dc4aa8017fc745cdcb4, type: 3}
+  - {fileID: 648066816445040342, guid: 0a08ef0b03a697f4495185da69a9bb5e, type: 3}
+  - {fileID: 6848750023893635097, guid: 3c9f380d9e745804c9537aa46b96f136, type: 3}
+  - {fileID: 294974297678069559, guid: 4e99e3844838cca4fb1b653b877d4ec8, type: 3}
+  - {fileID: 822772419638796943, guid: 75478cda61288d045951d18fd19a0af5, type: 3}
+  - {fileID: 5740907694214549158, guid: 9d6b6d0426628e849b0c58fac40003ce, type: 3}
+  - {fileID: 2689875924567471555, guid: 891b2d2d134b10c4fb4eb8544400e861, type: 3}
+  - {fileID: 3733359807107759359, guid: ba14f5a7fdf817b48bf8f3c1b752cc75, type: 3}
+  - {fileID: 6880971122431319558, guid: 68f2024be8e826644920413118b838a7, type: 3}
   listWeapon:
   - {fileID: 8476107346451990475, guid: 71f4deb0a40a60e438beb2e321851883, type: 3}
   - {fileID: 186201616510957359, guid: e849fd0d5f3ff264ebb26a480129ae6b, type: 3}

@@ -21,7 +21,6 @@ public class Player : Character,IData
             gold ++;
             DataManager.Instance.SaveGame();
             characterVisual.ApplySkin();
-            
         }
         SetTarget();
         if (moveAction.enabled)

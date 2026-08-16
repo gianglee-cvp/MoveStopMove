@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3066576988187638196
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -4216859302048453862, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2682887
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9476971
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2673717
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.013315993
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.5670288
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.449145
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.0000000042213193
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1.5173166e-16
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0000000018626447
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      propertyPath: m_Name
+      value: Hat_Cap
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2689875924567471555}
+  m_SourcePrefab: {fileID: 100100000, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+--- !u!1 &6462461590011699389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 00419256b9791794584d98bc1a1b3639, type: 3}
+  m_PrefabInstance: {fileID: 3066576988187638196}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2689875924567471555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6462461590011699389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93731afc11fb66f45a97220f8740c7e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hair
+  poolType: 307
+  localTF: {x: -0.028, y: 0.472, z: -0.081}
+  localRT: {x: 345.92004, y: 359.37985, z: 3.5163455}
