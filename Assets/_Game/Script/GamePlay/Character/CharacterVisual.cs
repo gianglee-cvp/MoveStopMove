@@ -91,13 +91,11 @@ public class CharacterVisual : MonoBehaviour
     {
         if (currentSkin == null)
         {
-            Debug.LogError($"[{name}] ChangeHairType failed: currentSkin is null", this);
             return;
         }
 
         if (DataManager.Instance == null)
         {
-            Debug.LogError($"[{name}] ChangeHairType failed: DataManager.Instance is null", this);
             return;
         }
 
@@ -110,34 +108,22 @@ public class CharacterVisual : MonoBehaviour
         Hair prefab = DataManager.Instance.GetHair(newHair);
         if (prefab == null)
         {
-            Debug.LogError($"[{name}] ChangeHairType failed: prefab is null. newHair={newHair}, currentSkinHair={currentSkin.hairType}", this);
             return;
         }
 
         PoolType expectedPoolType = (PoolType)((int)PoolType.Hair_0 + (int)newHair);
-        Debug.Log($"[{name}] ChangeHairType start. newHair={newHair}, currentSkinHair={currentSkin.hairType}, prefab={prefab.name}, prefabPoolType={prefab.poolType}, expectedPoolType={expectedPoolType}", this);
 
         if (!SimplePool.IsPreloaded(prefab.poolType))
         {
-            Debug.LogWarning($"[{name}] Preloading hair prefab. prefab={prefab.name}, prefabPoolType={prefab.poolType}, expectedPoolType={expectedPoolType}", this);
             SimplePool.Preload(prefab,3,null);
-        }
-
-        Debug.Log($"[{name}] Hair preload state. prefabPoolPreloaded={SimplePool.IsPreloaded(prefab.poolType)}, expectedPoolPreloaded={SimplePool.IsPreloaded(expectedPoolType)}", this);
-        if (prefab.poolType != expectedPoolType)
-        {
-            Debug.LogError($"[{name}] Hair pool mismatch. prefab={prefab.name}, prefabPoolType={prefab.poolType}, expectedPoolType={expectedPoolType}, newHair={newHair}", this);
         }
 
         PoolType type = expectedPoolType;
         currentHair = SimplePool.Spawn<Hair>(type, headTF.position, Quaternion.identity, headTF);
         if (currentHair == null)
         {
-            Debug.LogError($"[{name}] Hair spawn failed. requestedPoolType={type}, prefab={prefab.name}, prefabPoolType={prefab.poolType}, headTFNull={headTF == null}", this);
             return;
         }
-
-        Debug.Log($"[{name}] Hair spawned successfully. spawnedName={currentHair.name}, requestedPoolType={type}", this);
         currentHair.OnInit();
 
     }   

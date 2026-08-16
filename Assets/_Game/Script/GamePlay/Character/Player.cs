@@ -70,6 +70,12 @@ public class Player : Character,IData
         Bot enemy = currentTarget as Bot;
         enemy?.HideTargetIndicator();
     }
+    public override void RemoveTarget(Character target)
+    {
+        base.RemoveTarget(target);
+        Bot enemy = currentTarget as Bot;
+        enemy?.HideTargetIndicator();
+    }
     public void LoadGame(GameData data)
     {
         gold = data.gold;

@@ -18,6 +18,6 @@ public static class Helper
     public static bool CheckDistanceOutRange(Vector3 pos , Vector3 des , float range)
     {
         // Debug.Log(range);
-        return !(Distance2D(pos,des) < range * range);
+        return !(Distance2D(pos,des) < range * range + 1);
     }
 }

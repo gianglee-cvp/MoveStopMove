@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 public enum CharacterAnimType
 {
@@ -31,7 +32,7 @@ public class Character : GameUnit
     protected float offsetRange = 0f;
     //TODO đổi thành protected
     public List<Character> listTarget = new List<Character>();
-    protected Character currentTarget;
+    [SerializeField] protected Character currentTarget;
     public float Range
     {
         get => range;
@@ -98,7 +99,11 @@ public class Character : GameUnit
     public virtual Character SetTarget()
     {
         int cnt = listTarget.Count; 
-        if(cnt == 0) return null;
+        if(cnt == 0)
+        {
+            currentTarget = null;
+            return currentTarget;
+        } 
         Character finalTarget  = null;
         for(int i = cnt -1 ;  i >=0 ; i--)
         {
@@ -106,7 +111,7 @@ public class Character : GameUnit
             offsetRange = target.GetOffsetRange();
             bool targetOutRange = Helper.CheckDistanceOutRange(pos,target.pos,range + offsetRange);
             bool isTargetDead = !target.gameObject.activeSelf;
-            if (targetOutRange || isTargetDead)
+            if (isTargetDead || targetOutRange)
             {
                 RemoveTarget(i);
             }
@@ -121,7 +126,12 @@ public class Character : GameUnit
     }
     public virtual void RemoveTarget(int index)
     {
+        if (index < 0 || index >= listTarget.Count) return;
         listTarget.RemoveAt(index);
+    }
+    public virtual void RemoveTarget(Character target)
+    {
+        listTarget.Remove(target);
     }
     public virtual float GetOffsetRange()
     {
