@@ -10,11 +10,11 @@ public class GameManager : MonoBehaviour
         poolControl.OnInit();
         DataManager.Instance.OnInit();
         InputManager.Instance.OnInit();
-        LevelManager.Instance.OnInit();
         foreach(var ch in list)
         {
             ch.OnInit();
         }
+        LevelManager.Instance.OnInit();
     }
 
 }

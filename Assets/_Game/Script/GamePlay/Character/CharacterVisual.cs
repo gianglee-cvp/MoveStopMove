@@ -137,5 +137,4 @@ public class CharacterVisual : MonoBehaviour
         Vector3 end = start + transform.forward * distance;
         Gizmos.DrawLine(start, end);
     }
-
 }

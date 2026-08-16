@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2228142124435380620
+--- !u!1 &544714955440125168
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2815818374405692960}
-  - component: {fileID: 5172715987443097284}
-  - component: {fileID: 8282718655242676699}
+  - component: {fileID: 5992037592462879921}
+  - component: {fileID: 955475891970741102}
+  - component: {fileID: 64507121931203755}
+  - component: {fileID: 2425394519675411151}
   m_Layer: 0
-  m_Name: boomerang (1)
+  m_Name: Hammer (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2815818374405692960
+--- !u!4 &5992037592462879921
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2228142124435380620}
+  m_GameObject: {fileID: 544714955440125168}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 7.9999833}
+  m_LocalRotation: {x: -0.8448877, y: -0.48805258, z: -0.21505596, w: -0.041479338}
+  m_LocalPosition: {x: -0.171, y: 0.159, z: 0.013}
+  m_LocalScale: {x: 36, y: 36, z: 36}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1027348123329341019}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!33 &5172715987443097284
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: -8.038, y: 155.928, z: -238.31}
+--- !u!33 &955475891970741102
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2228142124435380620}
-  m_Mesh: {fileID: -462981019419857548, guid: 10a804f2bc3cb1741a6bed7a5cf745df, type: 3}
---- !u!23 &8282718655242676699
+  m_GameObject: {fileID: 544714955440125168}
+  m_Mesh: {fileID: 3174812724623785705, guid: f5bc404c3d52bfa418eb511422498d3c, type: 3}
+--- !u!23 &64507121931203755
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2228142124435380620}
+  m_GameObject: {fileID: 544714955440125168}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -66,7 +67,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3655396658102750768, guid: b92655ac56960964c9634f87af4922f7, type: 3}
+  - {fileID: 2100000, guid: f116b6242baec654387f6801d99afe1d, type: 2}
+  - {fileID: 8486936951020155453, guid: 58df17cea5970394ab8c9b65c193f8c2, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -90,51 +92,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &6140003587655075249
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1027348123329341019}
-  - component: {fileID: 4007530091295269805}
-  m_Layer: 0
-  m_Name: bommerang
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1027348123329341019
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6140003587655075249}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2815818374405692960}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4007530091295269805
+--- !u!114 &2425394519675411151
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6140003587655075249}
+  m_GameObject: {fileID: 544714955440125168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2e92c812f33d624fbd499c803e117b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 33efd4de6c243b24a81e1e2f72e85c84, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Boomerang
-  poolType: 203
-  speed: 10
-  range: 0
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponBase
+  poolType: 108
+  localTF: {x: -0.171, y: 0.159, z: 0.013}
+  localRT: {x: 351.9622, y: 155.92755, z: 121.69041}

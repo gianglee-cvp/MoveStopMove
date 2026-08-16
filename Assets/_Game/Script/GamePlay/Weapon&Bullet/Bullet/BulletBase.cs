@@ -12,15 +12,17 @@ public class BulletBase : GameUnit
     protected Character owner;
     [SerializeField] protected float speed = 10f;
     [SerializeField] protected float range;
-    [SerializeField] protected Rigidbody rb;
     protected Vector3 direction;
+    protected Vector3 target;
     protected Vector3 rootPos;
 
-    public void Init(Vector3 startDir , float rangeAttack , Vector3 rootPosion , Character ch)
+    public virtual void Init(Vector3 startDir , float rangeAttack , Vector3 rootPosion , Character ch)
     {
-        rb.linearVelocity = Vector3.zero;
+        // rb.linearVelocity = Vector3.zero;
         direction = startDir;
+        direction.y = 0;
         range = rangeAttack;
+        target = TF.position + startDir*rangeAttack;
         rootPos  = rootPosion;
         owner = ch;
     }
@@ -41,9 +43,7 @@ public class BulletBase : GameUnit
     }
     public void DeSpawn()
     {
-        // Debug.Log("destroy");
         SimplePool.DeSpawn(this);
-        // Destroy(gameObject);
     }
     private void OnDrawGizmos() 
     { 
