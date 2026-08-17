@@ -1,15 +1,17 @@
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow : Singleton<CameraFollow>
 {
     [SerializeField] private Transform target;
 
     [SerializeField] private Vector3 offset = new Vector3(0, 20f, -14.5f);
+    [SerializeField] private Vector3 rotationOffset;
 
     [SerializeField] private float followSpeed = 5f;
     //TODO cho vao init 
     void Awake()
     {
+        transform.rotation = Quaternion.Euler(rotationOffset);
         transform.position = target.position + offset;
     }
 
@@ -24,7 +26,5 @@ public class CameraFollow : MonoBehaviour
             targetPosition,
             followSpeed * Time.deltaTime
         );
-
-        transform.LookAt(target);
     }
 }

@@ -1,11 +1,23 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.AI;
+
 public static class Helper
 {
     public static Vector3 GetRandomSpawnPosition(float radius)
     {
-        Vector2 offset2D = Random.insideUnitCircle * radius;
-        return new Vector3(offset2D.x, 0f, offset2D.y);
+        for (int i = 0; i < 8; i++)
+        {
+            Vector2 offset2D = Random.insideUnitCircle * radius;
+            Vector3 randomPoint = new Vector3(offset2D.x, 0f, offset2D.y);
+
+            if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, radius, NavMesh.AllAreas))
+            {
+                return hit.position;
+            }
+        }
+
+        return Vector3.zero;
     }
 
     public static float Distance2D(Vector3 pos , Vector3 des)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class BotManager : Singleton<BotManager>
 {
-    [SerializeField] protected float spawnRadius = 100f;
+    [SerializeField] protected float spawnRadius = 50f;
     [SerializeField] protected float respawnCheckInterval;
     [SerializeField] protected int totalBotCount;
     [SerializeField] protected int inMapBotCount;
