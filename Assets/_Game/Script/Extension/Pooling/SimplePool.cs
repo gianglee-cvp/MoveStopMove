@@ -4,6 +4,18 @@ using UnityEngine;
 public static class SimplePool 
 {
     public static Dictionary<PoolType,Pool> poolInstance = new Dictionary<PoolType, Pool>(); 
+    public static Dictionary<System.Type , Transform> poolParent = new Dictionary<System.Type, Transform>();
+    public static void RegisterParent(System.Type type, Transform parent)
+    {
+        if (type == null || parent == null) return;
+        poolParent[type] = parent;
+    }
+    public static Transform GetRegisteredParent(GameUnit unit)
+    {
+        if (unit == null) return null;
+        poolParent.TryGetValue(unit.GetType(), out Transform parent);
+        return parent;
+    }
     public static bool IsPreloaded(PoolType poolType)
     {
         return poolInstance.ContainsKey(poolType) && poolInstance[poolType] != null;
@@ -14,6 +26,10 @@ public static class SimplePool
         {
             Debug.LogError("PREFAB IS EMPTY");
             return; 
+        }
+        if(parent == null)
+        {
+            parent = GetRegisteredParent(prefab);
         }
         if(!poolInstance.ContainsKey(prefab.poolType) || poolInstance[prefab.poolType] == null)
         {
@@ -112,8 +128,10 @@ public class Pool
         if (unit != null && unit.gameObject.activeSelf)
         {
             active.Remove(unit); 
-            inactive.Enqueue(unit); 
+            inactive.Enqueue(unit);
+            unit.TF.SetParent(parentPool); 
             unit.gameObject.SetActive(false);
+
         }
     }
     // thu thap tat ca phan tu ve pool 

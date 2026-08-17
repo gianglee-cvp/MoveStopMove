@@ -5,11 +5,16 @@ public class PoolControl : MonoBehaviour
     [SerializeField] PoolAmount[] poolAmounts;
     public void OnInit()
     {
+        //TODO them du type knight , boomerang , ... 
         GameUnit[] gameUnits = Resources.LoadAll<GameUnit>("Pool/");
         for(int i =0 ; i < poolAmounts.Length ; i++)
         {
-            SimplePool.Preload(poolAmounts[i].prefab , poolAmounts[i].amount , poolAmounts[i].parent);
-            Debug.Log("Preload " + poolAmounts[i].prefab.name + " Amount: " + poolAmounts[i].amount);   
+            GameUnit prefab = poolAmounts[i].prefab;
+            Transform parent = poolAmounts[i].parent;
+
+            SimplePool.Preload(prefab , poolAmounts[i].amount , parent);
+            SimplePool.RegisterParent(prefab.GetType(),parent);
+            Debug.Log("Preload " + prefab.name + " Type : " + prefab.GetType() + " Amount: " + poolAmounts[i].amount);   
         }
     }
 }

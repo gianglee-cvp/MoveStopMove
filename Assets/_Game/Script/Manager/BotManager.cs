@@ -77,7 +77,7 @@ public class BotManager : Singleton<BotManager>
         DeSpawnUnit(bot);
     }
 
-    protected virtual void DeSpawnUnit(GameUnit bot)
+    protected void DeSpawnUnit(GameUnit bot)
     {
         SimplePool.DeSpawn(bot);
     }

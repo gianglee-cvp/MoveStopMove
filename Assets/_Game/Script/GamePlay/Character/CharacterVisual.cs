@@ -49,14 +49,15 @@ public class CharacterVisual : MonoBehaviour
     {
         //TODO làm generic trong helper hàm enum không hard code cho max nữa, dùng length
         ApplyNewSkin(new Skin(
-            (ColorType)UnityEngine.Random.Range(0,(int)ColorType.Black),
-            (PantType)UnityEngine.Random.Range(0, (int)PantType.vantim),
-            (HairType)UnityEngine.Random.Range(0, 0),
-            (WeaponType)UnityEngine.Random.Range(0, (int)WeaponType.Z)
+            (ColorType)UnityEngine.Random.Range(0,(int)ColorType.Black + 1),
+            (PantType)UnityEngine.Random.Range(0, (int)PantType.vantim + 1),
+            (HairType)UnityEngine.Random.Range(0, (int)HairType.Rau + 1),
+            (WeaponType)UnityEngine.Random.Range(0, (int)WeaponType.Z + 1)
         ));
     }
     public void ApplySkin()
     {
+        //TODO change logic -> changeAnim 
         ChangeColorType(currentSkin.color);
         ChangePantType(currentSkin.pant);
         ChangeHairType(currentSkin.hairType);
@@ -88,44 +89,19 @@ public class CharacterVisual : MonoBehaviour
         pantRenderer.material.SetTexture("_BaseMap", newPantTexture);
     }
     public void ChangeHairType(HairType newHair)
-    {
-        if (currentSkin == null)
-        {
-            return;
-        }
-
-        if (DataManager.Instance == null)
-        {
-            return;
-        }
-
+    {        
         //TODO Despawn cai cu 
         if(currentHair != null)
         {
             SimplePool.DeSpawn(currentHair);
         }
-
         Hair prefab = DataManager.Instance.GetHair(newHair);
-        if (prefab == null)
-        {
-            return;
-        }
-
-        PoolType expectedPoolType = (PoolType)((int)PoolType.Hair_0 + (int)newHair);
-
         if (!SimplePool.IsPreloaded(prefab.poolType))
         {
             SimplePool.Preload(prefab,3,null);
         }
-
-        PoolType type = expectedPoolType;
-        currentHair = SimplePool.Spawn<Hair>(type, headTF.position, Quaternion.identity, headTF);
-        if (currentHair == null)
-        {
-            return;
-        }
+        currentHair = SimplePool.Spawn<Hair>(prefab.poolType, headTF.position, Quaternion.identity, headTF);
         currentHair.OnInit();
-
     }   
     public void ChangeWeaponType(WeaponType newWeapon)
     {
@@ -177,4 +153,5 @@ public class CharacterVisual : MonoBehaviour
         Vector3 end = start + transform.forward * distance;
         Gizmos.DrawLine(start, end);
     }
+
 }

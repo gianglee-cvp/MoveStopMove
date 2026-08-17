@@ -213,6 +213,37 @@ MonoBehaviour:
   list:
   - {fileID: 3926598129969529535}
   poolControl: {fileID: 1899577879}
+--- !u!1 &302848275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 302848276}
+  m_Layer: 0
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &302848276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302848275}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1899577880}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &307479817
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +632,37 @@ MonoBehaviour:
   target: {fileID: 3906390330388187160}
   offset: {x: 0, y: 20, z: -14.61}
   followSpeed: 5
+--- !u!1 &1786743277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1786743278}
+  m_Layer: 0
+  m_Name: Skin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1786743278
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786743277}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1899577880}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1800906119
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,10 +822,25 @@ MonoBehaviour:
   poolAmounts:
   - prefab: {fileID: 1361216709600304708, guid: b90a7cc6d85206c4fb9d1be424bf367f, type: 3}
     amount: 20
-    parent: {fileID: 1899577880}
+    parent: {fileID: 2047556746}
   - prefab: {fileID: 3406920538738542236, guid: f4f760eaffc19f44abb1c1759898a519, type: 3}
     amount: 0
     parent: {fileID: 1899577880}
+  - prefab: {fileID: 8476107346451990475, guid: 71f4deb0a40a60e438beb2e321851883, type: 3}
+    amount: 1
+    parent: {fileID: 302848276}
+  - prefab: {fileID: 276168288825024153, guid: 1d035d2eaa13a1545ae59e3bb8996c52, type: 3}
+    amount: 1
+    parent: {fileID: 307479818}
+  - prefab: {fileID: 4390420954180356338, guid: 04e191bd77a58dc4aa8017fc745cdcb4, type: 3}
+    amount: 1
+    parent: {fileID: 1786743278}
+  - prefab: {fileID: 8920024679641870541, guid: 5a9e00ce5be893a4baa0d110921e91d7, type: 3}
+    amount: 1
+    parent: {fileID: 307479818}
+  - prefab: {fileID: 4007530091295269805, guid: 1f402054716ffd44bb304ec3f5f8caeb, type: 3}
+    amount: 1
+    parent: {fileID: 307479818}
 --- !u!4 &1899577880
 Transform:
   m_ObjectHideFlags: 0
@@ -779,7 +856,41 @@ Transform:
   m_Children:
   - {fileID: 307479818}
   - {fileID: 1102959090}
+  - {fileID: 1786743278}
+  - {fileID: 302848276}
+  - {fileID: 2047556746}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2047556745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2047556746}
+  m_Layer: 0
+  m_Name: Enemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2047556746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047556745}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1899577880}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &255392039222295379
 PrefabInstance:

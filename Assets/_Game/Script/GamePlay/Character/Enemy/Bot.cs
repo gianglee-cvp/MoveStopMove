@@ -62,5 +62,4 @@ public partial class Bot : Character
         base.OnDead();
         BotManager.Instance.DeSpawnBot(this);
     }
-
 }   
