@@ -81,6 +81,7 @@ public partial class Bot
             if (isAttacking)
             {
                 CancelAttack();
+                Idle();
             }
 
             ChangeState(idleState);
@@ -97,6 +98,7 @@ public partial class Bot
         if (isAttacking)
         {
             CancelAttack();
+            Idle();
         }
     }
 
@@ -125,7 +127,6 @@ public partial class Bot
                 return true;
             }
         }
-
         patrolPoint = spawnPos;
         return false;
     }

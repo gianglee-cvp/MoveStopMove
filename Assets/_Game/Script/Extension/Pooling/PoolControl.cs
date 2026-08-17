@@ -65,6 +65,7 @@ public enum PoolType
     Hair_7 = 307,
     Hair_8 = 308,
     Hair_9 = 309,
-    Hair_10 = 310
+    Hair_10 = 310,
+    ParticleEffect = 400
 
 }

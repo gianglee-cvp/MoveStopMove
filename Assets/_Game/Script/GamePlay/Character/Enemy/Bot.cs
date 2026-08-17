@@ -16,6 +16,7 @@ public partial class Bot : Character
     [SerializeField] GameObject indicator;
     void Update()
     {
+        if(isDead) return;
         SetTarget();
         currentState?.OnExecute(this);
     }
@@ -60,6 +61,12 @@ public partial class Bot : Character
     public override void OnDead()
     {
         base.OnDead();
+        //TODO khong dung invoke
+        Invoke(nameof(DeSpawnBot) , 1.5f);
+    }
+    public void DeSpawnBot()
+    {
+        characterVisual.DespawnSkin();
         BotManager.Instance.DeSpawnBot(this);
     }
 }   

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 [Serializable]
 public class Skin
@@ -36,6 +37,7 @@ public class CharacterVisual : MonoBehaviour
     [SerializeField] protected BulletBase currentBullet;
     [SerializeField] protected WeaponBase currentWeapon;
     [SerializeField] protected Hair currentHair;
+    [SerializeField] protected ColorType currentColorType;
 
     public void OnInit()
     {
@@ -81,6 +83,7 @@ public class CharacterVisual : MonoBehaviour
     public void ChangeColorType(ColorType newColor)
     {
         colorRenderer.sharedMaterial = DataManager.Instance.GetMaterial(newColor);
+        currentColorType = newColor;
     }
     public void ChangePantType(PantType newPant)
     {
@@ -143,6 +146,15 @@ public class CharacterVisual : MonoBehaviour
     public void ActiveWeapon()
     {
         currentWeapon.Active();
+    }
+    public ColorType GetCurrentColorType()
+    {
+        return currentColorType;
+    }
+    public void DespawnSkin()
+    {
+        SimplePool.DeSpawn(currentWeapon);
+        SimplePool.DeSpawn(currentHair);
     }
     //TODO xoa
     public float distance = 10f;

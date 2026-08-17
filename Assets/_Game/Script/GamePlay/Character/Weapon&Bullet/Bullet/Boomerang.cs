@@ -19,6 +19,7 @@ public class Boomerang : BulletBase
     
     void Update()
     {
+        //TODO doi thanh isdead
         if(owner == null || !owner.gameObject.activeSelf)
         {
             isNullOwner = true;
@@ -39,7 +40,7 @@ public class Boomerang : BulletBase
     public override void OnTriggerEnter(Collider other)
     {
         Character target = CacheComponent<Collider,Character>.Get(other);
-        if(owner == null || target == null || target == owner ) return;
+        if( owner == null || target == null || target == owner || target.IsDead ) return;
         target.OnDead();
     }
     public void FlyOut()

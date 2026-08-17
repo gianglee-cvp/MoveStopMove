@@ -20,11 +20,14 @@ public class Character : GameUnit
         get => TF.position;
     }
     [SerializeField] protected CharacterVisual characterVisual;
+    [SerializeField] protected Transform spawnEffectPoint;
     [SerializeField] protected float scale; // TODO thay doi khi cho vao level up
 
     [SerializeField] protected bool isMoving = false;
     [SerializeField] protected bool isAttacking = false;
     [SerializeField] protected bool isAttackable = true;
+    [SerializeField] protected bool isDead = false;
+    public bool IsDead{get => isDead;}
 
     protected Coroutine attackCO;
     [SerializeField] protected float range;
@@ -42,6 +45,7 @@ public class Character : GameUnit
         characterVisual.OnInit();
         listTarget.Clear();
         currentTarget = null;
+        isDead = false;
         ChangeAnim(CharacterAnimType.Idle);
     }
     public virtual void Idle()
@@ -85,7 +89,6 @@ public class Character : GameUnit
             StopCoroutine(attackCO);
             attackCO = null;
         }
-        Idle();
     }
 
     public virtual void ChangeAnim(CharacterAnimType type)
@@ -110,8 +113,7 @@ public class Character : GameUnit
             Character target = listTarget[i];
             offsetRange = target.GetOffsetRange();
             bool targetOutRange = Helper.CheckDistanceOutRange(pos,target.pos,range + offsetRange);
-            bool isTargetDead = !target.gameObject.activeSelf;
-            if (isTargetDead || targetOutRange)
+            if (target.IsDead || targetOutRange)
             {
                 RemoveTarget(i);
             }
@@ -122,7 +124,6 @@ public class Character : GameUnit
         }
         currentTarget = finalTarget;
         return finalTarget; 
-        
     }
     public virtual void RemoveTarget(int index)
     {
@@ -140,6 +141,10 @@ public class Character : GameUnit
     }
     public virtual void OnDead()
     {
+        ParticleEffect vfx = SimplePool.Spawn<ParticleEffect>(PoolType.ParticleEffect,spawnEffectPoint.position,Quaternion.identity,spawnEffectPoint);
+        vfx.Play(characterVisual.GetCurrentColorType());
+        isDead = true;
+        CancelAttack();
         ChangeAnim(CharacterAnimType.Dead);
     }
     public void RotateToTarget(Vector3 des)

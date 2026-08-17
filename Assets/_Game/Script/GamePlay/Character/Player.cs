@@ -32,6 +32,7 @@ public class Player : Character,IData
                 if(isAttacking)
                 {
                     CancelAttack();
+                    Idle();
                 }
 
                 if(!isMoving)
@@ -42,7 +43,11 @@ public class Player : Character,IData
                 //TODO them bien speed
                 TF.position += move * 5f * Time.deltaTime;
                 TF.rotation = Quaternion.LookRotation(move);
-                if(isAttacking) CancelAttack();
+                if (isAttacking)
+                {
+                    CancelAttack();
+                    Idle();
+                } 
             }
             else 
             {

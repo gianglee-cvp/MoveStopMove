@@ -49,6 +49,7 @@ public static class SimplePool
     }
     public static void DeSpawn(GameUnit unit)
     {
+        if(unit == null) return;
         if (!poolInstance.ContainsKey(unit.poolType))
         {
             Debug.LogError(unit.poolType + "Is not preload");
