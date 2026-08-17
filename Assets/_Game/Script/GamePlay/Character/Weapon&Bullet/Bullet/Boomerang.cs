@@ -6,8 +6,8 @@ public class Boomerang : BulletBase
     [SerializeField] protected Vector3 targetPos;
     protected float catchDistance;
     protected bool isReturning;
-    protected bool isNullOwner;
-    protected float speedUpReturning = 1.5f;
+    [SerializeField] protected bool isNullOwner;
+    protected float speedUpReturning = 2f;
     public override void Init(Vector3 startDir, float rangeAttack, Vector3 rootPosion, Character ch)
     {
         base.Init(startDir, rangeAttack, rootPosion, ch);
@@ -19,13 +19,16 @@ public class Boomerang : BulletBase
     
     void Update()
     {
-        if(!isNullOwner ||owner != null || !owner.gameObject.activeSelf)
+        if(owner == null || !owner.gameObject.activeSelf)
         {
-            Debug.Log("boomerang return");
             isNullOwner = true;
+        }
+        if (!isNullOwner)
+        {
             targetPos =  Helper.CopyPositionXZ(owner.pos, TF.position);
             catchDistance = owner.catchDistance;
-        } 
+        }
+
         if (isReturning)
         {
             FlyBack();
@@ -36,7 +39,7 @@ public class Boomerang : BulletBase
     public override void OnTriggerEnter(Collider other)
     {
         Character target = CacheComponent<Collider,Character>.Get(other);
-        if(owner == null ||target == null || target == owner ) return;
+        if(owner == null || target == null || target == owner ) return;
         target.OnDead();
     }
     public void FlyOut()
