@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 public enum BulletType
 {
@@ -9,24 +10,21 @@ public enum BulletType
 public class BulletBase : GameUnit
 {
     protected virtual BulletType Type => BulletType.Knight;
-    protected Character owner;
+    //TODO hide
+    [SerializeField] protected Character owner;
     [SerializeField] protected float speed = 10f;
     [SerializeField] protected float range;
-    protected Vector3 direction;
     protected Vector3 target;
     protected Vector3 rootPos;
 
     public virtual void Init(Vector3 startDir , float rangeAttack , Vector3 rootPosion , Character ch)
     {
-        // rb.linearVelocity = Vector3.zero;
-        direction = startDir;
-        direction.y = 0;
         range = rangeAttack;
-        target = TF.position + startDir*rangeAttack;
+        target = Helper.CopyPositionXZ(TF.position + startDir * rangeAttack, TF.position);
         rootPos  = rootPosion;
         owner = ch;
     }
-    public void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         Character target = CacheComponent<Collider,Character>.Get(other);
         if(owner == null ||target == null || target == owner ) return;

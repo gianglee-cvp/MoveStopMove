@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 10a804f2bc3cb1741a6bed7a5cf745df, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3655396658102750768, guid: b92655ac56960964c9634f87af4922f7, type: 3}
     - target: {fileID: 919132149155446097, guid: 10a804f2bc3cb1741a6bed7a5cf745df, type: 3}
       propertyPath: m_Name
       value: boomerang

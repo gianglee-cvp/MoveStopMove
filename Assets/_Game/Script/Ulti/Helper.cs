@@ -20,4 +20,8 @@ public static class Helper
         // Debug.Log(range);
         return !(Distance2D(pos,des) < range * range + 1);
     }
+    public static Vector3 CopyPositionXZ(Vector3 source, Vector3 target)
+    {
+        return new Vector3(source.x, target.y, source.z);
+    }
 }

@@ -2,4 +2,59 @@ using UnityEngine;
 public class Boomerang : BulletBase
 {
     protected override BulletType Type => BulletType.Boomerang;
+    [SerializeField] protected float rotationSpeed;
+    [SerializeField] protected Vector3 targetPos;
+    protected float catchDistance;
+    protected bool isReturning;
+    protected bool isNullOwner;
+    protected float speedUpReturning = 1.5f;
+    public override void Init(Vector3 startDir, float rangeAttack, Vector3 rootPosion, Character ch)
+    {
+        base.Init(startDir, rangeAttack, rootPosion, ch);
+        isReturning = false;
+        isNullOwner = false;
+        targetPos = Helper.CopyPositionXZ(owner.pos , TF.position);
+        catchDistance = owner.catchDistance;
+    }
+    
+    void Update()
+    {
+        if(!isNullOwner ||owner != null || !owner.gameObject.activeSelf)
+        {
+            Debug.Log("boomerang return");
+            isNullOwner = true;
+            targetPos =  Helper.CopyPositionXZ(owner.pos, TF.position);
+            catchDistance = owner.catchDistance;
+        } 
+        if (isReturning)
+        {
+            FlyBack();
+            return;
+        }
+        FlyOut();
+    }
+    public override void OnTriggerEnter(Collider other)
+    {
+        Character target = CacheComponent<Collider,Character>.Get(other);
+        if(owner == null ||target == null || target == owner ) return;
+        target.OnDead();
+    }
+    public void FlyOut()
+    {
+        TF.position = Vector3.MoveTowards(TF.position,target,speed * Time.deltaTime);
+        TF.Rotate(Vector3.down * rotationSpeed * Time.deltaTime);
+        if (CheckDisTance())
+        {
+            isReturning = true;
+        }
+    }
+    public void FlyBack()
+    {
+        TF.position = Vector3.MoveTowards(TF.position,targetPos,speed * speedUpReturning * Time.deltaTime);
+        TF.Rotate(Vector3.down * rotationSpeed * Time.deltaTime);
+        if (Helper.Distance2D(TF.position, targetPos) <= catchDistance * catchDistance)
+        {
+            DeSpawn();
+        }
+    }
 }

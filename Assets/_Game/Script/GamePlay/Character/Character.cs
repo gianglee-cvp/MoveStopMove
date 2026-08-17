@@ -22,7 +22,6 @@ public class Character : GameUnit
     [SerializeField] protected CharacterVisual characterVisual;
     [SerializeField] protected float scale; // TODO thay doi khi cho vao level up
 
-
     [SerializeField] protected bool isMoving = false;
     [SerializeField] protected bool isAttacking = false;
     [SerializeField] protected bool isAttackable = true;
@@ -37,6 +36,7 @@ public class Character : GameUnit
     {
         get => range;
     }
+    public float catchDistance => 0.5f * scale;
     public virtual void OnInit()
     {
         characterVisual.OnInit();
