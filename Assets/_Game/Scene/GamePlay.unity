@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BotManager
   spawnRadius: 100
-  respawnCheckInterval: 3
+  respawnCheckInterval: 4
   totalBotCount: 0
   inMapBotCount: 0
 --- !u!114 &112272330
@@ -934,7 +934,7 @@ MonoBehaviour:
   - prefab: {fileID: 4007530091295269805, guid: 1f402054716ffd44bb304ec3f5f8caeb, type: 3}
     amount: 1
     parent: {fileID: 307479818}
-  - prefab: {fileID: -1877821337689289514, guid: 62098448802def947a65caa74b7d5976, type: 3}
+  - prefab: {fileID: 623197295423869903, guid: 2b9b3c7bfe440a54280da4b4031497da, type: 3}
     amount: 20
     parent: {fileID: 1972404737}
 --- !u!4 &1899577880
@@ -1943,18 +1943,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2113394877978306106, guid: b90a7cc6d85206c4fb9d1be424bf367f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9089043648830643096, guid: b90a7cc6d85206c4fb9d1be424bf367f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 289231088002790531, guid: b90a7cc6d85206c4fb9d1be424bf367f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b90a7cc6d85206c4fb9d1be424bf367f, type: 3}
 --- !u!4 &2501884993656004269
 Transform:

@@ -76,16 +76,23 @@ public class Player : Character,IData
     }
     public override void RemoveTarget(int index)
     {
+        Character removedTarget = listTarget[index];
+        if (removedTarget == currentTarget)
+        {
+            Bot enemy = currentTarget as Bot;
+            enemy.HideTargetIndicator();
+        }
         base.RemoveTarget(index);
-        Bot enemy = currentTarget as Bot;
-        enemy?.HideTargetIndicator();
+        Debug.Log("hide1");
     }
-    public override void RemoveTarget(Character target)
-    {
-        base.RemoveTarget(target);
-        Bot enemy = currentTarget as Bot;
-        enemy?.HideTargetIndicator();
-    }
+    // public override void RemoveTarget(Character target)
+    // {
+    //     base.RemoveTarget(target);
+    //     if(currentTarget == null) return;
+    //     Bot enemy = currentTarget as Bot;
+    //     enemy.HideTargetIndicator();
+    //     Debug.Log("hide2");
+    // }
     public override void LevelUp(int level)
     {
         CameraFollow.Instance.SetSize(characterLevel.CalculatorSizeByLevel(level));

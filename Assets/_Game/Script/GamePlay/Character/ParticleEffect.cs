@@ -8,6 +8,7 @@ public class ParticleEffect : GameUnit
 
     public void Play(ColorType colorType)
     {
+        TF.localScale = Vector3.one;
         mainParticle.Stop(true,ParticleSystemStopBehavior.StopEmittingAndClear);
         var main = mainParticle.main;
         main.startColor = GetEffectColor(colorType);

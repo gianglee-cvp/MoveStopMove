@@ -117,6 +117,7 @@ public class Character : GameUnit
             Character target = listTarget[i];
             float offsetRange = target.capsuleRadius;
             bool targetOutRange = Helper.CheckDistanceOutRange(Pos,target.Pos,characterLevel.Range + offsetRange);
+            Debug.Log(target.TF.position + " " + target.IsDead + " " + targetOutRange);
             if (target.IsDead || targetOutRange)
             {
                 RemoveTarget(i);
@@ -134,10 +135,10 @@ public class Character : GameUnit
         if (index < 0 || index >= listTarget.Count) return;
         listTarget.RemoveAt(index);
     }
-    public virtual void RemoveTarget(Character target)
-    {
-        listTarget.Remove(target);
-    }
+    // public virtual void RemoveTarget(Character target)
+    // {
+    //     listTarget.Remove(target);
+    // }
     public void RotateToTarget(Vector3 des)
     {
         Vector3 direction = des - transform.position;

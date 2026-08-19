@@ -34,7 +34,6 @@ public class TargetContainer : MonoBehaviour
     }
     void LateUpdate()
     {
-        Debug.Log($"[TargetContainer] Active targets: {activeTargets.Count}");
         foreach (var pair in activeTargets)
         {
             Bot target = pair.Key;
@@ -95,7 +94,6 @@ public class TargetContainer : MonoBehaviour
         }
 
         // 4. Cập nhật vị trí UI
-        Debug.Log($"[TargetContainer] {targetTransform.name} -> screen: {screenPos} indicator: {indicatorPos}");
         ui.UpdatePosition(indicatorPos);
     }
     public void UpdateLevel(Bot bot , TargetIndicator indicator)
