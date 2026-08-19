@@ -6,7 +6,6 @@ public class PoolControl : MonoBehaviour
     public void OnInit()
     {
         //TODO them du type knight , boomerang , ... 
-        GameUnit[] gameUnits = Resources.LoadAll<GameUnit>("Pool/");
         for(int i =0 ; i < poolAmounts.Length ; i++)
         {
             GameUnit prefab = poolAmounts[i].prefab;
@@ -16,6 +15,13 @@ public class PoolControl : MonoBehaviour
             SimplePool.RegisterParent(prefab.GetType(),parent);
             Debug.Log("Preload " + prefab.name + " Type : " + prefab.GetType() + " Amount: " + poolAmounts[i].amount);   
         }
+        GameUnit[] units = Resources.LoadAll<GameUnit>("Pool/");
+        foreach(GameUnit unit in units)
+        {
+            SimplePool.Preload(unit , 1 , null);
+            Debug.Log(unit.name);
+        }
+
     }
 }
 [System.Serializable]

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public PoolControl poolControl;
     public void Awake()
     {
+        CameraFollow.Instance.OnInit();
         poolControl.OnInit();
         DataManager.Instance.OnInit();
         InputManager.Instance.OnInit();

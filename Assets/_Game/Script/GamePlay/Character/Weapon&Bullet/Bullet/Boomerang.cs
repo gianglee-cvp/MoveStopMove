@@ -41,11 +41,12 @@ public class Boomerang : BulletBase
     {
         Character target = CacheComponent<Collider,Character>.Get(other);
         if( owner == null || target == null || target == owner || target.IsDead ) return;
+        CollectExp(target);
         target.OnDead();
     }
     public void FlyOut()
     {
-        TF.position = Vector3.MoveTowards(TF.position,target,speed * Time.deltaTime);
+        TF.position = Vector3.MoveTowards(TF.position,target,speedScale * Time.deltaTime);
         TF.Rotate(Vector3.down * rotationSpeed * Time.deltaTime);
         if (CheckDisTance())
         {
@@ -54,7 +55,7 @@ public class Boomerang : BulletBase
     }
     public void FlyBack()
     {
-        TF.position = Vector3.MoveTowards(TF.position,targetPos,speed * speedUpReturning * Time.deltaTime);
+        TF.position = Vector3.MoveTowards(TF.position,targetPos,speedScale * speedUpReturning * Time.deltaTime);
         TF.Rotate(Vector3.down * rotationSpeed * Time.deltaTime);
         if (Helper.Distance2D(TF.position, targetPos) <= catchDistance * catchDistance)
         {

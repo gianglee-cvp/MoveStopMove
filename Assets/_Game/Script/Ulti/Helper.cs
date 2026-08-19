@@ -19,6 +19,13 @@ public static class Helper
 
         return Vector3.zero;
     }
+    public static T RandomEnumValue<T>() where T : System.Enum
+    {
+        var values = System.Enum.GetValues(typeof(T));
+        return (T)values.GetValue(
+            UnityEngine.Random.Range(0, values.Length)
+        );
+    }
 
     public static float Distance2D(Vector3 pos , Vector3 des)
     {

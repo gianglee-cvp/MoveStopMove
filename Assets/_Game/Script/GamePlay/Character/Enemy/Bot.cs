@@ -24,7 +24,6 @@ public partial class Bot : Character
     {
         base.OnInit();
         spawnPos = TF.position;
-        //TODO đổi sang hàm random
         characterVisual.ApplyRandomSkin();
         ChangeState(idleState);
     }

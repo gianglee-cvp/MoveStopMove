@@ -8,5 +8,6 @@ public class Hair: GameUnit
     {
         tf.localPosition = localTF;
         tf.localRotation = Quaternion.Euler(localRT);         
+        tf.localScale = Vector3.one;
     }
 }

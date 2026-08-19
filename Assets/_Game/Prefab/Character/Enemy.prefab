@@ -419,13 +419,14 @@ GameObject:
   - component: {fileID: 2518058213644499525}
   - component: {fileID: 2548683797592784084}
   - component: {fileID: 1361216709600304708}
+  - component: {fileID: 7005229665193718593}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1702384135469855216
 Transform:
   m_ObjectHideFlags: 0
@@ -442,8 +443,6 @@ Transform:
   - {fileID: 9095288449864201550}
   - {fileID: 338925927633782525}
   - {fileID: 1335405263792854788}
-  - {fileID: 5263439239453108122}
-  - {fileID: 5887736856340845436}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &4526169846763497896
@@ -531,20 +530,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bot
   poolType: 1
-  characterVisual: {fileID: 7912455261346254033}
+  characterVisual: {fileID: 2982400422128992246}
+  characterLevel: {fileID: 7005229665193718593}
   spawnEffectPoint: {fileID: 5263439239453108122}
-  scale: 1
+  physicColider: {fileID: 2518058213644499525}
   isMoving: 0
   isAttacking: 0
   isAttackable: 1
   isDead: 0
-  range: 6.75
   listTarget: []
   currentTarget: {fileID: 0}
   patrolRadius: 20
   patrolSampleAttempts: 8
   agent: {fileID: 2548683797592784084}
   indicator: {fileID: 5035426733651049509}
+--- !u!114 &7005229665193718593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113394877978306106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159d5dc50ca3f6f4684ee9c4e8b8121b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterLevel
+  level: 0
+  size: 0
+  moveSpeed: 0
+  range: 0
+  exp: 0
+  attackRange: {fileID: 281628613755058813}
+  characterVisual: {fileID: 2982400422128992246}
+  physicCollider: {fileID: 2518058213644499525}
 --- !u!1 &2195994932492785641
 GameObject:
   m_ObjectHideFlags: 0
@@ -2023,7 +2042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9095288449864201550}
   - component: {fileID: 1291735572740242389}
-  - component: {fileID: 7912455261346254033}
+  - component: {fileID: 2982400422128992246}
   m_Layer: 0
   m_Name: Character_Optimieze2
   m_TagString: Untagged
@@ -2049,6 +2068,8 @@ Transform:
   - {fileID: 2075733878774755625}
   - {fileID: 1978272976769151805}
   - {fileID: 2707585514239448250}
+  - {fileID: 5887736856340845436}
+  - {fileID: 5263439239453108122}
   m_Father: {fileID: 1702384135469855216}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1291735572740242389
@@ -2073,7 +2094,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7912455261346254033
+--- !u!114 &2982400422128992246
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2082,7 +2103,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7075609664821958993}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ceadabe89b48b54992d5d9a12395500, type: 3}
+  m_Script: {fileID: 11500000, guid: eb08b4c8709bf4743982a991970ffa94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterVisual
   currentSkin:
@@ -2543,12 +2564,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8641623874807215446}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.022, y: 1.36, z: 0.08}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.022000313, y: 1.3599999, z: 0.07999992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1702384135469855216}
+  m_Father: {fileID: 9095288449864201550}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8722122508719725752
 GameObject:
@@ -2561,7 +2582,7 @@ GameObject:
   - component: {fileID: 338925927633782525}
   - component: {fileID: 3645663471339170013}
   - component: {fileID: 4843656092852381667}
-  - component: {fileID: 9125261616501547869}
+  - component: {fileID: 281628613755058813}
   m_Layer: 0
   m_Name: RangeAttack
   m_TagString: Untagged
@@ -2579,7 +2600,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.01, z: 0}
-  m_LocalScale: {x: 13.5, y: 13.5, z: 13.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1702384135469855216}
@@ -2664,7 +2685,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &9125261616501547869
+--- !u!114 &281628613755058813
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2673,10 +2694,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8722122508719725752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b54b54dbecd53d9498b8cb53ba3503a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 61fbe6fdf6d04c844b5524b3977b1c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackRange
   character: {fileID: 1361216709600304708}
+  attackRangeVisual: {fileID: 0}
+  attackCol: {fileID: 3645663471339170013}
 --- !u!1 &8837873161991613396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2843,7 +2866,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1702384135469855216}
+    m_TransformParent: {fileID: 9095288449864201550}
     m_Modifications:
     - target: {fileID: 4181168626695226576, guid: 7a68bcd10a38a084db1a9b7d9257fa67, type: 3}
       propertyPath: m_Name
@@ -2867,15 +2890,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8002301073765906874, guid: 7a68bcd10a38a084db1a9b7d9257fa67, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8002301073765906874, guid: 7a68bcd10a38a084db1a9b7d9257fa67, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8002301073765906874, guid: 7a68bcd10a38a084db1a9b7d9257fa67, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8002301073765906874, guid: 7a68bcd10a38a084db1a9b7d9257fa67, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
