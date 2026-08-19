@@ -17,6 +17,7 @@ public class LevelManager : Singleton<LevelManager>
         SingleLevelData level = levelData.GetLevel(index);
 
         BotManager.Instance.ClearBots();
+        CacheManager.ClearNavMeshCache();
         if (currentMap != null)
         {
             Destroy(currentMap);

@@ -59,6 +59,7 @@ public partial class Bot : Character
     }
     public override void OnDead()
     {
+        SetDestination(TF.position);
         base.OnDead();
         //TODO khong dung invoke
         Invoke(nameof(DeSpawnBot) , 1.5f);

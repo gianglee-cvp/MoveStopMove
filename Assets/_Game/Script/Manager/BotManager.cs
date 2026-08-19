@@ -62,7 +62,8 @@ public class BotManager : Singleton<BotManager>
 
     protected void SpawnOneBotRandom()
     {
-        Vector3 spawnPosition = Helper.GetRandomSpawnPosition(spawnRadius);
+        // Vector3 spawnPosition = Helper.GetRandomSpawnPosition(spawnRadius);
+        Vector3 spawnPosition = Helper.GetRandomPointOnNavMesh();
         GameUnit bot = SimplePool.Spawn<Bot>(PoolType.Enemy, spawnPosition, Quaternion.identity, null);
 
         listBotActive.Add(bot);

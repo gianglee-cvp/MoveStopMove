@@ -43,4 +43,48 @@ public static class Helper
     {
         return new Vector3(source.x, target.y, source.z);
     }
+
+    public static Vector3 GetRandomPointOnNavMesh()
+    {
+        if (!EnsureNavMeshCache(out Vector3[] vertices, out int[] indices))
+        {
+            return Vector3.zero;
+        }
+
+        int triangleIndex = Random.Range(0, indices.Length / 3) * 3;
+
+        Vector3 a = vertices[indices[triangleIndex]];
+        Vector3 b = vertices[indices[triangleIndex + 1]];
+        Vector3 c = vertices[indices[triangleIndex + 2]];
+
+        float r1 = Random.value;
+        float r2 = Random.value;
+
+        if (r1 + r2 > 1f)
+        {
+            r1 = 1f - r1;
+            r2 = 1f - r2;
+        }
+
+        return a + r1 * (b - a) + r2 * (c - a);
+    }
+
+    private static bool EnsureNavMeshCache(out Vector3[] vertices, out int[] indices)
+    {
+        if (CacheManager.TryGetNavMeshCache(out vertices, out indices))
+        {
+            return true;
+        }
+
+        NavMeshTriangulation triangulation = NavMesh.CalculateTriangulation();
+        if (!CacheManager.SetNavMeshCache(triangulation.vertices, triangulation.indices))
+        {
+            Debug.LogWarning("[Helper] Khong tim thay du lieu NavMesh!");
+            vertices = null;
+            indices = null;
+            return false;
+        }
+
+        return CacheManager.TryGetNavMeshCache(out vertices, out indices);
+    }
 }
