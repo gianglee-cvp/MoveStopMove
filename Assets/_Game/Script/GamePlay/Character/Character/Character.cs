@@ -159,4 +159,8 @@ public class Character : GameUnit
         }
     }
     #endregion
+    public ColorType GetColor()
+    {
+        return characterVisual.color;
+    }
 }

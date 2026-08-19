@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SOLevel
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   datas:
-  - totalBotCount: 50
-    inMapBotCount: 20
+  - totalBotCount: 100
+    inMapBotCount: 10
     map: {fileID: 2286442003401111601, guid: 55dd2a74078544b4495730835aecdee6, type: 3}

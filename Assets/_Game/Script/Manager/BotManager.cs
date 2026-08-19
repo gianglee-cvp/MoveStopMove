@@ -17,15 +17,17 @@ public class BotManager : Singleton<BotManager>
         {
             return;
         }
-
+        if(totalBotCount <= currentBotCount) return;
+        SpawnOneBotRandom();
         respawnTimer += Time.deltaTime;
-        if (respawnTimer < respawnCheckInterval)
+        if (respawnTimer >= respawnCheckInterval)
         {
-            return;
+            respawnTimer = 0f;
         }
 
         respawnTimer = 0f;
-        RespawnMissingBots();
+        // RespawnMissingBots();
+        
     }
 
     public void Init()

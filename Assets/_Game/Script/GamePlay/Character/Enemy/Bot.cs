@@ -26,6 +26,9 @@ public partial class Bot : Character
         spawnPos = TF.position;
         characterVisual.ApplyRandomSkin();
         ChangeState(idleState);
+        // TargetContainer.Instance.RegisterTarget(this);
+        CanvasGamePlay canvas = UIManager.Instance.GetUI<CanvasGamePlay>();
+        canvas.RegisterTarget(this);
     }
     public override void Attack()
     {
@@ -63,6 +66,8 @@ public partial class Bot : Character
         base.OnDead();
         //TODO khong dung invoke
         Invoke(nameof(DeSpawnBot) , 1.5f);
+        CanvasGamePlay canvas = UIManager.Instance.GetUI<CanvasGamePlay>();
+        canvas.UnregisterTarget(this);
     }
     public void DeSpawnBot()
     {

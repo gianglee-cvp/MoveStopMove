@@ -10,6 +10,7 @@ public class WeaponBase : GameUnit
         // tf.SetParent(rightHandTf , false);
         tf.localPosition = localTF;
         tf.localRotation = Quaternion.Euler(localRT); 
+        tf.localScale = Vector3.one;
     }
     public void OnDeactive()
     {

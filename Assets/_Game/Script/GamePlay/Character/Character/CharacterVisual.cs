@@ -38,6 +38,7 @@ public class CharacterVisual : MonoBehaviour
     [SerializeField] protected WeaponBase currentWeapon;
     [SerializeField] protected Hair currentHair;
     [SerializeField] protected ColorType currentColorType;
+    public ColorType color => currentColorType;
 
     public void OnInit()
     {
