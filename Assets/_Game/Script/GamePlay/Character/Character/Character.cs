@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
 public enum CharacterAnimType
 {
@@ -15,40 +14,30 @@ public enum CharacterAnimType
 
 public class Character : GameUnit
 {
-    public Vector3 pos
-    {
-        get => TF.position;
-    }
-
-    
     [SerializeField] protected CharacterVisual characterVisual;
     [SerializeField] protected CharacterLevel characterLevel;
     [SerializeField] protected Transform spawnEffectPoint;
     [SerializeField] protected CapsuleCollider physicColider;
-    
     //character state
     [SerializeField] protected bool isMoving = false;
     [SerializeField] protected bool isAttacking = false;
     [SerializeField] protected bool isAttackable = true;
     [SerializeField] protected bool isDead = false;
     public bool IsDead{get => isDead;}
-
-
+    //attack
     protected Coroutine attackCO;
-    protected float offsetRange = 0f; 
-    
     //TODO đổi thành protected
     public List<Character> listTarget = new List<Character>();
     [SerializeField] protected Character currentTarget;
-    public float Range
-    {
-        get => characterLevel.Range;
-    }
+
+    public Vector3 Pos => TF.position;
+    public float Range => characterLevel.Range; 
     public Vector3 Scale => characterLevel.Scale;
     public float Size => characterLevel.Size;
     public int Level => characterLevel.Level;
     public int Exp => characterLevel.Exp;
-    public float catchDistance => 0.5f * characterLevel.Size;
+    public float capsuleRadius => physicColider.radius;
+    #region State
     public virtual void OnInit()
     {
         characterVisual.OnInit();
@@ -56,16 +45,25 @@ public class Character : GameUnit
         LevelUp(0);
         currentTarget = null;
         isDead = false;
-        
-        ChangeAnim(CharacterAnimType.Idle);
+        characterVisual.ChangeAnim(CharacterAnimType.Idle);
     }
     public virtual void Idle()
     {
-        ChangeAnim(CharacterAnimType.Idle);
+        characterVisual.ChangeAnim(CharacterAnimType.Idle);
         isAttacking = false;
         isAttackable  = true;
         isMoving = false;
     }
+    public virtual void OnDead()
+    {
+        ParticleEffect vfx = SimplePool.Spawn<ParticleEffect>(PoolType.ParticleEffect,spawnEffectPoint.position,Quaternion.identity,spawnEffectPoint);
+        vfx.Play(characterVisual.GetCurrentColorType());
+        isDead = true;
+        CancelAttack();
+        characterVisual.ChangeAnim(CharacterAnimType.Dead);
+    }
+    #endregion
+    #region Attack
     public virtual void Attack()
     {
         if(currentTarget == null)
@@ -73,11 +71,11 @@ public class Character : GameUnit
             Idle();
             return;
         } 
-        RotateToTarget(currentTarget.pos);
+        RotateToTarget(currentTarget.Pos);
         isAttacking  = true;
         isAttackable = false;
         isMoving = false;
-        ChangeAnim(CharacterAnimType.Attack);
+        characterVisual.ChangeAnim(CharacterAnimType.Attack);
         attackCO = StartCoroutine(Throw(TF.position)); 
     }
     protected IEnumerator Throw(Vector3 pos)
@@ -101,11 +99,6 @@ public class Character : GameUnit
             attackCO = null;
         }
     }
-
-    public virtual void ChangeAnim(CharacterAnimType type)
-    {
-        characterVisual.ChangeAnim(type);
-    }
     public virtual void AddTarget(Character ch)
     {
         listTarget.Add(ch);
@@ -122,8 +115,8 @@ public class Character : GameUnit
         for(int i = cnt -1 ;  i >=0 ; i--)
         {
             Character target = listTarget[i];
-            offsetRange = target.GetOffsetRange();
-            bool targetOutRange = Helper.CheckDistanceOutRange(pos,target.pos,characterLevel.Range + offsetRange);
+            float offsetRange = target.capsuleRadius;
+            bool targetOutRange = Helper.CheckDistanceOutRange(Pos,target.Pos,characterLevel.Range + offsetRange);
             if (target.IsDead || targetOutRange)
             {
                 RemoveTarget(i);
@@ -145,42 +138,25 @@ public class Character : GameUnit
     {
         listTarget.Remove(target);
     }
-    public virtual float GetOffsetRange()
-    {
-        //TODO cho vao cache;
-        return physicColider.radius * characterLevel.Size;
-    }
-    public virtual void OnDead()
-    {
-        ParticleEffect vfx = SimplePool.Spawn<ParticleEffect>(PoolType.ParticleEffect,spawnEffectPoint.position,Quaternion.identity,spawnEffectPoint);
-        vfx.Play(characterVisual.GetCurrentColorType());
-        isDead = true;
-        CancelAttack();
-        ChangeAnim(CharacterAnimType.Dead);
-    }
     public void RotateToTarget(Vector3 des)
     {
         Vector3 direction = des - transform.position;
         direction.y = 0f;
         TF.rotation = Quaternion.LookRotation(direction);
     }
+    #endregion
+    #region LevelUp
     public virtual void LevelUp(int level)
     {
         characterLevel.PowerUp(level);
-        // characterVisual.transform.localScale = characterLevel.Scale;
-
-        // physicColider.radius = characterLevel.Size * Constant.CH_PHYSIC_COLLIDER_RADIUS;
-        // physicColider.height = Constant.CH_PHYSIC_COLLIDER_HEIGHT * characterLevel.Size; 
-        // physicColider.center = characterLevel.Size  * Constant.CH_PHYSIC_COLLIDER_CENTER; 
     }
     public virtual void CollectExp(int exp)
     {
-        // characterLevel.IncreaseExp(exp);
-        // Debug.Log("log1");
         int newLevel = characterLevel.CalculateExp(exp);
         if (newLevel != characterLevel.Level)
         {
             LevelUp(newLevel);
         }
     }
+    #endregion
 }

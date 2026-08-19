@@ -10,8 +10,7 @@ public partial class Bot
     protected static IState<Bot> patrolState = new PatrolState();
     protected static IState<Bot> attackState = new AttackState();
     protected IState<Bot> currentState = null;
-
-    #region Statemachine
+    #region Idle
     public void InitIdle()
     {
         timer = 0f;
@@ -33,6 +32,8 @@ public partial class Bot
         }
     }
     public void ExitIdle(){}
+    #endregion
+    #region Patrol
     public void InitPatrol()
     {
         Vector3 patrolPoint;
@@ -42,7 +43,7 @@ public partial class Bot
             return;
         }
 
-        ChangeAnim(CharacterAnimType.Run);
+        characterVisual.ChangeAnim(CharacterAnimType.Run);
         SetDestination(patrolPoint);
     }
     public void ExecutePatrol()
@@ -61,6 +62,8 @@ public partial class Bot
     public void ExitPatrol()
     {
     }
+    #endregion
+    #region Attack
     public void InitAttack()
     {
         if (!HasTarGet())
@@ -101,9 +104,8 @@ public partial class Bot
             Idle();
         }
     }
-
-
     #endregion
+    #region Helper
     public void ChangeState(IState<Bot> newState)
     {
         if (currentState != newState)
@@ -130,4 +132,5 @@ public partial class Bot
         patrolPoint = spawnPos;
         return false;
     }
+    #endregion
 }

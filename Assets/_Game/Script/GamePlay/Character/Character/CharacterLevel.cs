@@ -1,5 +1,4 @@
 using System;
-using NUnit.Framework;
 using UnityEngine;
 
 public class CharacterLevel : MonoBehaviour
@@ -20,17 +19,6 @@ public class CharacterLevel : MonoBehaviour
     public float Size => size;
     public Vector3 Scale => Vector3.one * size;
     public int Exp => exp;
-    public void OnInit()
-    {
-        PowerUp(0);
-        exp = 0;
-    }
-    public void PowerUp()
-    {
-        level += 1;
-        SetRange(range + 0.5f);
-        SetSize(range);
-    }
     public void PowerUp(int level)
     {
         this.level = level;
@@ -56,24 +44,6 @@ public class CharacterLevel : MonoBehaviour
     {
         this.moveSpeed = moveSpeed;
     }
-    public void IncreaseExp(int increase)
-    {
-        Debug.Log("log2");
-        if(level == 0)
-        {
-            PowerUp(1);
-            return;
-        } 
-        increase = Math.Max(1 , increase);
-        exp += increase;
-        for(int i = 0 ; i < 300 ; i++)
-        {
-            if(exp - level < 0 ) break;
-            exp -= level;
-            level += 1; 
-        }
-        PowerUp(level);
-    }
     
     public int CalculateExp(int increase)
     {
@@ -84,10 +54,10 @@ public class CharacterLevel : MonoBehaviour
         
         for (int i = 0; i < 300; i++)
         {
-        if (tmpExp - tmpLevel < 0) break;
+            if (tmpExp - tmpLevel < 0) break;
 
-        tmpExp -= tmpLevel;
-        tmpLevel++;
+            tmpExp -= tmpLevel;
+            tmpLevel++;
         }
 
         exp = tmpExp;

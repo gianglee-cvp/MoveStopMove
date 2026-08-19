@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class CameraFollow : Singleton<CameraFollow>
@@ -15,6 +16,18 @@ public class CameraFollow : Singleton<CameraFollow>
     [Header("Follow")]
     [SerializeField] private float followSpeed = 5f;
     [SerializeField] private float offsetSmoothSpeed = 5f;
+    private Transform tf;
+    public Transform TF
+    {
+        get
+        {
+            if(tf == null)
+            {
+                tf = transform;
+            }
+            return tf; 
+        }
+    }
 
     private float size = 1f;
 
@@ -23,14 +36,14 @@ public class CameraFollow : Singleton<CameraFollow>
 
     public void OnInit()
     {
-        transform.rotation = Quaternion.Euler(rotationOffset);
+        TF.rotation = Quaternion.Euler(rotationOffset);
 
         currentOffset = offset;
         targetOffset = offset;
 
         if (target != null)
         {
-            transform.position = target.position + currentOffset;
+            TF.position = target.position + currentOffset;
         }
     }
 
@@ -46,8 +59,8 @@ public class CameraFollow : Singleton<CameraFollow>
         // Smooth follow
         Vector3 targetPosition = target.position + currentOffset;
 
-        transform.position = Vector3.Lerp(
-            transform.position,
+        TF.position = Vector3.Lerp(
+            TF.position,
             targetPosition,
             followSpeed * Time.deltaTime
         );

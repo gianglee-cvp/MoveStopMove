@@ -13,8 +13,8 @@ public class Boomerang : BulletBase
         base.Init(startDir, rangeAttack, rootPosion, ch);
         isReturning = false;
         isNullOwner = false;
-        targetPos = Helper.CopyPositionXZ(owner.pos , TF.position);
-        catchDistance = owner.catchDistance;
+        targetPos = Helper.CopyPositionXZ(owner.Pos , TF.position);
+        catchDistance = owner.capsuleRadius;
     }
     
     void Update()
@@ -26,8 +26,8 @@ public class Boomerang : BulletBase
         }
         if (!isNullOwner)
         {
-            targetPos =  Helper.CopyPositionXZ(owner.pos, TF.position);
-            catchDistance = owner.catchDistance;
+            targetPos =  Helper.CopyPositionXZ(owner.Pos, TF.position);
+            catchDistance = owner.capsuleRadius;
         }
 
         if (isReturning)

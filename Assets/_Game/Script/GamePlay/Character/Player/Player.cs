@@ -42,7 +42,7 @@ public class Player : Character,IData
 
                 if(!isMoving)
                 {
-                    ChangeAnim(CharacterAnimType.Run);
+                    characterVisual.ChangeAnim(CharacterAnimType.Run);
                     isMoving = true;
                 }
                 //TODO them bien speed

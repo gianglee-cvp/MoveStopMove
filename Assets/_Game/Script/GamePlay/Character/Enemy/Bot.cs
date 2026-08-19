@@ -50,7 +50,7 @@ public partial class Bot : Character
     }
     public bool HasTarGet()
     {
-        return (currentTarget != null);
+        return currentTarget != null;
     }
     public void SetDestination(Vector3 destination)
     {

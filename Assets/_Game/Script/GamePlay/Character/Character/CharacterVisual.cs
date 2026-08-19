@@ -64,20 +64,6 @@ public class CharacterVisual : MonoBehaviour
         ChangeWeaponType(currentSkin.weapon);
         ChangeBulletType(currentSkin.weapon);
     }
-    private void CheckBulletAndWeaponPreloaded()
-    {
-        BulletBase bulletPrefab = DataManager.Instance.GetBullet(currentSkin.weapon);
-        WeaponBase weaponPrefab = DataManager.Instance.GetWeapon(currentSkin.weapon);
-
-        if (!SimplePool.IsPreloaded(weaponPrefab.poolType))
-        {
-            SimplePool.Preload(weaponPrefab,5, null);
-        }
-        if (!SimplePool.IsPreloaded(bulletPrefab.poolType))
-        {
-            SimplePool.Preload(bulletPrefab,20, null);
-        }
-    }
     public void ChangeColorType(ColorType newColor)
     {
         colorRenderer.sharedMaterial = DataManager.Instance.GetMaterial(newColor);
@@ -96,10 +82,6 @@ public class CharacterVisual : MonoBehaviour
             SimplePool.DeSpawn(currentHair);
         }
         Hair prefab = DataManager.Instance.GetHair(newHair);
-        if (!SimplePool.IsPreloaded(prefab.poolType))
-        {
-            SimplePool.Preload(prefab,3,null);
-        }
         currentHair = SimplePool.Spawn<Hair>(prefab.poolType, headTF.position, Quaternion.identity, headTF);
         currentHair.OnInit();
     }   
@@ -109,7 +91,6 @@ public class CharacterVisual : MonoBehaviour
         {
             SimplePool.DeSpawn(currentWeapon);
         }
-        CheckBulletAndWeaponPreloaded();
         currentWeaponPoolType = (PoolType)((int)PoolType.Weapon_0 + (int)newWeapon);
         currentWeapon = SimplePool.Spawn<WeaponBase>(currentWeaponPoolType, righHandTF.position, Quaternion.identity, righHandTF);
         currentWeapon.OnInit(righHandTF);
