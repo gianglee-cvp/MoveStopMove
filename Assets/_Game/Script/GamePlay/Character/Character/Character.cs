@@ -42,9 +42,9 @@ public class Character : GameUnit
     {
         characterVisual.OnInit();
         listTarget.Clear();
+        isDead = false;
         LevelUp(0);
         currentTarget = null;
-        isDead = false;
         characterVisual.ChangeAnim(CharacterAnimType.Idle);
     }
     public virtual void Idle()
@@ -117,7 +117,6 @@ public class Character : GameUnit
             Character target = listTarget[i];
             float offsetRange = target.capsuleRadius;
             bool targetOutRange = Helper.CheckDistanceOutRange(Pos,target.Pos,characterLevel.Range + offsetRange);
-            Debug.Log(target.TF.position + " " + target.IsDead + " " + targetOutRange);
             if (target.IsDead || targetOutRange)
             {
                 RemoveTarget(i);
@@ -135,10 +134,6 @@ public class Character : GameUnit
         if (index < 0 || index >= listTarget.Count) return;
         listTarget.RemoveAt(index);
     }
-    // public virtual void RemoveTarget(Character target)
-    // {
-    //     listTarget.Remove(target);
-    // }
     public void RotateToTarget(Vector3 des)
     {
         Vector3 direction = des - transform.position;
@@ -149,6 +144,7 @@ public class Character : GameUnit
     #region LevelUp
     public virtual void LevelUp(int level)
     {
+        if(isDead) return;
         characterLevel.PowerUp(level);
     }
     public virtual void CollectExp(int exp)

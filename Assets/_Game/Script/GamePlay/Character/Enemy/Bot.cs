@@ -66,6 +66,10 @@ public partial class Bot : Character
         base.OnDead();
         //TODO khong dung invoke
         Invoke(nameof(DeSpawnBot) , 1.5f);
+        UnregisterTarget();
+    }
+    public void UnregisterTarget()
+    {
         CanvasGamePlay canvas = UIManager.Instance.GetUI<CanvasGamePlay>();
         canvas.UnregisterTarget(this);
     }

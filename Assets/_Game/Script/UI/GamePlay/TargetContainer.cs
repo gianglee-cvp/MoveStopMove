@@ -1,26 +1,31 @@
 using System.Collections.Generic;
 using UnityEngine;
-//TODO sửa không để singleton ở đây 
+
 public class TargetContainer : MonoBehaviour
 {
-    [SerializeField] protected Camera cam; 
+    [SerializeField] protected Camera cam;
     [SerializeField] protected RectTransform canvasRect;
-    [SerializeField] protected TargetIndicator indicatorPrefab;//TODO cho vaof pool dunfg spawn 
+    [SerializeField] protected TargetIndicator indicatorPrefab;
     [SerializeField] protected float borderPadding = 200f;
-    private Dictionary<Bot, TargetIndicator> activeTargets = new Dictionary<Bot, TargetIndicator>();
+    [SerializeField] protected Vector2 baseOffset;
+    [SerializeField] protected Vector2 stepOffset;
+
+    private readonly Dictionary<Bot, TargetIndicator> activeTargets = new Dictionary<Bot, TargetIndicator>();
 
     void Awake()
     {
         cam = Camera.main;
     }
+
     public void RegisterTarget(Bot target)
     {
         if (activeTargets.ContainsKey(target)) return;
+
         TargetIndicator uiInstance = Instantiate(indicatorPrefab, canvasRect);
-        // uiInstance.SetLevel(target.level); set level 
         activeTargets.Add(target, uiInstance);
         uiInstance.SetColor(target.GetColor());
     }
+
     public void UnregisterTarget(Bot target)
     {
         if (activeTargets.TryGetValue(target, out TargetIndicator uiInstance))
@@ -28,10 +33,8 @@ public class TargetContainer : MonoBehaviour
             if (uiInstance != null) Destroy(uiInstance.gameObject);
             activeTargets.Remove(target);
         }
-        //Despawn 
-        // if(!activeTargets.ContainsKey(target)) return;
-        // activeTargets.Remove(target);
     }
+
     void LateUpdate()
     {
         foreach (var pair in activeTargets)
@@ -39,18 +42,17 @@ public class TargetContainer : MonoBehaviour
             Bot target = pair.Key;
             TargetIndicator ui = pair.Value;
 
-            if (target != null && ui != null)
-            {
-                UpdateSinglePosition(target.transform, ui);
-            }
-            UpdateLevel(target,ui);
+            if (target == null || ui == null) continue;
+
+            UpdateSinglePosition(target, ui);
+            UpdateLevel(target, ui);
         }
     }
-    private void UpdateSinglePosition(Transform targetTransform, TargetIndicator ui)
-    {
-        Vector3 screenPos = cam.WorldToScreenPoint(targetTransform.position);
 
-        // 1. Kiểm tra nếu ở sau lưng Camera -> Đảo tọa độ
+    private void UpdateSinglePosition(Bot target, TargetIndicator ui)
+    {
+        Vector3 screenPos = cam.WorldToScreenPoint(target.transform.position);
+
         bool isBehind = screenPos.z < 0;
         if (isBehind)
         {
@@ -58,47 +60,103 @@ public class TargetContainer : MonoBehaviour
             screenPos.y = -screenPos.y;
         }
 
-        // 2. Chuyển tọa độ về tâm Canvas (Center-Origin)
-        Vector2 canvasSize = canvasRect.sizeDelta;
+        Vector2 canvasSize = canvasRect.rect.size;
         Vector2 screenCenter = canvasSize * 0.5f;
+        Camera uiCamera = GetUICamera();
+        Vector2 indicatorPos = ScreenPointToCanvasLocalPosition(canvasRect, screenPos, uiCamera);
 
-        Vector2 indicatorPos = new Vector2(
-            (screenPos.x / Screen.width) * canvasSize.x - screenCenter.x,
-            (screenPos.y / Screen.height) * canvasSize.y - screenCenter.y
-        );
-
-        // 3. Giới hạn vị trí (Clamping) nếu ra khỏi góc nhìn
         float limitX = screenCenter.x - borderPadding;
         float limitY = screenCenter.y - borderPadding;
 
-        bool isOffScreen = isBehind || 
-                           Mathf.Abs(indicatorPos.x) > limitX || 
-                           Mathf.Abs(indicatorPos.y) > limitY;
+        Vector2 desiredPosition = CalculateOnScreenIndicatorPosition(indicatorPos, baseOffset, stepOffset, target.Level);
+        bool isOffScreen = IsOffScreen(desiredPosition, isBehind, limitX, limitY);
 
-        ui.gameObject.SetActive(isOffScreen);
-        if (isOffScreen)
-        {
-            //TODO sửa trường hợp indicator Pos.x = 0 
-            float m = indicatorPos.y / indicatorPos.x;
+        indicatorPos = CalculateDisplayedIndicatorPosition(
+            indicatorPos,
+            baseOffset,
+            stepOffset,
+            target.Level,
+            isBehind,
+            limitX,
+            limitY
+        );
 
-            if (Mathf.Abs(indicatorPos.x) * limitY > Mathf.Abs(indicatorPos.y) * limitX)
-            {
-                indicatorPos.x = indicatorPos.x > 0 ? limitX : -limitX;
-                indicatorPos.y = indicatorPos.x * m;
-            }
-            else
-            {
-                indicatorPos.y = indicatorPos.y > 0 ? limitY : -limitY;
-                indicatorPos.x = indicatorPos.y / m;
-            }
-        }
-
-        // 4. Cập nhật vị trí UI
+        ui.gameObject.SetActive(true);
+        ui.SetNameVisible(!isOffScreen);
+        ui.SetArrowVisible(isOffScreen);
         ui.UpdatePosition(indicatorPos);
     }
-    public void UpdateLevel(Bot bot , TargetIndicator indicator)
+
+    private static Vector2 ClampToBorder(Vector2 indicatorPos, float limitX, float limitY)
     {
-        indicator.SetText(bot.Level);   
+        if (Mathf.Approximately(indicatorPos.x, 0f))
+        {
+            return new Vector2(0f, indicatorPos.y >= 0f ? limitY : -limitY);
+        }
+
+        float slope = indicatorPos.y / indicatorPos.x;
+
+        if (Mathf.Abs(indicatorPos.x) * limitY > Mathf.Abs(indicatorPos.y) * limitX)
+        {
+            float clampedX = indicatorPos.x > 0 ? limitX : -limitX;
+            return new Vector2(clampedX, clampedX * slope);
+        }
+
+        float clampedY = indicatorPos.y > 0 ? limitY : -limitY;
+        return new Vector2(clampedY / slope, clampedY);
     }
 
+    public void UpdateLevel(Bot bot, TargetIndicator indicator)
+    {
+        indicator.SetText(bot.Level);
+    }
+
+    public static Vector2 CalculateOnScreenIndicatorPosition(Vector2 screenPosition, Vector2 baseOffset, Vector2 stepOffset, int level)
+    {
+        return screenPosition + baseOffset + stepOffset * level;
+    }
+
+    public static Vector2 CalculateDisplayedIndicatorPosition(
+        Vector2 screenPosition,
+        Vector2 baseOffset,
+        Vector2 stepOffset,
+        int level,
+        bool isBehind,
+        float limitX,
+        float limitY)
+    {
+        Vector2 desiredPosition = CalculateOnScreenIndicatorPosition(screenPosition, baseOffset, stepOffset, level);
+        bool isOffScreen = IsOffScreen(desiredPosition, isBehind, limitX, limitY);
+
+        if (!isOffScreen)
+        {
+            return desiredPosition;
+        }
+
+        return ClampToBorder(desiredPosition, limitX, limitY);
+    }
+
+    public static bool IsOffScreen(Vector2 desiredPosition, bool isBehind, float limitX, float limitY)
+    {
+        return isBehind ||
+               Mathf.Abs(desiredPosition.x) > limitX ||
+               Mathf.Abs(desiredPosition.y) > limitY;
+    }
+
+    public static Vector2 ScreenPointToCanvasLocalPosition(RectTransform canvasRect, Vector2 screenPoint, Camera uiCamera)
+    {
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPoint, uiCamera, out Vector2 localPoint);
+        return localPoint;
+    }
+
+    private Camera GetUICamera()
+    {
+        Canvas canvas = canvasRect != null ? canvasRect.GetComponentInParent<Canvas>() : null;
+        if (canvas == null || canvas.renderMode == RenderMode.ScreenSpaceOverlay)
+        {
+            return null;
+        }
+
+        return canvas.worldCamera != null ? canvas.worldCamera : cam;
+    }
 }

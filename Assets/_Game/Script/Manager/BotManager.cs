@@ -8,7 +8,7 @@ public class BotManager : Singleton<BotManager>
     [SerializeField] protected int totalBotCount;
     [SerializeField] protected int inMapBotCount;
     protected int currentBotCount => listBotActive.Count;
-    protected List<GameUnit> listBotActive = new List<GameUnit>();
+    protected List<Bot> listBotActive = new List<Bot>();
     protected float respawnTimer;
 
     void Update()
@@ -66,30 +66,30 @@ public class BotManager : Singleton<BotManager>
     {
         // Vector3 spawnPosition = Helper.GetRandomSpawnPosition(spawnRadius);
         Vector3 spawnPosition = Helper.GetRandomPointOnNavMesh();
-        GameUnit bot = SimplePool.Spawn<Bot>(PoolType.Enemy, spawnPosition, Quaternion.identity, null);
+        Bot bot = SimplePool.Spawn<Bot>(PoolType.Enemy, spawnPosition, Quaternion.identity, null);
 
         listBotActive.Add(bot);
-        Bot spawnedBot = bot as Bot;
-        spawnedBot?.OnInit();
+        bot.OnInit();
     }
 
-    public void DeSpawnBot(GameUnit bot)
+    public void DeSpawnBot(Bot bot)
     {
         listBotActive.Remove(bot);
         totalBotCount = Mathf.Max(0, totalBotCount - 1);
         DeSpawnUnit(bot);
     }
 
-    protected void DeSpawnUnit(GameUnit bot)
+    protected void DeSpawnUnit(Bot bot)
     {
         SimplePool.DeSpawn(bot);
+        bot.UnregisterTarget();
     }
 
     public void ClearBots()
     {
         for (int i = listBotActive.Count - 1; i >= 0; i--)
         {
-            GameUnit bot = listBotActive[i];
+            Bot bot = listBotActive[i];
             if (bot != null)
             {
                 DeSpawnUnit(bot);

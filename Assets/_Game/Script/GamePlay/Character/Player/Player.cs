@@ -39,7 +39,6 @@ public class Player : Character,IData
                     CancelAttack();
                     Idle();
                 }
-
                 if(!isMoving)
                 {
                     characterVisual.ChangeAnim(CharacterAnimType.Run);
@@ -48,11 +47,6 @@ public class Player : Character,IData
                 //TODO them bien speed
                 TF.position += move * 5f * Time.deltaTime;
                 TF.rotation = Quaternion.LookRotation(move);
-                if (isAttacking)
-                {
-                    CancelAttack();
-                    Idle();
-                } 
             }
             else 
             {
@@ -83,7 +77,6 @@ public class Player : Character,IData
             enemy.HideTargetIndicator();
         }
         base.RemoveTarget(index);
-        Debug.Log("hide1");
     }
     // public override void RemoveTarget(Character target)
     // {

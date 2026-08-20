@@ -27,15 +27,6 @@ public class ParticleEffect : GameUnit
     //TODO sửa list<enum>
     private Color GetEffectColor(ColorType type)
     {
-        switch (type)
-        {
-            case ColorType.White: return Color.white;
-            case ColorType.Blue: return Color.blue;
-            case ColorType.Red: return Color.red;
-            case ColorType.Yellow: return Color.yellow;
-            case ColorType.Green: return Color.green;
-            case ColorType.Black: return Color.black;
-            default: return Color.white;
-        }
+        return DataManager.Instance.GetMaterial(type).color;
     }
 }
