@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class DataManager : Singleton<DataManager>
 {
@@ -11,6 +12,7 @@ public class DataManager : Singleton<DataManager>
     protected GameData gameData;
     protected List<IData> allDataObject;
     [SerializeField] private SOSkin soSkin;
+    [SerializeField] private SOItem itemData;
 
     public void OnInit()
     {
@@ -56,12 +58,17 @@ public class DataManager : Singleton<DataManager>
     {
         SaveGame();
     }
-    public Material GetMaterial(ColorType color) => soSkin.GetMaterial(color);
-    public Texture2D GetPant(PantType type) => soSkin.GetPant(type);
-    public Hair GetHair(HairType type) => soSkin.GetHair(type);
-    public WeaponBase GetWeapon(WeaponType type) => soSkin.GetWeapon(type);
-    public BulletBase GetBullet(WeaponType type) => soSkin.GetBullet(type);
-    public string GetName(SkinType type , int index) => soSkin.GetName(type,index);
+    // public Material GetMaterial(ColorType color) => soSkin.GetMaterial(color);
+    // public Texture2D GetPant(PantType type) => soSkin.GetPant(type);
+    // public Hair GetHair(HairType type) => soSkin.GetHair(type);
+    // public WeaponBase GetWeapon(WeaponType type) => soSkin.GetWeapon(type);
+    // public BulletBase GetBullet(WeaponType type) => soSkin.GetBullet(type);
+    // public string GetName(SkinType type , int index) => soSkin.GetName(type,index);
+    public Material GetMaterial(ColorType color) => itemData.GetMaterial(color);
+    public Texture2D GetPant(PantType type) => itemData.GetPant(type);
+    public Hair GetHair(HairType type) => itemData.GetHair(type);
+    public WeaponBase GetWeapon(WeaponType type) => itemData.GetWeapon(type);
+    public BulletBase GetBullet(WeaponType type) => itemData.GetBullet(type);
     private List<IData> FindAllDataObject()
     {
         IEnumerable<IData> objects = FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None).OfType<IData>();

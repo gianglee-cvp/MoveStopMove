@@ -14711,7 +14711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2075988695202460023}
-  - component: {fileID: 623197295423869903}
+  - component: {fileID: 7748844862503809819}
   m_Layer: 0
   m_Name: Particle
   m_TagString: Untagged
@@ -14735,7 +14735,7 @@ Transform:
   - {fileID: 939123760715234640}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &623197295423869903
+--- !u!114 &7748844862503809819
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14744,7 +14744,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6293786739099295181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 304d88bc9d4079b4b86a2d38b2af2066, type: 3}
+  m_Script: {fileID: 11500000, guid: e4d8d90e775e2c2418e78f2c69953c72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParticleEffect
   poolType: 400

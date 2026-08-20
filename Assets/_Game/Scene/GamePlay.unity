@@ -119,6 +119,38 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &105715711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 105715712}
+  m_Layer: 0
+  m_Name: LevelUpEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &105715712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105715711}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1228126269}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &112272325
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DataManager
   fileName: data.game
   soSkin: {fileID: 11400000, guid: aa3958765b8e9f34dbf2be15e8cc5542, type: 2}
+  itemData: {fileID: 11400000, guid: f4d458c8684e738418f7e22fc37c2d98, type: 2}
 --- !u!114 &112272332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +308,91 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1899577880}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &637355129
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 105715712}
+    m_Modifications:
+    - target: {fileID: 1336688134426222, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_Name
+      value: SwirlAuraBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651664469489084, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651664469489084, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651664469489084, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651664469489084, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651664469489084, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651664469489084, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651664469489084, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651664469489084, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651664469489084, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651664469489084, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651664469489084, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651664469489084, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651664469489084, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651664469489084, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199252958827819914, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199465297894283846, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199937283782695232, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
 --- !u!1 &752634421
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,6 +484,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!4 &1228126269 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4651664469489084, guid: 579365cd679e0ee4993d0f2f33af1f3b, type: 3}
+  m_PrefabInstance: {fileID: 637355129}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1251229943
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,7 +1045,7 @@ MonoBehaviour:
   - prefab: {fileID: 4007530091295269805, guid: 1f402054716ffd44bb304ec3f5f8caeb, type: 3}
     amount: 1
     parent: {fileID: 307479818}
-  - prefab: {fileID: 623197295423869903, guid: 2b9b3c7bfe440a54280da4b4031497da, type: 3}
+  - prefab: {fileID: 7748844862503809819, guid: 2b9b3c7bfe440a54280da4b4031497da, type: 3}
     amount: 20
     parent: {fileID: 1972404737}
 --- !u!4 &1899577880
@@ -2801,7 +2924,7 @@ MonoBehaviour:
     color: 0
     pant: 0
     hairType: 0
-    weapon: 0
+    weapon: 3
   colorRenderer: {fileID: 7473351899389737782}
   pantRenderer: {fileID: 6090239991152050142}
   animator: {fileID: 4764232863921044350}
@@ -4280,3 +4403,4 @@ SceneRoots:
   - {fileID: 1290160576}
   - {fileID: 3110509944076165250}
   - {fileID: 1251229944}
+  - {fileID: 105715712}
