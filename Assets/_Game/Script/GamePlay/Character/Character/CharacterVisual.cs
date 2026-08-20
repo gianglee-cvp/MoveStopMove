@@ -39,6 +39,7 @@ public class CharacterVisual : MonoBehaviour
     [SerializeField] protected Hair currentHair;
     [SerializeField] protected ColorType currentColorType;
     public ColorType color => currentColorType;
+    public Vector3 HeadPos => headTF.position;
 
     public void OnInit()
     {

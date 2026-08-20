@@ -78,4 +78,8 @@ public partial class Bot : Character
         characterVisual.DespawnSkin();
         BotManager.Instance.DeSpawnBot(this);
     }
+    public Vector3 GetHeadPos()
+    {
+        return characterVisual.HeadPos;
+    }
 }   
