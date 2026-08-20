@@ -30,6 +30,11 @@ public partial class Bot : Character
         CanvasGamePlay canvas = UIManager.Instance.GetUI<CanvasGamePlay>();
         canvas.RegisterTarget(this);
     }
+    public override void Idle()
+    {
+        base.Idle();
+        SetDestination(TF.position);
+    }
     public override void Attack()
     {
         SetDestination(TF.position);

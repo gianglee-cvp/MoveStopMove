@@ -51,7 +51,12 @@ public class BulletBase : GameUnit
 
     public void DeSpawn()
     {
+        if (owner != null && owner.isActiveAndEnabled && !owner.IsDead)
+        {
+            owner.OnBulletDespawn(this);
+        }
         SimplePool.DeSpawn(this);
+        owner = null;
     }
 
     public void CollectExp(Character ch)

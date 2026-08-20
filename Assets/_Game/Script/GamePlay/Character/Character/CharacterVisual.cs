@@ -40,9 +40,11 @@ public class CharacterVisual : MonoBehaviour
     [SerializeField] protected ColorType currentColorType;
     public ColorType color => currentColorType;
     public Vector3 HeadPos => headTF.position;
+    public bool CheckWeaponActive => currentWeapon != null && currentWeapon.gameObject.activeSelf;
 
     public void OnInit()
     {
+        currentBullet = null;
     }
     public void ApplyNewSkin(Skin skin)
     {
@@ -113,10 +115,17 @@ public class CharacterVisual : MonoBehaviour
     }
     public void InitThrow(Vector3 rootPos)
     {
-        currentWeapon.OnDeactive();
+        if (currentWeapon != null)
+        {
+            currentWeapon.OnDeactive();
+        }
         BulletBase bullet = SimplePool.Spawn<BulletBase>(currentBulletPoolType,shootPoint.position, shootPoint.rotation,null);
         bullet.Init(shootPoint.forward , character.Range , rootPos , character);
         currentBullet = bullet;
+        if (character != null)
+        {
+            character.OnWeaponStateChanged();
+        }
     }
     public void Throw(Vector3 rootPos)
     {
@@ -125,7 +134,23 @@ public class CharacterVisual : MonoBehaviour
     }
     public void ActiveWeapon()
     {
+        if (currentWeapon == null) return;
         currentWeapon.Active();
+        if (character != null)
+        {
+            character.OnWeaponStateChanged();
+        }
+    }
+    public void OnBulletDespawn(BulletBase bullet)
+    {
+        if (bullet == null || currentBullet != bullet) return;
+
+        currentBullet = null;
+
+        if (character != null && character.isActiveAndEnabled && !character.IsDead)
+        {
+            ActiveWeapon();
+        }
     }
     public ColorType GetCurrentColorType()
     {
@@ -133,6 +158,7 @@ public class CharacterVisual : MonoBehaviour
     }
     public void DespawnSkin()
     {
+        currentBullet = null;
         SimplePool.DeSpawn(currentWeapon);
         SimplePool.DeSpawn(currentHair);
     }
