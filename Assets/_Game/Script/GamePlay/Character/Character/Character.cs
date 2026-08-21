@@ -144,7 +144,7 @@ public class Character : GameUnit
         TF.rotation = Quaternion.LookRotation(direction);
     }
     #endregion
-    #region LevelUp
+    #region ChangeStat
     public virtual void LevelUp(int level)
     {
         if(isDead) return;
@@ -158,6 +158,18 @@ public class Character : GameUnit
             LevelUp(newLevel);
         }
     }
+    public virtual void ResetBoosters()
+    {
+        characterLevel.ResetBoosters();
+    }
+    public virtual void ApplyRangeBooster(float rangeBonusPercent)
+    {
+        characterLevel.AddRangeBonus(rangeBonusPercent);
+    }
+    public virtual void ApplySpeedBooster(float moveSpeedBonusPercent)
+    {
+        characterLevel.AddMoveSpeedBonus(moveSpeedBonusPercent);
+    }
     #endregion
     public ColorType GetColor()
     {
@@ -165,7 +177,7 @@ public class Character : GameUnit
     }
     public virtual void OnBulletDespawn(BulletBase bullet)
     {
-        if (bullet == null || !isActiveAndEnabled || isDead) return;
+        if (isDead) return;
 
         characterVisual.OnBulletDespawn(bullet);
         RefreshAttackableState();

@@ -11,13 +11,13 @@ public class DataManager : Singleton<DataManager>
 
     protected GameData gameData;
     protected List<IData> allDataObject;
-    [SerializeField] private SOSkin soSkin;
     [SerializeField] private SOItem itemData;
 
     public void OnInit()
     {
         //Note : cac IData phai duoc tao truoc datamanager va init sau data manager neu co ham load trong init
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        itemData.OnInit();
         allDataObject = FindAllDataObject();
         Debug.Log("All object" + allDataObject.Count);
         LoadGame();
@@ -58,17 +58,8 @@ public class DataManager : Singleton<DataManager>
     {
         SaveGame();
     }
-    // public Material GetMaterial(ColorType color) => soSkin.GetMaterial(color);
-    // public Texture2D GetPant(PantType type) => soSkin.GetPant(type);
-    // public Hair GetHair(HairType type) => soSkin.GetHair(type);
-    // public WeaponBase GetWeapon(WeaponType type) => soSkin.GetWeapon(type);
-    // public BulletBase GetBullet(WeaponType type) => soSkin.GetBullet(type);
-    // public string GetName(SkinType type , int index) => soSkin.GetName(type,index);
-    public Material GetMaterial(ColorType color) => itemData.GetMaterial(color);
-    public Texture2D GetPant(PantType type) => itemData.GetPant(type);
-    public Hair GetHair(HairType type) => itemData.GetHair(type);
-    public WeaponBase GetWeapon(WeaponType type) => itemData.GetWeapon(type);
-    public BulletBase GetBullet(WeaponType type) => itemData.GetBullet(type);
+    public T GetItemData<T>(SkinType skinType, int index) where T : ItemData => itemData.GetData<T>(skinType, index);
+    public BoosterData GetBooster(SkinType skinType) => itemData.GetBooster(skinType);
     private List<IData> FindAllDataObject()
     {
         IEnumerable<IData> objects = FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None).OfType<IData>();

@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 [Serializable]
 public class Skin
@@ -41,7 +40,7 @@ public class CharacterVisual : MonoBehaviour
     public ColorType color => currentColorType;
     public Vector3 HeadPos => headTF.position;
     public bool CheckWeaponActive => currentWeapon != null && currentWeapon.gameObject.activeSelf;
-
+    
     public void OnInit()
     {
         currentBullet = null;
@@ -62,6 +61,7 @@ public class CharacterVisual : MonoBehaviour
     }
     public void ApplySkin()
     {
+        ResetAndApplyBoosters();
         ChangeColorType(currentSkin.color);
         ChangePantType(currentSkin.pant);
         ChangeHairType(currentSkin.hairType);
@@ -70,13 +70,15 @@ public class CharacterVisual : MonoBehaviour
     }
     public void ChangeColorType(ColorType newColor)
     {
-        colorRenderer.sharedMaterial = DataManager.Instance.GetMaterial(newColor);
+        ColorItemData colorData = DataManager.Instance.GetItemData<ColorItemData>(SkinType.skinColor, (int)newColor);
+        colorRenderer.sharedMaterial = colorData.Material;
         currentColorType = newColor;
     }
     public void ChangePantType(PantType newPant)
     {
         //TODO thay thanh property block
-        Texture newPantTexture = newPant == PantType.None ? null : DataManager.Instance.GetPant(newPant);
+        PantItemData pantData = DataManager.Instance.GetItemData<PantItemData>(SkinType.Pant, (int)newPant);
+        Texture newPantTexture = newPant == PantType.None ? null : pantData.Texture;
         pantRenderer.material.SetTexture("_BaseMap", newPantTexture);
     }
     public void ChangeHairType(HairType newHair)
@@ -85,8 +87,8 @@ public class CharacterVisual : MonoBehaviour
         {
             SimplePool.DeSpawn(currentHair);
         }
-        Hair prefab = DataManager.Instance.GetHair(newHair);
-        currentHair = SimplePool.Spawn<Hair>(prefab.poolType, headTF.position, Quaternion.identity, headTF);
+        HairItemData hairData = DataManager.Instance.GetItemData<HairItemData>(SkinType.Hair, (int)newHair);
+        currentHair = SimplePool.Spawn<Hair>(hairData.HairPrefab.poolType, headTF.position, Quaternion.identity, headTF);
         currentHair.OnInit();
     }   
     public void ChangeWeaponType(WeaponType newWeapon)
@@ -95,14 +97,16 @@ public class CharacterVisual : MonoBehaviour
         {
             SimplePool.DeSpawn(currentWeapon);
         }
-        currentWeaponPoolType = (PoolType)((int)PoolType.Weapon_0 + (int)newWeapon);
+        WeaponItemData weaponData = DataManager.Instance.GetItemData<WeaponItemData>(SkinType.Weapon, (int)newWeapon);
+        currentWeaponPoolType = weaponData.WeaponPrefab.poolType;
         currentWeapon = SimplePool.Spawn<WeaponBase>(currentWeaponPoolType, righHandTF.position, Quaternion.identity, righHandTF);
         currentWeapon.OnInit(righHandTF);
     }
     public void ChangeBulletType(WeaponType newWeapon)
     {
         //TODO change bullet type
-        currentBulletPoolType = (PoolType)((int)PoolType.Bullet_0 + (int)newWeapon);
+        WeaponItemData weaponData = DataManager.Instance.GetItemData<WeaponItemData>(SkinType.Weapon, (int)newWeapon);
+        currentBulletPoolType = weaponData.BulletPrefab.poolType;
     }
     public void ChangeAnim(CharacterAnimType newAnim)
     {
@@ -170,6 +174,36 @@ public class CharacterVisual : MonoBehaviour
         Vector3 start = transform.position;
         Vector3 end = start + transform.forward * distance;
         Gizmos.DrawLine(start, end);
+    }
+
+    private void ResetAndApplyBoosters()
+    {
+        if (character == null) return;
+
+        character.ResetBoosters();
+
+        ApplyBooster(
+            DataManager.Instance.GetBooster(SkinType.skinColor),
+            DataManager.Instance.GetItemData<ColorItemData>(SkinType.skinColor, (int)currentSkin.color)
+        );
+        ApplyBooster(
+            DataManager.Instance.GetBooster(SkinType.Pant),
+            DataManager.Instance.GetItemData<PantItemData>(SkinType.Pant, (int)currentSkin.pant)
+        );
+        ApplyBooster(
+            DataManager.Instance.GetBooster(SkinType.Hair),
+            DataManager.Instance.GetItemData<HairItemData>(SkinType.Hair, (int)currentSkin.hairType)
+        );
+        ApplyBooster(
+            DataManager.Instance.GetBooster(SkinType.Weapon),
+            DataManager.Instance.GetItemData<WeaponItemData>(SkinType.Weapon, (int)currentSkin.weapon)
+        );
+    }
+
+    private void ApplyBooster(BoosterData boosterData, ItemData itemData)
+    {
+        if (boosterData == null || itemData == null || character == null) return;
+        boosterData.Apply(character, itemData.Value);
     }
 
 }

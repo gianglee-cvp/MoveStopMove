@@ -27,6 +27,6 @@ public class ParticleEffect : GameUnit
     //TODO sửa list<enum>
     private Color GetEffectColor(ColorType type)
     {
-        return DataManager.Instance.GetMaterial(type).color;
+        return DataManager.Instance.GetItemData<ColorItemData>(SkinType.skinColor, (int)type).Material.color;
     }
 }

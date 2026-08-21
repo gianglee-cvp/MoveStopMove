@@ -8,10 +8,27 @@ public class CharacterLevel : MonoBehaviour
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float range;
     [SerializeField] protected int exp;
-    [SerializeField] AttackRange attackRange;
+    [SerializeField] protected AttackRange attackRange;
 
-    [SerializeField] CharacterVisual characterVisual;
-    [SerializeField] CapsuleCollider physicCollider;
+    [SerializeField] protected CharacterVisual characterVisual;
+    [SerializeField] protected CapsuleCollider physicCollider;
+
+    //bonus 
+    protected float bonusRange = 0;
+    protected float bonusMoveSpeed = 0;
+    protected float baseMoveSpeed = 0;
+
+    private void Awake()
+    {
+        if (moveSpeed <= 0f)
+        {
+            moveSpeed = Constant.MOVE_SPEED_DEFAULT;
+        }
+
+        baseMoveSpeed = moveSpeed;
+        SetMoveSpeed(baseMoveSpeed);
+    }
+    
 
     public int Level => level;
     public float MoveSpeed => moveSpeed;
@@ -22,22 +39,27 @@ public class CharacterLevel : MonoBehaviour
     public void PowerUp(int level)
     {
         this.level = level;
-        SetRange(Constant.RANGE_DEFAULT + level);
-        SetSize(range);
-        characterVisual.transform.localScale = Scale;
-
-        physicCollider.radius = Size * Constant.CH_PHYSIC_COLLIDER_RADIUS;
-        physicCollider.height = Constant.CH_PHYSIC_COLLIDER_HEIGHT * Size; 
-        physicCollider.center = Size  * Constant.CH_PHYSIC_COLLIDER_CENTER; 
+        SetRange(CalculateRangeByLevel(level));
+        SetSize(CalculatorSizeByLevel(level));
+        ApplyBooster();
+        ApplyMoveSpeedBooster();
     }
     public void SetLevel(int level)
     {
         this.level = level;
     }
 
-    public void SetSize(float range)
+    public void SetSize(float newSize)
     {
-        size = range / Constant.RANGE_DEFAULT;
+        size = Mathf.Max(1f, newSize);
+        characterVisual.transform.localScale = Scale;
+        
+        if (physicCollider != null)
+        {
+            physicCollider.radius = Size * Constant.CH_PHYSIC_COLLIDER_RADIUS;
+            physicCollider.height = Constant.CH_PHYSIC_COLLIDER_HEIGHT * Size;
+            physicCollider.center = Size * Constant.CH_PHYSIC_COLLIDER_CENTER;
+        }
     }
 
     public void SetMoveSpeed(float moveSpeed)
@@ -66,14 +88,50 @@ public class CharacterLevel : MonoBehaviour
 
     public void SetRange(float rangeF)
     {
-        // range = rangeF > Constant.RANGE_MAX ? Constant.RANGE_MAX : rangeF;
         range = Math.Clamp(rangeF,Constant.RANGE_DEFAULT,Constant.RANGE_MAX);
-        attackRange.UpdateRange(range);
+        if (attackRange != null)
+        {
+            attackRange.UpdateRange(range);
+        }
+    }
+    public float CalculateRangeByLevel(int level)
+    {
+        return Math.Clamp(Constant.RANGE_DEFAULT + level, Constant.RANGE_DEFAULT, Constant.RANGE_MAX);
     }
     public float CalculatorSizeByLevel(int level)
     {
-        float tmpRange = Math.Clamp(Constant.RANGE_DEFAULT + level,Constant.RANGE_DEFAULT,Constant.RANGE_MAX);
-        return tmpRange/Constant.RANGE_DEFAULT;
-
+        return CalculateRangeByLevel(level) / Constant.RANGE_DEFAULT;
+    }
+    public void ApplyBooster()
+    {
+        float boostedRange = CalculateRangeByLevel(level) * (1 + bonusRange / 100f);
+        SetRange(boostedRange);
+    }
+    public void ApplyMoveSpeedBooster()
+    {
+        float boostedMoveSpeed = baseMoveSpeed * (1 + bonusMoveSpeed / 100f);
+        SetMoveSpeed(boostedMoveSpeed);
+    }
+    public void InitBooster(float rangeBonusPercent)
+    {
+        bonusRange = rangeBonusPercent;
+        ApplyBooster();
+    }
+    public void ResetBoosters()
+    {
+        bonusRange = 0f;
+        bonusMoveSpeed = 0f;
+        ApplyBooster();
+        ApplyMoveSpeedBooster();
+    }
+    public void AddRangeBonus(float rangeBonusPercent)
+    {
+        bonusRange += rangeBonusPercent;
+        ApplyBooster();
+    }
+    public void AddMoveSpeedBonus(float moveSpeedBonusPercent)
+    {
+        bonusMoveSpeed += moveSpeedBonusPercent;
+        ApplyMoveSpeedBooster();
     }
 }

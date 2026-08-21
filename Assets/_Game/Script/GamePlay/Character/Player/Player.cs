@@ -44,8 +44,7 @@ public class Player : Character,IData
                     characterVisual.ChangeAnim(CharacterAnimType.Run);
                     isMoving = true;
                 }
-                //TODO them bien speed
-                TF.position += move * 5f * Time.deltaTime;
+                TF.position += move * characterLevel.MoveSpeed * Time.deltaTime;
                 TF.rotation = Quaternion.LookRotation(move);
             }
             else 

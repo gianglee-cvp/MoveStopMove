@@ -25,7 +25,7 @@ public class TargetIndicator : MonoBehaviour
     }
     public void SetColor(ColorType color)
     {
-        Color targetColor = DataManager.Instance.GetMaterial(color).color;
+        Color targetColor = DataManager.Instance.GetItemData<ColorItemData>(SkinType.skinColor, (int)color).Material.color;
         imgBG.color = targetColor;
         imgArrow.color  = targetColor;
         textName.color = targetColor;

@@ -23,6 +23,7 @@ public partial class Bot : Character
     public override void OnInit()
     {
         base.OnInit();
+        SyncMoveSpeed();
         spawnPos = TF.position;
         characterVisual.ApplyRandomSkin();
         ChangeState(idleState);
@@ -65,6 +66,21 @@ public partial class Bot : Character
         this.destination = destination;
         agent.SetDestination(destination);
     }
+    public override void LevelUp(int level)
+    {
+        base.LevelUp(level);
+        SyncMoveSpeed();
+    }
+    public override void ResetBoosters()
+    {
+        base.ResetBoosters();
+        SyncMoveSpeed();
+    }
+    public override void ApplySpeedBooster(float moveSpeedBonusPercent)
+    {
+        base.ApplySpeedBooster(moveSpeedBonusPercent);
+        SyncMoveSpeed();
+    }
     public override void OnDead()
     {
         SetDestination(TF.position);
@@ -86,5 +102,10 @@ public partial class Bot : Character
     public Vector3 GetHeadPos()
     {
         return characterVisual.HeadPos;
+    }
+    private void SyncMoveSpeed()
+    {
+        if (agent == null) return;
+        agent.speed = characterLevel.MoveSpeed;
     }
 }   

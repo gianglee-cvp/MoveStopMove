@@ -1,5 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "SOItem", menuName = "Game/SOItem")]
 public class SOItem : ScriptableObject
@@ -8,28 +8,54 @@ public class SOItem : ScriptableObject
     [SerializeField] private PantItemData[] listPant;
     [SerializeField] private HairItemData[] listHair;
     [SerializeField] private WeaponItemData[] listWeapon;
+    [SerializeField] private BoosterData colorBooster;
     [SerializeField] private BoosterData pantBooster;
     [SerializeField] private BoosterData hairBooster;
+    [SerializeField] private BoosterData weaponBooster;
+    private Dictionary<SkinType, ItemData[]> itemMap;
+    private Dictionary<SkinType, BoosterData> boosterMap;
 
-    public Material GetMaterial(ColorType color)
+    public void OnInit()
     {
-        // return Color[(int)color];
-        return Colors[(int)color].material;
+        itemMap = new Dictionary<SkinType, ItemData[]>
+        {
+            { SkinType.skinColor, Colors },
+            { SkinType.Pant, listPant },
+            { SkinType.Hair, listHair },
+            { SkinType.Weapon, listWeapon }
+        };
+
+        boosterMap = new Dictionary<SkinType, BoosterData>
+        {
+            { SkinType.skinColor, colorBooster },
+            { SkinType.Pant, pantBooster },
+            { SkinType.Hair, hairBooster },
+            { SkinType.Weapon, weaponBooster }
+        };
     }
-    public Texture2D GetPant(PantType type)
+
+    public T GetData<T>(SkinType skinType, int index) where T : ItemData
     {
-        return listPant[(int)type].texture;
+        if (itemMap == null || !itemMap.TryGetValue(skinType, out ItemData[] items))
+        {
+            return null;
+        }
+
+        if (index < 0 || index >= items.Length)
+        {
+            return null;
+        }
+
+        return items[index] as T;
     }
-    public Hair GetHair(HairType type)
+
+    public BoosterData GetBooster(SkinType skinType)
     {
-        return listHair[(int)type].hairPrefab;
-    }
-    public WeaponBase GetWeapon(WeaponType type)
-    {
-        return listWeapon[(int)type].weaponPrefab;
-    }
-    public BulletBase GetBullet(WeaponType type)
-    {
-        return listWeapon[(int)type].bulletPrefab;
+        if (boosterMap == null || !boosterMap.TryGetValue(skinType, out BoosterData booster))
+        {
+            return null;
+        }
+
+        return booster;
     }
 }

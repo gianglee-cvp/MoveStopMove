@@ -14,26 +14,30 @@ public abstract class BoosterData : ScriptableObject
 
     [Header("Value")]
     public float value;
-    public abstract void Apply(Character ch);
+    public abstract void Apply(Character ch, float itemValue);
 }
 [CreateAssetMenu(fileName = "SpeedBooster",menuName = "Game/Booster/Booster Speed")]
 public class SpeedBooster : BoosterData
 {
-    public override void Apply(Character ch)
+    public override void Apply(Character ch, float itemValue)
     {
+        if (ch == null) return;
+        ch.ApplySpeedBooster(itemValue);
     }
 }
 [CreateAssetMenu(fileName = "RangeBooster",menuName = "Game/Booster/Booster Range")]
 public class RangeBooster : BoosterData
 {
-    public override void Apply(Character ch)
+    public override void Apply(Character ch, float itemValue)
     {
+        if (ch == null) return;
+        ch.ApplyRangeBooster(itemValue);
     }
 }
 [CreateAssetMenu(fileName = "GoldBooster",menuName = "Game/Booster/Booster Gold")]
 public class GoldBooster : BoosterData
 {
-    public override void Apply(Character ch)
+    public override void Apply(Character ch, float itemValue)
     {
     }
 }
