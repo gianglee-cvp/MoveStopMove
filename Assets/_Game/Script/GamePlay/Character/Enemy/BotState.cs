@@ -72,7 +72,7 @@ public partial class Bot
             return;
         }
 
-        if (!isAttacking && isAttackable)
+        if (isAttackable)
         {
             Attack();
         }
@@ -91,7 +91,7 @@ public partial class Bot
             return;
         }
 
-        if (!isAttacking && isAttackable)
+        if (isAttackable)
         {
             Attack();
         }

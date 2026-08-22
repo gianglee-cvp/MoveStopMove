@@ -21,7 +21,7 @@ public class Character : GameUnit
     //character state
     [SerializeField] protected bool isMoving = false;
     [SerializeField] protected bool isAttacking = false;
-    [SerializeField] protected bool isAttackable = true;
+    protected bool isAttackable => !isDead && characterVisual.CheckWeaponActive && !isAttacking;
     [SerializeField] protected bool isDead = false;
     public bool IsDead{get => isDead;}
     //attack
@@ -46,21 +46,18 @@ public class Character : GameUnit
         LevelUp(0);
         currentTarget = null;
         characterVisual.ChangeAnim(CharacterAnimType.Idle);
-        RefreshAttackableState();
     }
     public virtual void Idle()
     {
         characterVisual.ChangeAnim(CharacterAnimType.Idle);
         isAttacking = false;
         isMoving = false;
-        RefreshAttackableState();
     }
     public virtual void OnDead()
     {
         ParticleEffect vfx = SimplePool.Spawn<ParticleEffect>(PoolType.ParticleEffectHit,spawnEffectPoint.position,Quaternion.identity,spawnEffectPoint);
         vfx.Play(characterVisual.GetCurrentColorType() , 1f);
         isDead = true;
-        isAttackable = false;
         CancelAttack();
         characterVisual.ChangeAnim(CharacterAnimType.Dead);
     }
@@ -75,7 +72,6 @@ public class Character : GameUnit
         } 
         RotateToTarget(currentTarget.Pos);
         isAttacking  = true;
-        isAttackable = false;
         isMoving = false;
         characterVisual.ChangeAnim(CharacterAnimType.Attack);
         attackCO = StartCoroutine(Throw(TF.position)); 
@@ -100,7 +96,6 @@ public class Character : GameUnit
             attackCO = null;
         }
         isAttacking = false;
-        RefreshAttackableState();
     }
     public virtual void AddTarget(Character ch)
     {
@@ -184,14 +179,5 @@ public class Character : GameUnit
         if (isDead) return;
 
         characterVisual.OnBulletDespawn(bullet);
-        RefreshAttackableState();
-    }
-    public void OnWeaponStateChanged()
-    {
-        RefreshAttackableState();
-    }
-    protected void RefreshAttackableState()
-    {
-        isAttackable = !isDead && characterVisual.CheckWeaponActive ;
     }
 }

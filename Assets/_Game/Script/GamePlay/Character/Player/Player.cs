@@ -63,7 +63,7 @@ public class Player : Character,IData
                         Idle();
                     }
 
-                    if (!isAttacking && isAttackable)
+                    if (isAttackable)
                     {
                         Attack();
                     }

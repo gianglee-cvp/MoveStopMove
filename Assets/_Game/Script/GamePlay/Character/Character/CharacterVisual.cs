@@ -126,10 +126,6 @@ public class CharacterVisual : MonoBehaviour
         BulletBase bullet = SimplePool.Spawn<BulletBase>(currentBulletPoolType,shootPoint.position, shootPoint.rotation,null);
         bullet.Init(shootPoint.forward , character.Range , rootPos , character);
         currentBullet = bullet;
-        if (character != null)
-        {
-            character.OnWeaponStateChanged();
-        }
     }
     public void Throw(Vector3 rootPos)
     {
@@ -140,10 +136,6 @@ public class CharacterVisual : MonoBehaviour
     {
         if (currentWeapon == null) return;
         currentWeapon.Active();
-        if (character != null)
-        {
-            character.OnWeaponStateChanged();
-        }
     }
     public void OnBulletDespawn(BulletBase bullet)
     {
