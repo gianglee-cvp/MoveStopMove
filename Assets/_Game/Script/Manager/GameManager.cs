@@ -22,6 +22,7 @@ public class GameManager : Singleton<GameManager>
     public void Awake()
     {
         isLoaded = false;
+        currentGameState = Enum_GameState.Loading;
         UIManager.Instance.OnInit();
         UIManager.Instance.OpenUI<CanvasLoading>();
         StartCoroutine(BootstrapGame());
@@ -49,7 +50,8 @@ public class GameManager : Singleton<GameManager>
         float fadeTime = loadingCanvas != null ? loadingCanvas.FadeDuration : loadingFadeDuration;
         yield return new WaitForSeconds(fadeTime);
         UIManager.Instance.OpenUI<CanvasMainMenu>();
-        ChangeGameState(Enum_GameState.MainMenu);
+        currentGameState = Enum_GameState.MainMenu;
+        CameraFollow.Instance.ChangeByState(Enum_GameState.MainMenu, true);
     }
     public void PlayGame()
     {
@@ -61,6 +63,7 @@ public class GameManager : Singleton<GameManager>
     public void ChangeGameState(Enum_GameState state)
     {
         currentGameState = state;
+        CameraFollow.Instance.ChangeByState(state);
     }
     public bool IsGameState(Enum_GameState state)
     {

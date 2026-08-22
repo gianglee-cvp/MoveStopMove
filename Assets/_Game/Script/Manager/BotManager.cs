@@ -7,6 +7,7 @@ public class BotManager : Singleton<BotManager>
     [SerializeField] protected float respawnCheckInterval;
     [SerializeField] protected int totalBotCount;
     [SerializeField] protected int inMapBotCount;
+    [SerializeField] protected LayerMask characterLayer;
     protected int currentBotCount => listBotActive.Count;
     protected List<Bot> listBotActive = new List<Bot>();
     protected float respawnTimer;
@@ -64,12 +65,19 @@ public class BotManager : Singleton<BotManager>
 
     protected void SpawnOneBotRandom()
     {
-        // Vector3 spawnPosition = Helper.GetRandomSpawnPosition(spawnRadius);
-        Vector3 spawnPosition = Helper.GetRandomPointOnNavMesh();
+        Vector3 spawnPosition  = Vector3.zero;
+        for (int i = 0; i < 20; i++)
+        {
+            spawnPosition = Helper.GetRandomPointOnNavMesh();
+            if (IsNearAnyCharacter(spawnPosition))
+            {
+                continue;
+            }
+        }
         Bot bot = SimplePool.Spawn<Bot>(PoolType.Enemy, spawnPosition, Quaternion.identity, null);
-
         listBotActive.Add(bot);
         bot.OnInit();
+        return;
     }
 
     public void DeSpawnBot(Bot bot)
@@ -96,5 +104,21 @@ public class BotManager : Singleton<BotManager>
             }
         }
         listBotActive.Clear();
+    }
+
+    private bool IsNearAnyCharacter(Vector3 position)
+    {
+        Collider[] hits = Physics.OverlapSphere(position, 5f, characterLayer);
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            Character character = CacheComponent<Collider, Character>.Get(hits[i]);
+            if (character != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
