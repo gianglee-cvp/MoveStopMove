@@ -28,4 +28,8 @@ public class AttackRange : MonoBehaviour
         }
         attackCol.radius = range;
     }
+    public void SetActiveUI(bool isActive)
+    {
+        gameObject.SetActive(isActive);
+    }
 }

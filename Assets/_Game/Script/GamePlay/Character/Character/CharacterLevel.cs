@@ -134,4 +134,12 @@ public class CharacterLevel : MonoBehaviour
         bonusMoveSpeed += moveSpeedBonusPercent;
         ApplyMoveSpeedBooster();
     }
+    public void ShowAttackRange()
+    {
+        attackRange.SetActiveUI(true);
+    }
+    public void HideAttackRange()
+    {
+        attackRange.SetActiveUI(false);
+    }
 }

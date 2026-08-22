@@ -6,7 +6,7 @@ public class ParticleEffect : GameUnit
     [SerializeField] protected ParticleSystem mainParticle;
     [SerializeField] protected List<ParticleSystem> childParticle;
 
-    public void Play(ColorType colorType)
+    public void Play(ColorType colorType , float despawnTime)
     {
         TF.localScale = Vector3.one;
         mainParticle.Stop(true,ParticleSystemStopBehavior.StopEmittingAndClear);
@@ -18,7 +18,7 @@ public class ParticleEffect : GameUnit
             main.startColor = GetEffectColor(colorType);
         }
         mainParticle.Play();
-        Invoke(nameof(DeSpawnVFX), 1f);
+        Invoke(nameof(DeSpawnVFX), despawnTime);
     }
     public void DeSpawnVFX()
     {

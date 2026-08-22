@@ -1,3 +1,4 @@
+using System.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,11 @@ public class Player : Character,IData
         base.OnInit();
         moveAction = InputManager.Instance.MoveAction;
         moveAction.Enable();
+        characterLevel.HideAttackRange();
+    }
+    public void ShowRangeUI()
+    {
+        characterLevel.ShowAttackRange();
     }
     void Update()
     {
@@ -26,34 +32,43 @@ public class Player : Character,IData
         if (Keyboard.current.kKey.wasPressedThisFrame)
         {
             LevelUp(level);
+            if(isDead) SaveMe();
         } //TODO xoa 
-        SetTarget();
-        if (moveAction.enabled)
+        if (GameManager.Instance.IsGameState(Enum_GameState.Play))
         {
-            moveAmount = moveAction.ReadValue<Vector2>().normalized;
-            Vector3 move = new Vector3(moveAmount.x , 0 , moveAmount.y).normalized;
-            if(move.sqrMagnitude > 0.001f)
+            SetTarget();
+            if (moveAction.enabled)
             {
-                if(isAttacking)
+                moveAmount = moveAction.ReadValue<Vector2>().normalized;
+                Vector3 move = new Vector3(moveAmount.x , 0 , moveAmount.y).normalized;
+                if(move.sqrMagnitude > 0.001f)
                 {
-                    CancelAttack();
-                    Idle();
+                    if(isAttacking)
+                    {
+                        CancelAttack();
+                        Idle();
+                    }
+                    if(!isMoving)
+                    {
+                        characterVisual.ChangeAnim(CharacterAnimType.Run);
+                        isMoving = true;
+                    }
+                    TF.position += move * characterLevel.MoveSpeed * Time.deltaTime;
+                    TF.rotation = Quaternion.LookRotation(move);
                 }
-                if(!isMoving)
+                else 
                 {
-                    characterVisual.ChangeAnim(CharacterAnimType.Run);
-                    isMoving = true;
-                }
-                TF.position += move * characterLevel.MoveSpeed * Time.deltaTime;
-                TF.rotation = Quaternion.LookRotation(move);
+                    if (isMoving)
+                    {
+                        Idle();
+                    }
+
+                    if (!isAttacking && isAttackable)
+                    {
+                        Attack();
+                    }
+                }   
             }
-            else 
-            {
-                if (!isAttacking && isAttackable)
-                {
-                    Attack();
-                }
-            }   
         }
     }
     public override Character SetTarget()
@@ -101,5 +116,10 @@ public class Player : Character,IData
         data.gold = gold;
         data.SaveSkin(characterVisual.CurrentSkin);
         Debug.Log("Save gold data" + gold);
+    }
+    //TODO xoa 
+    public void SaveMe()
+    {
+        OnInit();
     }
 }

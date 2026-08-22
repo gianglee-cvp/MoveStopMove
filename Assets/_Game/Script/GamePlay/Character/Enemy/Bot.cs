@@ -16,9 +16,13 @@ public partial class Bot : Character
     [SerializeField] GameObject indicator;
     void Update()
     {
-        if(isDead) return;
-        SetTarget();
-        currentState?.OnExecute(this);
+        if (GameManager.Instance.IsGameState(Enum_GameState.Play))
+        {
+            if(isDead) return;
+            SetTarget();
+            currentState?.OnExecute(this);          
+        }
+
     }
     public override void OnInit()
     {

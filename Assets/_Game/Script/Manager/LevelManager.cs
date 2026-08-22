@@ -4,6 +4,7 @@ public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] LevelData levelData;
     [SerializeField] int currentLevelIndex = 0;
+    [SerializeField] protected Player player;
 
     protected GameObject currentMap;
 
@@ -31,6 +32,10 @@ public class LevelManager : Singleton<LevelManager>
         currentLevelIndex = index;
         BotManager.Instance.ApplyLevelData(level);
         BotManager.Instance.Init();
+    }
+    public void StartGame()
+    {
+        player.ShowRangeUI();
     }
 
     public void NextLevel()

@@ -57,8 +57,8 @@ public class Character : GameUnit
     }
     public virtual void OnDead()
     {
-        ParticleEffect vfx = SimplePool.Spawn<ParticleEffect>(PoolType.ParticleEffect,spawnEffectPoint.position,Quaternion.identity,spawnEffectPoint);
-        vfx.Play(characterVisual.GetCurrentColorType());
+        ParticleEffect vfx = SimplePool.Spawn<ParticleEffect>(PoolType.ParticleEffectHit,spawnEffectPoint.position,Quaternion.identity,spawnEffectPoint);
+        vfx.Play(characterVisual.GetCurrentColorType() , 1f);
         isDead = true;
         isAttackable = false;
         CancelAttack();
@@ -149,6 +149,10 @@ public class Character : GameUnit
     {
         if(isDead) return;
         characterLevel.PowerUp(level);
+        if(level != 0)
+        {
+            SimplePool.Spawn<ParticleEffect>(PoolType.ParticleEffectLevelUp,spawnEffectPoint.position,Quaternion.identity,spawnEffectPoint).Play(characterVisual.color, 1f);
+        }
     }
     public virtual void CollectExp(int exp)
     {
@@ -188,6 +192,6 @@ public class Character : GameUnit
     }
     protected void RefreshAttackableState()
     {
-        isAttackable = !isDead && characterVisual.CheckWeaponActive;
+        isAttackable = !isDead && characterVisual.CheckWeaponActive ;
     }
 }

@@ -61,6 +61,7 @@ public class UIManager : Singleton<UIManager>
         {
             T prefab = GetUIPrefab<T>(); 
             T canvas = Instantiate(prefab , parent);
+            canvas.gameObject.SetActive(false);
             canvasActives[typeof(T)] = canvas ; 
         }
         return canvasActives[typeof(T)] as T  ; 
