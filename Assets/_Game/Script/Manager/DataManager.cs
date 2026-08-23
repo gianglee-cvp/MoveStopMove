@@ -43,6 +43,10 @@ public class DataManager : Singleton<DataManager>
             dataObject.LoadGame(gameData);
         }
     }
+    public void LoadGame(IData target)
+    {
+        target.LoadGame(gameData);
+    }
     public void SaveGame()
     {
         Debug.Log("Save Game");
@@ -59,6 +63,8 @@ public class DataManager : Singleton<DataManager>
         SaveGame();
     }
     public T GetItemData<T>(SkinType skinType, int index) where T : ItemData => itemData.GetData<T>(skinType, index);
+    public ItemData[] GetListData(SkinType type)=> itemData.GetListData(type);
+
     public BoosterData GetBooster(SkinType skinType) => itemData.GetBooster(skinType);
     private List<IData> FindAllDataObject()
     {

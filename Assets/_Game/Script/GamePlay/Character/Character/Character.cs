@@ -36,6 +36,8 @@ public class Character : GameUnit
     public float Size => characterLevel.Size;
     public int Level => characterLevel.Level;
     public int Exp => characterLevel.Exp;
+    public float GoldMultiplier => characterLevel.GoldMultiplier;
+    public float GoldBonusPercent => characterLevel.GoldBonusPercent;
     public float capsuleRadius => physicColider.radius;
     #region State
     public virtual void OnInit()
@@ -168,6 +170,10 @@ public class Character : GameUnit
     public virtual void ApplySpeedBooster(float moveSpeedBonusPercent)
     {
         characterLevel.AddMoveSpeedBonus(moveSpeedBonusPercent);
+    }
+    public virtual void ApplyGoldBooster(float goldBonusPercent)
+    {
+        characterLevel.AddGoldBonus(goldBonusPercent);
     }
     #endregion
     public ColorType GetColor()

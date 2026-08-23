@@ -7,12 +7,14 @@ public class Skin
     public PantType pant;
     public HairType hairType;
     public WeaponType weapon;
-    public Skin(ColorType color , PantType pant , HairType hair , WeaponType weapon)
+    public ShieldType shieldType;
+    public Skin(ColorType color , PantType pant , HairType hair , WeaponType weapon, ShieldType shieldType = ShieldType.None)
     {
         this.color = color;
         this.pant = pant;
         this.hairType = hair;
         this.weapon = weapon;
+        this.shieldType = shieldType;
     }
 }
 public class CharacterVisual : MonoBehaviour
@@ -28,6 +30,7 @@ public class CharacterVisual : MonoBehaviour
     [SerializeField] protected Animator animator;
     [SerializeField] protected Transform righHandTF;
     [SerializeField] protected Transform headTF;
+    [SerializeField] protected Transform shieldTF;
     [SerializeField] protected Transform shootPoint;
 
     [SerializeField] protected Character character;
@@ -36,6 +39,7 @@ public class CharacterVisual : MonoBehaviour
     [SerializeField] protected BulletBase currentBullet;
     [SerializeField] protected WeaponBase currentWeapon;
     [SerializeField] protected Hair currentHair;
+    [SerializeField] protected Shield currentShield;
     [SerializeField] protected ColorType currentColorType;
     public ColorType color => currentColorType;
     public Vector3 HeadPos => headTF.position;
@@ -56,7 +60,8 @@ public class CharacterVisual : MonoBehaviour
             Helper.RandomEnumValue<ColorType>(),
             Helper.RandomEnumValue<PantType>(),
             Helper.RandomEnumValue<HairType>(),
-            Helper.RandomEnumValue<WeaponType>()
+            Helper.RandomEnumValue<WeaponType>(),
+            Helper.RandomEnumValue<ShieldType>()
         ));
     }
     public void ApplySkin()
@@ -65,6 +70,7 @@ public class CharacterVisual : MonoBehaviour
         ChangeColorType(currentSkin.color);
         ChangePantType(currentSkin.pant);
         ChangeHairType(currentSkin.hairType);
+        ChangeShieldType(currentSkin.shieldType);
         ChangeWeaponType(currentSkin.weapon);
         ChangeBulletType(currentSkin.weapon);
     }
@@ -88,9 +94,32 @@ public class CharacterVisual : MonoBehaviour
             SimplePool.DeSpawn(currentHair);
         }
         HairItemData hairData = DataManager.Instance.GetItemData<HairItemData>(SkinType.Hair, (int)newHair);
+        if (hairData == null || hairData.HairPrefab == null)
+        {
+            currentHair = null;
+            return;
+        }
         currentHair = SimplePool.Spawn<Hair>(hairData.HairPrefab.poolType, headTF.position, Quaternion.identity, headTF);
         currentHair.OnInit();
-    }   
+    }
+    public void ChangeShieldType(ShieldType newShield)
+    {
+        if (currentShield != null)
+        {
+            SimplePool.DeSpawn(currentShield);
+        }
+
+        ShieldItemData shieldData = DataManager.Instance.GetItemData<ShieldItemData>(SkinType.Shield, (int)newShield);
+        if (shieldData == null || shieldData.ShieldPrefab == null)
+        {
+            currentShield = null;
+            return;
+        }
+
+        Transform shieldAnchor = shieldTF != null ? shieldTF : headTF;
+        currentShield = SimplePool.Spawn<Shield>(shieldData.ShieldPrefab.poolType, shieldAnchor.position, Quaternion.identity, shieldAnchor);
+        currentShield.OnInit();
+    }
     public void ChangeWeaponType(WeaponType newWeapon)
     {
         if(currentWeapon != null)
@@ -157,6 +186,7 @@ public class CharacterVisual : MonoBehaviour
         currentBullet = null;
         SimplePool.DeSpawn(currentWeapon);
         SimplePool.DeSpawn(currentHair);
+        SimplePool.DeSpawn(currentShield);
     }
     //TODO xoa
     public float distance = 10f;
@@ -185,6 +215,10 @@ public class CharacterVisual : MonoBehaviour
         ApplyBooster(
             DataManager.Instance.GetBooster(SkinType.Hair),
             DataManager.Instance.GetItemData<HairItemData>(SkinType.Hair, (int)currentSkin.hairType)
+        );
+        ApplyBooster(
+            DataManager.Instance.GetBooster(SkinType.Shield),
+            DataManager.Instance.GetItemData<ShieldItemData>(SkinType.Shield, (int)currentSkin.shieldType)
         );
         ApplyBooster(
             DataManager.Instance.GetBooster(SkinType.Weapon),

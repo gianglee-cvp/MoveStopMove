@@ -42,83 +42,119 @@ MonoBehaviour:
     value: 8
     pantType: 0
     texture: {fileID: 0}
+    icon: {fileID: 0}
   - itemName: BatMan
     value: 8
     pantType: 1
     texture: {fileID: 2800000, guid: 274b961dfb542504c9302e84f0e738aa, type: 3}
+    icon: {fileID: 21300000, guid: 265493bb0b16111499c1924b8a4eb75d, type: 3}
   - itemName: ChamBi
     value: 8
     pantType: 2
     texture: {fileID: 2800000, guid: 7ac843fb4fe30e343a72a12eb7abb609, type: 3}
+    icon: {fileID: 21300000, guid: 2c917541e723e454884bec49ecf3c367, type: 3}
   - itemName: CoMy
     value: 8
     pantType: 3
     texture: {fileID: 2800000, guid: 32a8507d8f6e11e459f61ed4f0a9ab26, type: 3}
+    icon: {fileID: 21300000, guid: e190d46ca50c54c41abe87d9070fec21, type: 3}
   - itemName: DaBao
     value: 8
     pantType: 4
     texture: {fileID: 2800000, guid: 93f7aa5547149b14bb6fd9c4d1ee0e81, type: 3}
+    icon: {fileID: 21300000, guid: f1aa98fdbae58584eb8046737f3e56b4, type: 3}
   - itemName: Onion
     value: 8
     pantType: 5
     texture: {fileID: 2800000, guid: 8a53df293d2bb964380fae8df1dc7b15, type: 3}
+    icon: {fileID: 21300000, guid: 50668d9ff6bfcfb43a559b9e7d2b2997, type: 3}
   - itemName: Pokemon
     value: 8
     pantType: 6
     texture: {fileID: 2800000, guid: c310723632b91344cb0b8e65adcef077, type: 3}
+    icon: {fileID: 21300000, guid: 09027755f7a9dc94aaba7a0c9d1a7687, type: 3}
   - itemName: Rainbow
     value: 8
     pantType: 7
     texture: {fileID: 2800000, guid: dee6dfc71353a41449ed00481650f338, type: 3}
+    icon: {fileID: 21300000, guid: ef89e46c5197fc24ba387503b6af09ea, type: 3}
   - itemName: Skull
     value: 8
     pantType: 8
     texture: {fileID: 2800000, guid: a43eb2f6a77e8b04ba74817f5ae20dbf, type: 3}
+    icon: {fileID: 21300000, guid: 6f51d675023a7e747a620b00f951a837, type: 3}
   - itemName: VanTim
     value: 8
     pantType: 9
     texture: {fileID: 2800000, guid: e6e8412764ace5144802e94f7f66bf3c, type: 3}
+    icon: {fileID: 21300000, guid: 42d7166723614b147bb1fa6a3f3819f8, type: 3}
   listHair:
   - itemName: 
     value: 5
     hairType: 0
     hairPrefab: {fileID: 2384510122250803668, guid: 5768644dfd20b6b4bbd6ecfeaff6e5fa, type: 3}
+    icon: {fileID: 0}
   - itemName: 
     value: 5
     hairType: 1
     hairPrefab: {fileID: 1260447377604235712, guid: 32657e94508c4d44eadfe7372541de2e, type: 3}
+    icon: {fileID: 21300000, guid: 811e82bf2185b15439d6bcc9f56bc263, type: 3}
   - itemName: 
     value: 5
     hairType: 2
     hairPrefab: {fileID: 3630791100997297865, guid: c5faf70f415bd4f45850eb4e7559c951, type: 3}
+    icon: {fileID: 21300000, guid: 042ab01ac1fea044b894cf0af89bf222, type: 3}
   - itemName: 
     value: 5
     hairType: 3
     hairPrefab: {fileID: 8719413541692911197, guid: a289b26757484244ba7cddbe19a0bd9e, type: 3}
+    icon: {fileID: 21300000, guid: 3e233e2048ca2ca43a0f102dc1daff68, type: 3}
   - itemName: 
     value: 5
     hairType: 4
     hairPrefab: {fileID: 8841080526670620781, guid: 63edcedf775c60d4494aef2e46779e60, type: 3}
+    icon: {fileID: 21300000, guid: dd87e004ea34c96438e399ef9f452b86, type: 3}
   - itemName: 
     value: 5
     hairType: 5
     hairPrefab: {fileID: 3060892921634548090, guid: 6caa6d65f5beb3846b133abcc141b17c, type: 3}
+    icon: {fileID: 21300000, guid: e509695950a543b4884fe8665b57a583, type: 3}
   - itemName: 
     value: 5
     hairType: 6
     hairPrefab: {fileID: 8481948124913718974, guid: cd341452944b27348afb1c11c34b7954, type: 3}
+    icon: {fileID: 21300000, guid: 4c5e6090efb0fbe4cb5d90c71987c760, type: 3}
   - itemName: 
     value: 5
     hairType: 7
     hairPrefab: {fileID: 3100426827475560397, guid: 7bbd07f1fed51b44f8ca84f97e15ce3b, type: 3}
+    icon: {fileID: 21300000, guid: 67a8f1d44dbac0f4bb8e4ac7181f6578, type: 3}
   - itemName: 
     value: 5
     hairType: 8
     hairPrefab: {fileID: 3186294838973052611, guid: 919acabcae009574aadda15c34978d6c, type: 3}
+    icon: {fileID: 21300000, guid: 60756b0a12b2b3f4b9cb5e828c38c39b, type: 3}
   - itemName: 
     value: 5
     hairType: 9
     hairPrefab: {fileID: 7255470862789138002, guid: 5d3982e5a465a3940a3d0a821c9d10f5, type: 3}
+    icon: {fileID: 21300000, guid: bd098ce8559134b4fb348f47d074c585, type: 3}
+  listShield:
+  - itemName: None
+    value: 0
+    shieldType: 0
+    shieldPrefab: {fileID: 4233179162545773139, guid: aadfb54bed7d2bc4e9bb5197d82d08f4, type: 3}
+    icon: {fileID: 0}
+  - itemName: Shield_1
+    value: 25
+    shieldType: 1
+    shieldPrefab: {fileID: 2746904756837386156, guid: 13961eb9c156e8d45a0367f431a2b9f3, type: 3}
+    icon: {fileID: 21300000, guid: c6023e55f3376a24dbb6e7dec92c9bc1, type: 3}
+  - itemName: Shield_2
+    value: 25
+    shieldType: 2
+    shieldPrefab: {fileID: 3401172457727572290, guid: 18c8fc1dffc14d544bc23073ed40d2d0, type: 3}
+    icon: {fileID: 21300000, guid: 13e86af6a945c154f954e9b53595c927, type: 3}
   listWeapon:
   - itemName: 
     value: 3
@@ -183,4 +219,5 @@ MonoBehaviour:
   colorBooster: {fileID: 0}
   pantBooster: {fileID: 11400000, guid: 4298679526da5124590c38473051a74f, type: 2}
   hairBooster: {fileID: 11400000, guid: c35bd6bcf906cab4ea120c97985ac16a, type: 2}
+  shieldBooster: {fileID: 11400000, guid: 7805f4ba5ff59ab44adb3f431d842ba8, type: 2}
   weaponBooster: {fileID: 0}

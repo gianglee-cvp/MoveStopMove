@@ -536,7 +536,6 @@ MonoBehaviour:
   physicColider: {fileID: 2518058213644499525}
   isMoving: 0
   isAttacking: 0
-  isAttackable: 1
   isDead: 0
   listTarget: []
   currentTarget: {fileID: 0}
@@ -2111,16 +2110,19 @@ MonoBehaviour:
     pant: 0
     hairType: 0
     weapon: 0
+    shieldType: 0
   colorRenderer: {fileID: 8415641389678887963}
   pantRenderer: {fileID: 4525196246650703407}
   animator: {fileID: 1291735572740242389}
   righHandTF: {fileID: 4176015523274708358}
   headTF: {fileID: 9079156266853994207}
+  shieldTF: {fileID: 1970633056043815016}
   shootPoint: {fileID: 2707585514239448250}
   character: {fileID: 1361216709600304708}
   currentBullet: {fileID: 0}
   currentWeapon: {fileID: 0}
   currentHair: {fileID: 0}
+  currentShield: {fileID: 0}
   currentColorType: 0
   distance: 10
 --- !u!1 &7095665643557632272

@@ -20,7 +20,8 @@ public enum SkinType
     skinColor = 0, 
     Pant = 1,
     Hair = 2,
-    Weapon = 3
+    Weapon = 3,
+    Shield = 4
 }
 
 public enum ColorType
@@ -57,6 +58,12 @@ public enum HairType
     Hat_Cap = 7,
     Horn = 8,
     Rau = 9 
+}
+public enum ShieldType
+{
+    None = 0,
+    Shield_1 = 1,
+    Shield_2 = 2
 }
 public enum WeaponType
 {

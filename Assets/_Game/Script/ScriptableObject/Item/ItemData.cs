@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
@@ -6,9 +7,13 @@ public abstract class ItemData
 {
     [SerializeField] private string itemName;
     [SerializeField] private float value;
+    [SerializeField] private Sprite icon;
+
 
     public string ItemName => itemName;
     public float Value => value;
+    public Sprite Icon => icon;
+
 }
 
 [Serializable]
@@ -37,8 +42,20 @@ public class HairItemData : ItemData
     [SerializeField] private HairType hairType;
     [SerializeField] private Hair hairPrefab;
 
+
     public HairType HairType => hairType;
     public Hair HairPrefab => hairPrefab;
+}
+
+[Serializable]
+public class ShieldItemData : ItemData
+{
+    [SerializeField] private ShieldType shieldType;
+    [SerializeField] private Shield shieldPrefab;
+
+
+    public ShieldType ShieldType => shieldType;
+    public Shield ShieldPrefab => shieldPrefab;
 }
 
 [Serializable]

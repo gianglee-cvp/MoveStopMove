@@ -71,6 +71,17 @@ public enum PoolType
     Hair_8 = 308,
     Hair_9 = 309,
     Hair_10 = 310,
+    Shield_0 = 350,
+    Shield_1 = 351,
+    Shield_2 = 352,
+    Shield_3 = 353,
+    Shield_4 = 354,
+    Shield_5 = 355,
+    Shield_6 = 356,
+    Shield_7 = 357,
+    Shield_8 = 358,
+    Shield_9 = 359,
+    Shield_10 = 360,
     ParticleEffectHit = 400,
     ParticleEffectLevelUp = 401
 

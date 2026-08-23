@@ -16,7 +16,9 @@ public class CharacterLevel : MonoBehaviour
     //bonus 
     protected float bonusRange = 0;
     protected float bonusMoveSpeed = 0;
+    protected float bonusGold = 0;
     protected float baseMoveSpeed = 0;
+    protected float goldMultiplier = 1f;
 
     private void Awake()
     {
@@ -36,6 +38,8 @@ public class CharacterLevel : MonoBehaviour
     public float Size => size;
     public Vector3 Scale => Vector3.one * size;
     public int Exp => exp;
+    public float GoldBonusPercent => bonusGold;
+    public float GoldMultiplier => goldMultiplier;
     public void PowerUp(int level)
     {
         this.level = level;
@@ -112,6 +116,10 @@ public class CharacterLevel : MonoBehaviour
         float boostedMoveSpeed = baseMoveSpeed * (1 + bonusMoveSpeed / 100f);
         SetMoveSpeed(boostedMoveSpeed);
     }
+    public void ApplyGoldBooster()
+    {
+        goldMultiplier = 1 + bonusGold / 100f;
+    }
     public void InitBooster(float rangeBonusPercent)
     {
         bonusRange = rangeBonusPercent;
@@ -121,8 +129,10 @@ public class CharacterLevel : MonoBehaviour
     {
         bonusRange = 0f;
         bonusMoveSpeed = 0f;
+        bonusGold = 0f;
         ApplyBooster();
         ApplyMoveSpeedBooster();
+        ApplyGoldBooster();
     }
     public void AddRangeBonus(float rangeBonusPercent)
     {
@@ -133,6 +143,11 @@ public class CharacterLevel : MonoBehaviour
     {
         bonusMoveSpeed += moveSpeedBonusPercent;
         ApplyMoveSpeedBooster();
+    }
+    public void AddGoldBonus(float goldBonusPercent)
+    {
+        bonusGold += goldBonusPercent;
+        ApplyGoldBooster();
     }
     public void ShowAttackRange()
     {
