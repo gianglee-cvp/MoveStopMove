@@ -85,7 +85,7 @@ public class Character : GameUnit
         }
         isAttacking = false;
         yield return new WaitForSeconds(Constant.ATTACK_RECOVERY_TIME);
-        Idle();
+        if(!isDead) Idle();
         attackCO = null;
     }
     public virtual void CancelAttack()

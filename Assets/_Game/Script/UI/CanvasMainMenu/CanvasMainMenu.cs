@@ -5,4 +5,10 @@ public class CanvasMainMenu : UICanvas
     {
         GameManager.Instance.PlayGame();
     }
+    public void ShopSkinButton()
+    {
+        //TODO lam transition di ra ngoai 
+        Close(0);
+        UIManager.Instance.OpenUI<CanvasShopSkin>();
+    }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class BotManager : Singleton<BotManager>
 {
@@ -69,9 +70,9 @@ public class BotManager : Singleton<BotManager>
         for (int i = 0; i < 20; i++)
         {
             spawnPosition = Helper.GetRandomPointOnNavMesh();
-            if (IsNearAnyCharacter(spawnPosition))
+            if (!IsNearAnyCharacter(spawnPosition))
             {
-                continue;
+                break;
             }
         }
         Bot bot = SimplePool.Spawn<Bot>(PoolType.Enemy, spawnPosition, Quaternion.identity, null);
@@ -109,7 +110,6 @@ public class BotManager : Singleton<BotManager>
     private bool IsNearAnyCharacter(Vector3 position)
     {
         Collider[] hits = Physics.OverlapSphere(position, 5f, characterLayer);
-
         for (int i = 0; i < hits.Length; i++)
         {
             Character character = CacheComponent<Collider, Character>.Get(hits[i]);

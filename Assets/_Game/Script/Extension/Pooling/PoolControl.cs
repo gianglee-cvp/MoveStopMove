@@ -19,7 +19,6 @@ public class PoolControl : MonoBehaviour
         foreach(GameUnit unit in units)
         {
             SimplePool.Preload(unit , 1 , null);
-            Debug.Log(unit.name);
         }
 
     }
