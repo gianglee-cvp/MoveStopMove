@@ -116,43 +116,43 @@ MonoBehaviour:
     icon: {fileID: 0}
     price: 0
     hairType: 0
-    hairPrefab: {fileID: 2384510122250803668, guid: 5768644dfd20b6b4bbd6ecfeaff6e5fa, type: 3}
+    hairPrefab: {fileID: 5332694473796280020, guid: 5768644dfd20b6b4bbd6ecfeaff6e5fa, type: 3}
   - itemName: 
     value: 5
     icon: {fileID: 21300000, guid: 811e82bf2185b15439d6bcc9f56bc263, type: 3}
     price: 100
     hairType: 1
-    hairPrefab: {fileID: 1260447377604235712, guid: 32657e94508c4d44eadfe7372541de2e, type: 3}
+    hairPrefab: {fileID: 8516437510350735140, guid: 32657e94508c4d44eadfe7372541de2e, type: 3}
   - itemName: 
     value: 5
     icon: {fileID: 21300000, guid: 042ab01ac1fea044b894cf0af89bf222, type: 3}
     price: 200
     hairType: 2
-    hairPrefab: {fileID: 3630791100997297865, guid: c5faf70f415bd4f45850eb4e7559c951, type: 3}
+    hairPrefab: {fileID: 5866759198610321229, guid: c5faf70f415bd4f45850eb4e7559c951, type: 3}
   - itemName: 
     value: 5
     icon: {fileID: 21300000, guid: 3e233e2048ca2ca43a0f102dc1daff68, type: 3}
     price: 300
     hairType: 3
-    hairPrefab: {fileID: 8719413541692911197, guid: a289b26757484244ba7cddbe19a0bd9e, type: 3}
+    hairPrefab: {fileID: 4305453555964838013, guid: a289b26757484244ba7cddbe19a0bd9e, type: 3}
   - itemName: 
     value: 5
     icon: {fileID: 21300000, guid: dd87e004ea34c96438e399ef9f452b86, type: 3}
     price: 400
     hairType: 4
-    hairPrefab: {fileID: 8841080526670620781, guid: 63edcedf775c60d4494aef2e46779e60, type: 3}
+    hairPrefab: {fileID: 4057299177044902991, guid: 63edcedf775c60d4494aef2e46779e60, type: 3}
   - itemName: 
     value: 5
     icon: {fileID: 21300000, guid: e509695950a543b4884fe8665b57a583, type: 3}
     price: 500
     hairType: 5
-    hairPrefab: {fileID: 3060892921634548090, guid: 6caa6d65f5beb3846b133abcc141b17c, type: 3}
+    hairPrefab: {fileID: 3355452349553435357, guid: 6caa6d65f5beb3846b133abcc141b17c, type: 3}
   - itemName: 
     value: 5
     icon: {fileID: 21300000, guid: 4c5e6090efb0fbe4cb5d90c71987c760, type: 3}
     price: 600
     hairType: 6
-    hairPrefab: {fileID: 8481948124913718974, guid: cd341452944b27348afb1c11c34b7954, type: 3}
+    hairPrefab: {fileID: 3368489568895190754, guid: cd341452944b27348afb1c11c34b7954, type: 3}
   - itemName: 
     value: 5
     icon: {fileID: 21300000, guid: 67a8f1d44dbac0f4bb8e4ac7181f6578, type: 3}
@@ -164,32 +164,32 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 60756b0a12b2b3f4b9cb5e828c38c39b, type: 3}
     price: 800
     hairType: 8
-    hairPrefab: {fileID: 3186294838973052611, guid: 919acabcae009574aadda15c34978d6c, type: 3}
+    hairPrefab: {fileID: 6772560507305005228, guid: 919acabcae009574aadda15c34978d6c, type: 3}
   - itemName: 
     value: 5
     icon: {fileID: 21300000, guid: bd098ce8559134b4fb348f47d074c585, type: 3}
     price: 1000
     hairType: 9
-    hairPrefab: {fileID: 7255470862789138002, guid: 5d3982e5a465a3940a3d0a821c9d10f5, type: 3}
+    hairPrefab: {fileID: 5802236638566409502, guid: 5d3982e5a465a3940a3d0a821c9d10f5, type: 3}
   listShield:
   - itemName: None
     value: 0
     icon: {fileID: 0}
     price: 0
     shieldType: 0
-    shieldPrefab: {fileID: 4233179162545773139, guid: aadfb54bed7d2bc4e9bb5197d82d08f4, type: 3}
+    shieldPrefab: {fileID: 13177443511916171, guid: aadfb54bed7d2bc4e9bb5197d82d08f4, type: 3}
   - itemName: Shield_1
     value: 25
     icon: {fileID: 21300000, guid: c6023e55f3376a24dbb6e7dec92c9bc1, type: 3}
     price: 2500
     shieldType: 1
-    shieldPrefab: {fileID: 2746904756837386156, guid: 13961eb9c156e8d45a0367f431a2b9f3, type: 3}
+    shieldPrefab: {fileID: 2652931334062935977, guid: 13961eb9c156e8d45a0367f431a2b9f3, type: 3}
   - itemName: Shield_2
     value: 25
     icon: {fileID: 21300000, guid: 13e86af6a945c154f954e9b53595c927, type: 3}
     price: 5000
     shieldType: 2
-    shieldPrefab: {fileID: 3401172457727572290, guid: 18c8fc1dffc14d544bc23073ed40d2d0, type: 3}
+    shieldPrefab: {fileID: 5702515387144607853, guid: 18c8fc1dffc14d544bc23073ed40d2d0, type: 3}
   listWeapon:
   - itemName: 
     value: 3

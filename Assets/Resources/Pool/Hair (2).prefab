@@ -130,7 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9002926707673979167}
-  - component: {fileID: 3630791100997297865}
+  - component: {fileID: 5866759198610321229}
   m_Layer: 0
   m_Name: Hair (2)
   m_TagString: Untagged
@@ -154,7 +154,7 @@ Transform:
   - {fileID: 1068892001519237409}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -14.08, y: -0.62, z: 3.51}
---- !u!114 &3630791100997297865
+--- !u!114 &5866759198610321229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,12 +163,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5601447781904958299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93731afc11fb66f45a97220f8740c7e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9430104caf79f3b42bffe50fb5379962, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Hair
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnObject
   poolType: 302
-  localTF: {x: 0, y: 0, z: 0}
-  localRT: {x: 0, y: 0, z: 0}
 --- !u!1 &9082763799724247922
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +176,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1068892001519237409}
-  - component: {fileID: 2950651638620160191}
   m_Layer: 0
   m_Name: Crown
   m_TagString: Untagged
@@ -203,18 +200,3 @@ Transform:
   - {fileID: 3049897770595593520}
   m_Father: {fileID: 9002926707673979167}
   m_LocalEulerAnglesHint: {x: 298.0043, y: 262.3571, z: 96.38599}
---- !u!114 &2950651638620160191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9082763799724247922}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93731afc11fb66f45a97220f8740c7e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Hair
-  poolType: 302
-  localTF: {x: -0.13, y: 0.55, z: -2.47}
-  localRT: {x: 298.00427, y: 262.35706, z: 96.385994}

@@ -42,22 +42,22 @@ public class PantItemData : ItemData
 public class HairItemData : ItemData
 {
     [SerializeField] private HairType hairType;
-    [SerializeField] private Hair hairPrefab;
+    [SerializeField] private SpawnObject hairPrefab;
 
 
     public HairType HairType => hairType;
-    public Hair HairPrefab => hairPrefab;
+    public SpawnObject HairPrefab => hairPrefab;
 }
 
 [Serializable]
 public class ShieldItemData : ItemData
 {
     [SerializeField] private ShieldType shieldType;
-    [SerializeField] private Shield shieldPrefab;
+    [SerializeField] private SpawnObject shieldPrefab;
 
 
     public ShieldType ShieldType => shieldType;
-    public Shield ShieldPrefab => shieldPrefab;
+    public SpawnObject ShieldPrefab => shieldPrefab;
 }
 
 [Serializable]

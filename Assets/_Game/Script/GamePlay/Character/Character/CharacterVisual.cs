@@ -38,8 +38,8 @@ public class CharacterVisual : MonoBehaviour
     protected PoolType currentWeaponPoolType;
     [SerializeField] protected BulletBase currentBullet;
     [SerializeField] protected WeaponBase currentWeapon;
-    [SerializeField] protected Hair currentHair;
-    [SerializeField] protected Shield currentShield;
+    [SerializeField] protected SpawnObject currentHair;
+    [SerializeField] protected SpawnObject currentShield;
     [SerializeField] protected ColorType currentColorType;
     public ColorType color => currentColorType;
     public Vector3 HeadPos => headTF.position;
@@ -99,7 +99,7 @@ public class CharacterVisual : MonoBehaviour
             currentHair = null;
             return;
         }
-        currentHair = SimplePool.Spawn<Hair>(hairData.HairPrefab.poolType, headTF.position, Quaternion.identity, headTF);
+        currentHair = SimplePool.Spawn<SpawnObject>(hairData.HairPrefab.poolType, headTF.position, Quaternion.identity, headTF);
         currentHair.OnInit();
     }
     public void ChangeShieldType(ShieldType newShield)
@@ -115,7 +115,7 @@ public class CharacterVisual : MonoBehaviour
             currentShield = null;
             return;
         }
-        currentShield = SimplePool.Spawn<Shield>(shieldData.ShieldPrefab.poolType, shieldTF.position, Quaternion.identity, shieldTF);
+        currentShield = SimplePool.Spawn<SpawnObject>(shieldData.ShieldPrefab.poolType, shieldTF.position, Quaternion.identity, shieldTF);
         currentShield.OnInit();
     }
     public void ChangeWeaponType(WeaponType newWeapon)

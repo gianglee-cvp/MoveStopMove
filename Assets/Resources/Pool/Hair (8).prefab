@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7930259588766941752}
   - component: {fileID: 1257061495894791937}
   - component: {fileID: 3613440721030317646}
-  - component: {fileID: 9171843870129436368}
   m_Layer: 0
   m_Name: Horn
   m_TagString: Untagged
@@ -91,21 +90,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &9171843870129436368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705852675827692839}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93731afc11fb66f45a97220f8740c7e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Hair
-  poolType: 308
-  localTF: {x: -0.042, y: 0.71, z: 0.014}
-  localRT: {x: 304.35455, y: 185.23807, z: 173.94856}
 --- !u!1 &5743667002473517785
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8478872502908790071}
-  - component: {fileID: 3186294838973052611}
+  - component: {fileID: 6772560507305005228}
   m_Layer: 0
   m_Name: Hair (8)
   m_TagString: Untagged
@@ -139,7 +123,7 @@ Transform:
   - {fileID: 7930259588766941752}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3186294838973052611
+--- !u!114 &6772560507305005228
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,9 +132,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5743667002473517785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93731afc11fb66f45a97220f8740c7e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9430104caf79f3b42bffe50fb5379962, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Hair
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnObject
   poolType: 308
-  localTF: {x: 0, y: 0, z: 0}
-  localRT: {x: 0, y: 0, z: 0}

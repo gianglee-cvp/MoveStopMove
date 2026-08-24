@@ -44,7 +44,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6655008681668427314}
-  - component: {fileID: 5203016437145644876}
   m_Layer: 0
   m_Name: Ear
   m_TagString: Untagged
@@ -69,21 +68,6 @@ Transform:
   - {fileID: 8116241518032114207}
   m_Father: {fileID: 3211820647771754969}
   m_LocalEulerAnglesHint: {x: 357.0063, y: 358.0005, z: 0.741757}
---- !u!114 &5203016437145644876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798150362615524516}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93731afc11fb66f45a97220f8740c7e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Hair
-  poolType: 303
-  localTF: {x: -0.011, y: 0.677, z: -0.024}
-  localRT: {x: 357.00635, y: 358.00046, z: 0.741757}
 --- !u!1 &1474696765569542334
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3211820647771754969}
-  - component: {fileID: 8719413541692911197}
+  - component: {fileID: 4305453555964838013}
   m_Layer: 0
   m_Name: Hair (3)
   m_TagString: Untagged
@@ -302,7 +286,7 @@ Transform:
   - {fileID: 6655008681668427314}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -14.08, y: -0.62, z: 3.51}
---- !u!114 &8719413541692911197
+--- !u!114 &4305453555964838013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,12 +295,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4161055049186099503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93731afc11fb66f45a97220f8740c7e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9430104caf79f3b42bffe50fb5379962, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Hair
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnObject
   poolType: 303
-  localTF: {x: 0, y: 0, z: 0}
-  localRT: {x: 0, y: 0, z: 0}
 --- !u!1 &5307952662599971359
 GameObject:
   m_ObjectHideFlags: 0

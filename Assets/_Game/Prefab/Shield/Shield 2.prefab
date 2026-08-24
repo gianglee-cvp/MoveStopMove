@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2671378409011190041}
-  - component: {fileID: 6123910149313823481}
+  - component: {fileID: 5702515387144607853}
   m_Layer: 0
   m_Name: Shield 2
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 4702598970967423697}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6123910149313823481
+--- !u!114 &5702515387144607853
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7808599218611071631}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 607587eee8415124ea59d58b776e0c3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9430104caf79f3b42bffe50fb5379962, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shield
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnObject
   poolType: 352
-  localTF: {x: 0, y: 0, z: 0}
-  localRT: {x: 0, y: 0, z: 0}
 --- !u!1001 &5100403149732846906
 PrefabInstance:
   m_ObjectHideFlags: 0

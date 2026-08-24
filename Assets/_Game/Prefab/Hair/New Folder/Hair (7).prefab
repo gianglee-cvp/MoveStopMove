@@ -42,12 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 77818931917598744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93731afc11fb66f45a97220f8740c7e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9430104caf79f3b42bffe50fb5379962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hair
   poolType: 307
-  localTF: {x: 0, y: 0, z: 0}
-  localRT: {x: 0, y: 0, z: 0}
 --- !u!1 &3958162440756266778
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +57,6 @@ GameObject:
   - component: {fileID: 6406003817752010134}
   - component: {fileID: 7309586397156786042}
   - component: {fileID: 6634129017631147016}
-  - component: {fileID: 2443090956452791406}
   m_Layer: 0
   m_Name: Hat_Cap
   m_TagString: Untagged
@@ -142,18 +139,3 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2443090956452791406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3958162440756266778}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93731afc11fb66f45a97220f8740c7e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Hair
-  poolType: 307
-  localTF: {x: -0.028, y: 0.472, z: -0.081}
-  localRT: {x: 345.92004, y: 359.37985, z: 3.5163455}

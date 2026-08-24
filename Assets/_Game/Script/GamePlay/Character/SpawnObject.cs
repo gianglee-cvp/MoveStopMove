@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Hair: GameUnit
+public class SpawnObject: GameUnit
 {
     public void OnInit()
     {
