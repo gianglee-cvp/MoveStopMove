@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class ScrollView : MonoBehaviour, IData
 {
     [SerializeField] protected SkinType type;
@@ -25,7 +25,7 @@ public class ScrollView : MonoBehaviour, IData
         {
             CardItem card = SpawnCard();
             bool islock = shopStates[i] == 0;
-            card.Init(islock,items[i].Icon , this, i);
+            card.Init(islock,items[i].Icon , this, i , items[i].Des , items[i].Price);
             cards.Add(card);
         }
         gameObject.SetActive(false);
@@ -43,9 +43,9 @@ public class ScrollView : MonoBehaviour, IData
     {
         gameObject.SetActive(false);
     }
-    public void CallBackTryCloth(int index)
+    public void CallBackTryCloth(int index , string desText , int price)
     {
-        canvasHolder.TryCloth(index , type);   
+        canvasHolder.TryCloth(index , type , desText , price);   
     }
     public  void LoadGame(GameData data)
     {

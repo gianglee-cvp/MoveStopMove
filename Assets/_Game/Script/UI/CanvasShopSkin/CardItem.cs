@@ -7,13 +7,17 @@ public class CardItem : MonoBehaviour
     [SerializeField] protected Image imgItem;
     [SerializeField] protected Button button;
     [SerializeField] protected ScrollView owner;
+    protected string desText;
+    protected int price;
     protected int itemIndex;
-    public void Init(bool isLock , Sprite sprite , ScrollView target, int index)
+    public void Init(bool isLock , Sprite sprite , ScrollView target, int index , string s , int price)
     {
         AddImgItem(sprite);
         SetImgLock(isLock);
         AddHolder(target);
         itemIndex = index;
+        desText = s; 
+        this.price = price;
         BindButton();
     }
     public void SetImgLock(bool isLock)
@@ -40,6 +44,6 @@ public class CardItem : MonoBehaviour
     private void OnClickItem()
     {
         if (owner == null) return;
-        owner.CallBackTryCloth(itemIndex);
+        owner.CallBackTryCloth(itemIndex , desText , price);
     }
 }

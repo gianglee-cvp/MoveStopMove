@@ -9,13 +9,14 @@ public abstract class ItemData
     [SerializeField] private float value;
     [SerializeField] private Sprite icon;
     [SerializeField] private int price;
+    [SerializeField] private string des;
 
 
     public string ItemName => itemName;
     public float Value => value;
     public Sprite Icon => icon;
     public int Price => price;
-
+    public string Des => des;
 }
 
 [Serializable]

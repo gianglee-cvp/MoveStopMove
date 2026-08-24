@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +15,8 @@ public class CanvasShopSkin : UICanvas
 {
     [SerializeField] protected List<ScrollView> listCard;
     [SerializeField] protected List<Button> listButtonCard;
+    [SerializeField] protected TextMeshProUGUI desText;
+    [SerializeField] protected TextMeshProUGUI priceText;
     protected CardType currentCard = CardType.Init;
     public override void Setup()
     {
@@ -41,9 +45,11 @@ public class CanvasShopSkin : UICanvas
         color.a = al;
         button.image.color = color;
     }
-    public void TryCloth(int index , SkinType type)
+    public void TryCloth(int index , SkinType type, string des , int price)
     {
         LevelManager.Instance.PlayerTrySkin(index, type);
+        desText.text = des;
+        priceText.text = price.ToString();
     }
     public void CloseButton()
     {
@@ -56,5 +62,9 @@ public class CanvasShopSkin : UICanvas
     {
         base.CloseDirectly();
         LevelManager.Instance.ChangeAnimPlayer(CharacterAnimType.Idle);
+    }
+    public void SetDesText(String s)
+    {
+        desText.text = s;
     }
 }

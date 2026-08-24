@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 3906624552498167942}
   - component: {fileID: 1142208298665191649}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button_Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2780,3 +2780,5 @@ MonoBehaviour:
   - {fileID: 8113505728556163859}
   - {fileID: 1276213616441854824}
   - {fileID: 5587404404581539847}
+  desText: {fileID: 2110703561260005528}
+  priceText: {fileID: 633299970363349351}
