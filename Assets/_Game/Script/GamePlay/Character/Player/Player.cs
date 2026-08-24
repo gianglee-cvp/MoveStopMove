@@ -10,7 +10,6 @@ public class Player : Character,IData
     protected InputAction moveAction;
     protected Vector2 moveAmount;
     protected Dictionary<SkinType, Action<int>> skinSetters;
-    public int gold;
     public int level = 0; // TODO xoa 
     public override void OnInit()
     {
@@ -30,7 +29,7 @@ public class Player : Character,IData
         //TODO xoa 
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            gold ++;
+            DataManager.Instance.AddGold(100);
             DataManager.Instance.SaveGame();
             characterVisual.ApplySkin();
         }
@@ -104,15 +103,11 @@ public class Player : Character,IData
     }
     public void LoadGame(GameData data)
     {
-        gold = data.gold;
         characterVisual.ApplyNewSkin(data.GetSkinEquipped());
-        Debug.Log("Load gold data" + gold);
     }
     public void SaveGame(ref GameData data)
     {
-        data.gold = gold;
         data.SaveSkin(characterVisual.CurrentSkin);
-        Debug.Log("Save gold data" + gold);
     }
     public void TryCloth(int index , SkinType type)
     {
@@ -133,7 +128,6 @@ public class Player : Character,IData
     {
         OnInit();
     }
-
     private void InitSkinSetters()
     {
         skinSetters = new Dictionary<SkinType, Action<int>>

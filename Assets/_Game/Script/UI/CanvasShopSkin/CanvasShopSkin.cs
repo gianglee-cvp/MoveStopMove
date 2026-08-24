@@ -18,9 +18,13 @@ public class CanvasShopSkin : UICanvas
     [SerializeField] protected TextMeshProUGUI desText;
     [SerializeField] protected TextMeshProUGUI priceText;
     protected CardType currentCard = CardType.Init;
+    protected ItemData selectedItem;
+    protected ScrollView selectedScrollView;
     public override void Setup()
     {
         base.Setup();
+        selectedItem = null;
+        selectedScrollView = null;
         for(int i = 0 ; i < listCard.Count; i++)
         {
             listCard[i].OnInit();
@@ -37,6 +41,7 @@ public class CanvasShopSkin : UICanvas
             listCard[i].Hide();
         }
         SetAlpha(listButtonCard[cardType] , 0f);
+        listCard[cardType].SelectInitialItem();
         listCard[cardType].Show();
     }
     public void SetAlpha(Button button , float al)
@@ -45,8 +50,10 @@ public class CanvasShopSkin : UICanvas
         color.a = al;
         button.image.color = color;
     }
-    public void TryCloth(int index , SkinType type, string des , int price)
+    public void TryCloth(int index , SkinType type, string des , int price, ScrollView owner)
     {
+        selectedItem = DataManager.Instance.GetItemData<ItemData>(type, index);
+        selectedScrollView = owner;
         LevelManager.Instance.PlayerTrySkin(index, type);
         desText.text = des;
         priceText.text = price.ToString();
@@ -57,6 +64,21 @@ public class CanvasShopSkin : UICanvas
         GameManager.Instance.ChangeGameState(Enum_GameState.MainMenu);
         UIManager.Instance.OpenUI<CanvasMainMenu>();
         LevelManager.Instance.ReloadCloth();
+    }
+    public void BuyButton()
+    {
+        ItemData targetItem = selectedItem;
+        if (targetItem == null) return;
+        int oldEquippedIndex = DataManager.Instance.GetEquippedID(targetItem.Type);
+        if (!DataManager.Instance.BuyItem(targetItem)) return;
+
+        LevelManager.Instance.ReloadCloth();
+        selectedItem = targetItem;
+        if (selectedScrollView != null)
+        {
+            selectedScrollView.RefreshItemState(oldEquippedIndex);
+            selectedScrollView.RefreshItemState(targetItem.Index);
+        }
     }
     public override void CloseDirectly()
     {

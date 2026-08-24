@@ -317,7 +317,7 @@ MonoBehaviour:
     weaponPrefab: {fileID: 7777685987702666417, guid: 399021544ed7ad547aeec25ed6ccaeb4, type: 3}
     bulletPrefab: {fileID: 2815668707289687956, guid: 5ca40236d2999c5489e2f8556839bcd1, type: 3}
   colorBooster: {fileID: 0}
-  pantBooster: {fileID: 11400000, guid: 4298679526da5124590c38473051a74f, type: 2}
-  hairBooster: {fileID: 11400000, guid: c35bd6bcf906cab4ea120c97985ac16a, type: 2}
-  shieldBooster: {fileID: 11400000, guid: 7805f4ba5ff59ab44adb3f431d842ba8, type: 2}
+  pantBooster: {fileID: 0}
+  hairBooster: {fileID: 0}
+  shieldBooster: {fileID: 0}
   weaponBooster: {fileID: 0}

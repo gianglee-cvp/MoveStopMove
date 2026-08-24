@@ -45,7 +45,20 @@ public class ScrollView : MonoBehaviour, IData
     }
     public void CallBackTryCloth(int index , string desText , int price)
     {
-        canvasHolder.TryCloth(index , type , desText , price);   
+        canvasHolder.TryCloth(index , type , desText , price, this);   
+    }
+    public void SelectInitialItem()
+    {
+        ItemData[] items = DataManager.Instance.GetListData(type);
+        if (items == null || items.Length <= 1) return;
+
+        int equippedIndex = DataManager.Instance.GetEquippedID(type);
+        int initialIndex = equippedIndex > 0 ? equippedIndex : 1;
+
+        ItemData item = items[initialIndex];
+        if (item == null) return;
+
+        canvasHolder.TryCloth(initialIndex, type, item.Des, item.Price, this);
     }
     public  void LoadGame(GameData data)
     {
@@ -54,6 +67,13 @@ public class ScrollView : MonoBehaviour, IData
     //TODO them logic buy
     public  void SaveGame(ref GameData gameData)
     {
+    }
+    public void RefreshItemState(int index)
+    {
+        int cardIndex = index - 1;
+        if (cardIndex < 0 || cardIndex >= cards.Count) return;
+
+        cards[cardIndex].SetImgLock(shopStates[index] == Enum_ShopState.buy);
     }
 
 }

@@ -17,6 +17,8 @@ public abstract class ItemData
     public Sprite Icon => icon;
     public int Price => price;
     public string Des => des;
+    public virtual SkinType Type => SkinType.skinColor;
+    public virtual int Index => 0;
 }
 
 [Serializable]
@@ -27,6 +29,7 @@ public class ColorItemData : ItemData
 
     public ColorType ColorType => colorType;
     public Material Material => material;
+
 }
 
 [Serializable]
@@ -37,6 +40,9 @@ public class PantItemData : ItemData
 
     public PantType PantType => pantType;
     public Texture2D Texture => texture;
+    public override int Index => (int)pantType;
+    public override SkinType Type => SkinType.Pant;
+
 }
 
 [Serializable]
@@ -48,6 +54,8 @@ public class HairItemData : ItemData
 
     public HairType HairType => hairType;
     public SpawnObject HairPrefab => hairPrefab;
+    public override int Index => (int)hairType;
+    public override SkinType Type => SkinType.Hair;
 }
 
 [Serializable]
@@ -59,6 +67,9 @@ public class ShieldItemData : ItemData
 
     public ShieldType ShieldType => shieldType;
     public SpawnObject ShieldPrefab => shieldPrefab;
+    public override int Index => (int)shieldType;
+    public override SkinType Type => SkinType.Shield;
+    
 }
 
 [Serializable]
@@ -71,4 +82,6 @@ public class WeaponItemData : ItemData
     public WeaponType WeaponType => weaponType;
     public WeaponBase WeaponPrefab => weaponPrefab;
     public BulletBase BulletPrefab => bulletPrefab;
+    public override int Index => (int)weaponType;
+    public override SkinType Type => SkinType.Weapon;
 }

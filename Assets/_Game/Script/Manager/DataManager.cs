@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Unity.VisualScripting;
 
 public class DataManager : Singleton<DataManager>
 {
@@ -58,6 +57,7 @@ public class DataManager : Singleton<DataManager>
         //luu vao json
         dataHandler.Save(gameData);
     }
+    public int Gold => gameData != null ? gameData.gold : 0;
     public Skin GetSkinEquipped() => gameData.GetSkinEquipped();
     public void OnApplicationQuit()
     {
@@ -67,6 +67,41 @@ public class DataManager : Singleton<DataManager>
     public ItemData[] GetListData(SkinType type)=> itemData.GetListData(type);
 
     public BoosterData GetBooster(SkinType skinType) => itemData.GetBooster(skinType);
+    #region BuyItem
+    public void AddGold(int amount)
+    {
+        gameData.gold += amount;
+    }
+    public bool TrySpendGold(int amount)
+    {
+        if (gameData.gold < amount) return false;
+
+        gameData.gold -= amount;
+        return true;
+    }
+    public int GetEquippedID(SkinType type)
+    {
+        return gameData.GetEquippedID(type);
+    }
+    public bool BuyItem(ItemData item)
+    {
+        List<Enum_ShopState> shopStates = gameData.GetShopStateByType(item.Type);
+
+        if (shopStates[item.Index] != Enum_ShopState.buy || !TrySpendGold(item.Price)) return false;
+
+        int oldEquippedIndex = gameData.GetEquippedID(item.Type);
+        if (oldEquippedIndex >= 0 && oldEquippedIndex < shopStates.Count && oldEquippedIndex != item.Index)
+        {
+            shopStates[oldEquippedIndex] = Enum_ShopState.bought;
+        }
+
+        shopStates[item.Index] = Enum_ShopState.equipped;
+        gameData.SetEquippedID(item.Type, item.Index);
+
+        SaveGame();
+        return true;
+    }
+    #endregion
     private List<IData> FindAllDataObject()
     {
         IEnumerable<IData> objects = FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None).OfType<IData>();

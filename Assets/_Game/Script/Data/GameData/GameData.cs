@@ -12,7 +12,6 @@ public interface IData
     void LoadGame(GameData data);
     void SaveGame(ref GameData gameData);
 }
-
 [System.Serializable]
 public class GameData
 {
@@ -60,6 +59,46 @@ public class GameData
         hairEquippedID = skin.hairType;
         pantEquippedID = skin.pant;
         shieldEquippedID = skin.shieldType;
+    }
+    //TODO refactor switch case
+    public int GetEquippedID(SkinType type)
+    {
+        switch (type)
+        {
+            case SkinType.skinColor:
+                return (int)colorEquippedID;
+            case SkinType.Weapon:
+                return (int)weaponEquippedID;
+            case SkinType.Hair:
+                return (int)hairEquippedID;
+            case SkinType.Pant:
+                return (int)pantEquippedID;
+            case SkinType.Shield:
+                return (int)shieldEquippedID;
+            default:
+                return -1;
+        }
+    }
+    public void SetEquippedID(SkinType type, int index)
+    {
+        switch (type)
+        {
+            case SkinType.skinColor:
+                colorEquippedID = (ColorType)index;
+                break;
+            case SkinType.Weapon:
+                weaponEquippedID = (WeaponType)index;
+                break;
+            case SkinType.Hair:
+                hairEquippedID = (HairType)index;
+                break;
+            case SkinType.Pant:
+                pantEquippedID = (PantType)index;
+                break;
+            case SkinType.Shield:
+                shieldEquippedID = (ShieldType)index;
+                break;
+        }
     }
     public List<Enum_ShopState> GetShopStateByType(SkinType type)
     {
