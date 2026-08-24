@@ -184,6 +184,10 @@ public class Character : GameUnit
     {
         return characterVisual.color;
     }
+    public virtual Vector3 GetHeadPos()
+    {
+        return characterVisual.HeadPos;
+    }
     public virtual void OnBulletDespawn(BulletBase bullet)
     {
         if (isDead) return;

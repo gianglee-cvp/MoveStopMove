@@ -169,8 +169,7 @@ MonoBehaviour:
   canvasRect: {fileID: 184640403338069798}
   indicatorPrefab: {fileID: 4428421879046089916, guid: c8cec39475995764bb19691306f1fa76, type: 3}
   borderPadding: 40
-  baseOffset: {x: 0, y: 74}
-  stepOffset: {x: 0, y: 40}
+  baseOffset: {x: 0, y: 90}
 --- !u!1 &7290841304037590831
 GameObject:
   m_ObjectHideFlags: 0

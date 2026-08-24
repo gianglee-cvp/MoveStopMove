@@ -9,14 +9,14 @@ public class TargetContainer : MonoBehaviour
     [SerializeField] protected float borderPadding = 200f;
     [SerializeField] protected Vector2 baseOffset;
 
-    private readonly Dictionary<Bot, TargetIndicator> activeTargets = new Dictionary<Bot, TargetIndicator>();
+    private readonly Dictionary<Character, TargetIndicator> activeTargets = new Dictionary<Character, TargetIndicator>();
 
     void Awake()
     {
         cam = Camera.main;
     }
 
-    public void RegisterTarget(Bot target)
+    public void RegisterTarget(Character target)
     {
         if (activeTargets.ContainsKey(target)) return;
 
@@ -25,7 +25,7 @@ public class TargetContainer : MonoBehaviour
         uiInstance.SetColor(target.GetColor());
     }
 
-    public void UnregisterTarget(Bot target)
+    public void UnregisterTarget(Character target)
     {
         if (activeTargets.TryGetValue(target, out TargetIndicator uiInstance))
         {
@@ -38,7 +38,7 @@ public class TargetContainer : MonoBehaviour
     {
         foreach (var pair in activeTargets)
         {
-            Bot target = pair.Key;
+            Character target = pair.Key;
             TargetIndicator ui = pair.Value;
 
             if (target == null || ui == null) continue;
@@ -48,7 +48,7 @@ public class TargetContainer : MonoBehaviour
         }
     }
 
-    private void UpdateSinglePosition(Bot target, TargetIndicator ui)
+    private void UpdateSinglePosition(Character target, TargetIndicator ui)
     {
         Vector3 screenPos = cam.WorldToScreenPoint(target.GetHeadPos());
 
@@ -103,7 +103,7 @@ public class TargetContainer : MonoBehaviour
         return new Vector2(clampedY / slope, clampedY);
     }
 
-    public void UpdateLevel(Bot bot, TargetIndicator indicator)
+    public void UpdateLevel(Character bot, TargetIndicator indicator)
     {
         indicator.SetText(bot.Level);
     }

@@ -103,10 +103,6 @@ public partial class Bot : Character
         characterVisual.DespawnSkin();
         BotManager.Instance.DeSpawnBot(this);
     }
-    public Vector3 GetHeadPos()
-    {
-        return characterVisual.HeadPos;
-    }
     private void SyncMoveSpeed()
     {
         if (agent == null) return;

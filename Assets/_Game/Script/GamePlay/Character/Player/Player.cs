@@ -18,6 +18,8 @@ public class Player : Character,IData
         moveAction = InputManager.Instance.MoveAction;
         moveAction.Enable();
         characterLevel.HideAttackRange();
+        CanvasGamePlay canvas = UIManager.Instance.GetUI<CanvasGamePlay>();
+        canvas.RegisterTarget(this);
     }
     public void ShowRangeUI()
     {

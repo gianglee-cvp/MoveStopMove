@@ -42,6 +42,7 @@ public class CharacterVisual : MonoBehaviour
     [SerializeField] protected SpawnObject currentShield;
     [SerializeField] protected ColorType currentColorType;
     public ColorType color => currentColorType;
+    public Transform HeadTF => headTF;
     public Vector3 HeadPos => headTF.position;
     public bool CheckWeaponActive => currentWeapon != null && currentWeapon.gameObject.activeSelf;
     
