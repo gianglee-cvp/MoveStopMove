@@ -115,9 +115,7 @@ public class CharacterVisual : MonoBehaviour
             currentShield = null;
             return;
         }
-
-        Transform shieldAnchor = shieldTF != null ? shieldTF : headTF;
-        currentShield = SimplePool.Spawn<Shield>(shieldData.ShieldPrefab.poolType, shieldAnchor.position, Quaternion.identity, shieldAnchor);
+        currentShield = SimplePool.Spawn<Shield>(shieldData.ShieldPrefab.poolType, shieldTF.position, Quaternion.identity, shieldTF);
         currentShield.OnInit();
     }
     public void ChangeWeaponType(WeaponType newWeapon)
@@ -203,11 +201,6 @@ public class CharacterVisual : MonoBehaviour
         if (character == null) return;
 
         character.ResetBoosters();
-
-        ApplyBooster(
-            DataManager.Instance.GetBooster(SkinType.skinColor),
-            DataManager.Instance.GetItemData<ColorItemData>(SkinType.skinColor, (int)currentSkin.color)
-        );
         ApplyBooster(
             DataManager.Instance.GetBooster(SkinType.Pant),
             DataManager.Instance.GetItemData<PantItemData>(SkinType.Pant, (int)currentSkin.pant)
@@ -219,10 +212,6 @@ public class CharacterVisual : MonoBehaviour
         ApplyBooster(
             DataManager.Instance.GetBooster(SkinType.Shield),
             DataManager.Instance.GetItemData<ShieldItemData>(SkinType.Shield, (int)currentSkin.shieldType)
-        );
-        ApplyBooster(
-            DataManager.Instance.GetBooster(SkinType.Weapon),
-            DataManager.Instance.GetItemData<WeaponItemData>(SkinType.Weapon, (int)currentSkin.weapon)
         );
     }
 

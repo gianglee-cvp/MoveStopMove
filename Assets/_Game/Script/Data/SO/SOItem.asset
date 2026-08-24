@@ -15,204 +15,263 @@ MonoBehaviour:
   Colors:
   - itemName: 
     value: 0
+    icon: {fileID: 0}
+    price: 0
     colorType: 0
     material: {fileID: 2100000, guid: 0a35ae42ba412174c95383f7fc309ead, type: 2}
   - itemName: White
     value: 0
+    icon: {fileID: 0}
+    price: 0
     colorType: 1
     material: {fileID: 2100000, guid: 55a7652a7c7f1eb41bb93bb437b65875, type: 2}
   - itemName: 
     value: 0
+    icon: {fileID: 0}
+    price: 0
     colorType: 2
     material: {fileID: 2100000, guid: 0ed5d17a5660abd498cb10201f427f04, type: 2}
   - itemName: Yellow
     value: 0
+    icon: {fileID: 0}
+    price: 0
     colorType: 3
     material: {fileID: 2100000, guid: 636faa3cfa7028848aaaf26230665d46, type: 2}
   - itemName: Green
     value: 0
+    icon: {fileID: 0}
+    price: 0
     colorType: 4
     material: {fileID: 2100000, guid: dfd85dc9ce515704e882e70d43e96994, type: 2}
   - itemName: Black
     value: 0
+    icon: {fileID: 0}
+    price: 0
     colorType: 5
     material: {fileID: 2100000, guid: f116b6242baec654387f6801d99afe1d, type: 2}
   listPant:
   - itemName: None
     value: 8
+    icon: {fileID: 0}
+    price: 0
     pantType: 0
     texture: {fileID: 0}
-    icon: {fileID: 0}
   - itemName: BatMan
     value: 8
+    icon: {fileID: 21300000, guid: 265493bb0b16111499c1924b8a4eb75d, type: 3}
+    price: 100
     pantType: 1
     texture: {fileID: 2800000, guid: 274b961dfb542504c9302e84f0e738aa, type: 3}
-    icon: {fileID: 21300000, guid: 265493bb0b16111499c1924b8a4eb75d, type: 3}
   - itemName: ChamBi
     value: 8
+    icon: {fileID: 21300000, guid: 2c917541e723e454884bec49ecf3c367, type: 3}
+    price: 120
     pantType: 2
     texture: {fileID: 2800000, guid: 7ac843fb4fe30e343a72a12eb7abb609, type: 3}
-    icon: {fileID: 21300000, guid: 2c917541e723e454884bec49ecf3c367, type: 3}
   - itemName: CoMy
     value: 8
+    icon: {fileID: 21300000, guid: e190d46ca50c54c41abe87d9070fec21, type: 3}
+    price: 140
     pantType: 3
     texture: {fileID: 2800000, guid: 32a8507d8f6e11e459f61ed4f0a9ab26, type: 3}
-    icon: {fileID: 21300000, guid: e190d46ca50c54c41abe87d9070fec21, type: 3}
   - itemName: DaBao
     value: 8
+    icon: {fileID: 21300000, guid: f1aa98fdbae58584eb8046737f3e56b4, type: 3}
+    price: 160
     pantType: 4
     texture: {fileID: 2800000, guid: 93f7aa5547149b14bb6fd9c4d1ee0e81, type: 3}
-    icon: {fileID: 21300000, guid: f1aa98fdbae58584eb8046737f3e56b4, type: 3}
   - itemName: Onion
     value: 8
+    icon: {fileID: 21300000, guid: 50668d9ff6bfcfb43a559b9e7d2b2997, type: 3}
+    price: 180
     pantType: 5
     texture: {fileID: 2800000, guid: 8a53df293d2bb964380fae8df1dc7b15, type: 3}
-    icon: {fileID: 21300000, guid: 50668d9ff6bfcfb43a559b9e7d2b2997, type: 3}
   - itemName: Pokemon
     value: 8
+    icon: {fileID: 21300000, guid: 09027755f7a9dc94aaba7a0c9d1a7687, type: 3}
+    price: 200
     pantType: 6
     texture: {fileID: 2800000, guid: c310723632b91344cb0b8e65adcef077, type: 3}
-    icon: {fileID: 21300000, guid: 09027755f7a9dc94aaba7a0c9d1a7687, type: 3}
   - itemName: Rainbow
     value: 8
+    icon: {fileID: 21300000, guid: ef89e46c5197fc24ba387503b6af09ea, type: 3}
+    price: 220
     pantType: 7
     texture: {fileID: 2800000, guid: dee6dfc71353a41449ed00481650f338, type: 3}
-    icon: {fileID: 21300000, guid: ef89e46c5197fc24ba387503b6af09ea, type: 3}
   - itemName: Skull
     value: 8
+    icon: {fileID: 21300000, guid: 6f51d675023a7e747a620b00f951a837, type: 3}
+    price: 250
     pantType: 8
     texture: {fileID: 2800000, guid: a43eb2f6a77e8b04ba74817f5ae20dbf, type: 3}
-    icon: {fileID: 21300000, guid: 6f51d675023a7e747a620b00f951a837, type: 3}
   - itemName: VanTim
     value: 8
+    icon: {fileID: 21300000, guid: 42d7166723614b147bb1fa6a3f3819f8, type: 3}
+    price: 1000
     pantType: 9
     texture: {fileID: 2800000, guid: e6e8412764ace5144802e94f7f66bf3c, type: 3}
-    icon: {fileID: 21300000, guid: 42d7166723614b147bb1fa6a3f3819f8, type: 3}
   listHair:
   - itemName: 
     value: 5
+    icon: {fileID: 0}
+    price: 0
     hairType: 0
     hairPrefab: {fileID: 2384510122250803668, guid: 5768644dfd20b6b4bbd6ecfeaff6e5fa, type: 3}
-    icon: {fileID: 0}
   - itemName: 
     value: 5
+    icon: {fileID: 21300000, guid: 811e82bf2185b15439d6bcc9f56bc263, type: 3}
+    price: 100
     hairType: 1
     hairPrefab: {fileID: 1260447377604235712, guid: 32657e94508c4d44eadfe7372541de2e, type: 3}
-    icon: {fileID: 21300000, guid: 811e82bf2185b15439d6bcc9f56bc263, type: 3}
   - itemName: 
     value: 5
+    icon: {fileID: 21300000, guid: 042ab01ac1fea044b894cf0af89bf222, type: 3}
+    price: 200
     hairType: 2
     hairPrefab: {fileID: 3630791100997297865, guid: c5faf70f415bd4f45850eb4e7559c951, type: 3}
-    icon: {fileID: 21300000, guid: 042ab01ac1fea044b894cf0af89bf222, type: 3}
   - itemName: 
     value: 5
+    icon: {fileID: 21300000, guid: 3e233e2048ca2ca43a0f102dc1daff68, type: 3}
+    price: 300
     hairType: 3
     hairPrefab: {fileID: 8719413541692911197, guid: a289b26757484244ba7cddbe19a0bd9e, type: 3}
-    icon: {fileID: 21300000, guid: 3e233e2048ca2ca43a0f102dc1daff68, type: 3}
   - itemName: 
     value: 5
+    icon: {fileID: 21300000, guid: dd87e004ea34c96438e399ef9f452b86, type: 3}
+    price: 400
     hairType: 4
     hairPrefab: {fileID: 8841080526670620781, guid: 63edcedf775c60d4494aef2e46779e60, type: 3}
-    icon: {fileID: 21300000, guid: dd87e004ea34c96438e399ef9f452b86, type: 3}
   - itemName: 
     value: 5
+    icon: {fileID: 21300000, guid: e509695950a543b4884fe8665b57a583, type: 3}
+    price: 500
     hairType: 5
     hairPrefab: {fileID: 3060892921634548090, guid: 6caa6d65f5beb3846b133abcc141b17c, type: 3}
-    icon: {fileID: 21300000, guid: e509695950a543b4884fe8665b57a583, type: 3}
   - itemName: 
     value: 5
+    icon: {fileID: 21300000, guid: 4c5e6090efb0fbe4cb5d90c71987c760, type: 3}
+    price: 600
     hairType: 6
     hairPrefab: {fileID: 8481948124913718974, guid: cd341452944b27348afb1c11c34b7954, type: 3}
-    icon: {fileID: 21300000, guid: 4c5e6090efb0fbe4cb5d90c71987c760, type: 3}
   - itemName: 
     value: 5
+    icon: {fileID: 21300000, guid: 67a8f1d44dbac0f4bb8e4ac7181f6578, type: 3}
+    price: 700
     hairType: 7
     hairPrefab: {fileID: 3100426827475560397, guid: 7bbd07f1fed51b44f8ca84f97e15ce3b, type: 3}
-    icon: {fileID: 21300000, guid: 67a8f1d44dbac0f4bb8e4ac7181f6578, type: 3}
   - itemName: 
     value: 5
+    icon: {fileID: 21300000, guid: 60756b0a12b2b3f4b9cb5e828c38c39b, type: 3}
+    price: 800
     hairType: 8
     hairPrefab: {fileID: 3186294838973052611, guid: 919acabcae009574aadda15c34978d6c, type: 3}
-    icon: {fileID: 21300000, guid: 60756b0a12b2b3f4b9cb5e828c38c39b, type: 3}
   - itemName: 
     value: 5
+    icon: {fileID: 21300000, guid: bd098ce8559134b4fb348f47d074c585, type: 3}
+    price: 1000
     hairType: 9
     hairPrefab: {fileID: 7255470862789138002, guid: 5d3982e5a465a3940a3d0a821c9d10f5, type: 3}
-    icon: {fileID: 21300000, guid: bd098ce8559134b4fb348f47d074c585, type: 3}
   listShield:
   - itemName: None
     value: 0
+    icon: {fileID: 0}
+    price: 0
     shieldType: 0
     shieldPrefab: {fileID: 4233179162545773139, guid: aadfb54bed7d2bc4e9bb5197d82d08f4, type: 3}
-    icon: {fileID: 0}
   - itemName: Shield_1
     value: 25
+    icon: {fileID: 21300000, guid: c6023e55f3376a24dbb6e7dec92c9bc1, type: 3}
+    price: 2500
     shieldType: 1
     shieldPrefab: {fileID: 2746904756837386156, guid: 13961eb9c156e8d45a0367f431a2b9f3, type: 3}
-    icon: {fileID: 21300000, guid: c6023e55f3376a24dbb6e7dec92c9bc1, type: 3}
   - itemName: Shield_2
     value: 25
+    icon: {fileID: 21300000, guid: 13e86af6a945c154f954e9b53595c927, type: 3}
+    price: 5000
     shieldType: 2
     shieldPrefab: {fileID: 3401172457727572290, guid: 18c8fc1dffc14d544bc23073ed40d2d0, type: 3}
-    icon: {fileID: 21300000, guid: 13e86af6a945c154f954e9b53595c927, type: 3}
   listWeapon:
   - itemName: 
     value: 3
+    icon: {fileID: 0}
+    price: 200
     weaponType: 0
     weaponPrefab: {fileID: 6915618295734539982, guid: b2d2e79211f23db428108b2b33b5f8c6, type: 3}
     bulletPrefab: {fileID: 7445563168623899420, guid: 1038ee923aa48034395aea504bd8b2e2, type: 3}
   - itemName: 
     value: 3
+    icon: {fileID: 0}
+    price: 300
     weaponType: 1
     weaponPrefab: {fileID: 8735105719471333574, guid: 820ae8adf74ec904d8ba4cd5d754f73e, type: 3}
     bulletPrefab: {fileID: 276168288825024153, guid: 1d035d2eaa13a1545ae59e3bb8996c52, type: 3}
   - itemName: 
     value: 3
+    icon: {fileID: 0}
+    price: 400
     weaponType: 2
     weaponPrefab: {fileID: 4680284755597491780, guid: 6a75f5be7399fbe48803b12808a25fb8, type: 3}
     bulletPrefab: {fileID: 3099864463117172736, guid: fb54c9950909a0742a056fb2fe7f3868, type: 3}
   - itemName: 
     value: 3
+    icon: {fileID: 0}
+    price: 500
     weaponType: 3
     weaponPrefab: {fileID: 3200212324680886219, guid: eb2324b2a4a888c438ad8298f84567b2, type: 3}
     bulletPrefab: {fileID: 4007530091295269805, guid: 1f402054716ffd44bb304ec3f5f8caeb, type: 3}
   - itemName: 
     value: 3
+    icon: {fileID: 0}
+    price: 600
     weaponType: 4
     weaponPrefab: {fileID: 1022731544581345455, guid: 8ffdf019a101c0c46944f921801bdaae, type: 3}
     bulletPrefab: {fileID: -5543674963607660766, guid: df338877a925fbe4f9081b549597f943, type: 3}
   - itemName: 
     value: 3
+    icon: {fileID: 0}
+    price: 700
     weaponType: 5
     weaponPrefab: {fileID: 5826876145273330223, guid: e43efc5eb91d3cb48968fcad6cd85afc, type: 3}
     bulletPrefab: {fileID: -6948816327226830810, guid: 1100ea3983c86404c931f03dd2910d4d, type: 3}
   - itemName: 
     value: 3
+    icon: {fileID: 0}
+    price: 800
     weaponType: 6
     weaponPrefab: {fileID: 8749210501114359891, guid: 9251c19cfaa0e304bb0fb054ec8be655, type: 3}
     bulletPrefab: {fileID: 8302399409961057082, guid: afcd94584f283774cb5a94c8a53399d1, type: 3}
   - itemName: 
     value: 3
+    icon: {fileID: 0}
+    price: 900
     weaponType: 7
     weaponPrefab: {fileID: 6142305076785521704, guid: 159856494ce084749902b7af51c1103f, type: 3}
     bulletPrefab: {fileID: 6555293461561086449, guid: e44d4afd11a27234faafe16792ba0809, type: 3}
   - itemName: 
     value: 3
+    icon: {fileID: 0}
+    price: 1000
     weaponType: 8
     weaponPrefab: {fileID: 7362689096459500483, guid: b3d5e2ff81418bf47a9db0f38972049d, type: 3}
     bulletPrefab: {fileID: 8920024679641870541, guid: 5a9e00ce5be893a4baa0d110921e91d7, type: 3}
   - itemName: 
     value: 3
+    icon: {fileID: 0}
+    price: 1100
     weaponType: 9
     weaponPrefab: {fileID: 5182058332075780331, guid: 6a26675224f70c14eb7062ef7b71a768, type: 3}
     bulletPrefab: {fileID: 4637542047208886707, guid: 8f73dd4863eec8b429841c95e73958a2, type: 3}
   - itemName: 
     value: 3
+    icon: {fileID: 0}
+    price: 1200
     weaponType: 10
     weaponPrefab: {fileID: 8691526972672586635, guid: 1ea67e085fbcf6e4bbc5625a8f53a29c, type: 3}
     bulletPrefab: {fileID: 5314848872641331304, guid: ce59a4364c1d3dc44a61ef4e1c0733d1, type: 3}
   - itemName: 
     value: 3
+    icon: {fileID: 0}
+    price: 1300
     weaponType: 11
     weaponPrefab: {fileID: 7777685987702666417, guid: 399021544ed7ad547aeec25ed6ccaeb4, type: 3}
     bulletPrefab: {fileID: 2815668707289687956, guid: 5ca40236d2999c5489e2f8556839bcd1, type: 3}

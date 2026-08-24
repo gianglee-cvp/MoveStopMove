@@ -14,7 +14,6 @@ public class ScrollView : MonoBehaviour, IData
     {
         DataManager.Instance.LoadGame(this);
         ItemData[] items = DataManager.Instance.GetListData(type);
-        Debug.Log("Check " + items.Length + " " + shopStates.Count);
         if (items.Length > shopStates.Count)
         {
             int missingCount = items.Length - shopStates.Count;
@@ -26,7 +25,6 @@ public class ScrollView : MonoBehaviour, IData
         for(int i = 1 ; i < items.Length ; i++)
         {
             CardItem card = SpawnCard();
-            // load islock,bo none 
             bool islock = shopStates[i] == 0;
             card.Init(islock,items[i].Icon);
             cards.Add(card);

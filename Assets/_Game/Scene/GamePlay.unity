@@ -953,14 +953,14 @@ MonoBehaviour:
   - prefab: {fileID: 2855836150356695432, guid: 0b73ed6cfa3d14548a95504759c6429f, type: 3}
     amount: 20
     parent: {fileID: 1972404737}
-  - prefab: {fileID: 4233179162545773139, guid: aadfb54bed7d2bc4e9bb5197d82d08f4, type: 3}
+  - prefab: {fileID: 8245501249237929030, guid: aadfb54bed7d2bc4e9bb5197d82d08f4, type: 3}
     amount: 20
     parent: {fileID: 1972404737}
-  - prefab: {fileID: 2746904756837386156, guid: 13961eb9c156e8d45a0367f431a2b9f3, type: 3}
-    amount: 20
+  - prefab: {fileID: 8568772186134810729, guid: 13961eb9c156e8d45a0367f431a2b9f3, type: 3}
+    amount: 5
     parent: {fileID: 1972404737}
-  - prefab: {fileID: 3401172457727572290, guid: 18c8fc1dffc14d544bc23073ed40d2d0, type: 3}
-    amount: 20
+  - prefab: {fileID: 6123910149313823481, guid: 18c8fc1dffc14d544bc23073ed40d2d0, type: 3}
+    amount: 5
     parent: {fileID: 1972404737}
 --- !u!4 &1899577880
 Transform:
