@@ -288,6 +288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardItem
   imgLock: {fileID: 1882830861806828051}
   imgItem: {fileID: 1741031136048061485}
+  button: {fileID: 5458017155270669498}
+  owner: {fileID: 0}
 --- !u!1 &5637133594833129161
 GameObject:
   m_ObjectHideFlags: 0

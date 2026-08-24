@@ -58,6 +58,7 @@ public class DataManager : Singleton<DataManager>
         //luu vao json
         dataHandler.Save(gameData);
     }
+    public Skin GetSkinEquipped() => gameData.GetSkinEquipped();
     public void OnApplicationQuit()
     {
         SaveGame();

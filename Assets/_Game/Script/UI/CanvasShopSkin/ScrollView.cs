@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Unity.Android.Gradle.Manifest;
-using UnityEditor.Search;
 using UnityEngine;
 
 public class ScrollView : MonoBehaviour, IData
@@ -9,6 +7,7 @@ public class ScrollView : MonoBehaviour, IData
     [SerializeField] protected List<CardItem> cards;
     [SerializeField] protected CardItem cardPrefab;
     [SerializeField] protected RectTransform cardHolder;
+    [SerializeField] protected CanvasShopSkin canvasHolder;
     protected List<Enum_ShopState> shopStates; 
     public void OnInit()
     {
@@ -26,7 +25,7 @@ public class ScrollView : MonoBehaviour, IData
         {
             CardItem card = SpawnCard();
             bool islock = shopStates[i] == 0;
-            card.Init(islock,items[i].Icon);
+            card.Init(islock,items[i].Icon , this, i);
             cards.Add(card);
         }
         gameObject.SetActive(false);
@@ -44,6 +43,10 @@ public class ScrollView : MonoBehaviour, IData
     {
         gameObject.SetActive(false);
     }
+    public void CallBackTryCloth(int index)
+    {
+        canvasHolder.TryCloth(index , type);   
+    }
     public  void LoadGame(GameData data)
     {
         shopStates = data.GetShopStateByType(type);
@@ -52,4 +55,5 @@ public class ScrollView : MonoBehaviour, IData
     public  void SaveGame(ref GameData gameData)
     {
     }
+
 }

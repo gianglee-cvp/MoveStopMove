@@ -62,7 +62,7 @@ public class GameManager : Singleton<GameManager>
     public void ChangeGameState(Enum_GameState state)
     {
         currentGameState = state;
-        CameraFollow.Instance.ChangeByState(state);
+        CameraFollow.Instance.ChangeByState(state , false);
     }
     public bool IsGameState(Enum_GameState state)
     {

@@ -63,6 +63,10 @@ public class Character : GameUnit
         CancelAttack();
         characterVisual.ChangeAnim(CharacterAnimType.Dead);
     }
+    public void ChangeAnim(CharacterAnimType type)
+    {
+        characterVisual.ChangeAnim(type);
+    }
     #endregion
     #region Attack
     public virtual void Attack()

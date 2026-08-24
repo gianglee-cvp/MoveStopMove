@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,6 +9,7 @@ public class Player : Character,IData
     //TODO bỏ logic input
     protected InputAction moveAction;
     protected Vector2 moveAmount;
+    protected Dictionary<SkinType, Action<int>> skinSetters;
     public int gold;
     public int level = 0; // TODO xoa 
     public override void OnInit()
@@ -92,14 +95,6 @@ public class Player : Character,IData
         }
         base.RemoveTarget(index);
     }
-    // public override void RemoveTarget(Character target)
-    // {
-    //     base.RemoveTarget(target);
-    //     if(currentTarget == null) return;
-    //     Bot enemy = currentTarget as Bot;
-    //     enemy.HideTargetIndicator();
-    //     Debug.Log("hide2");
-    // }
     public override void LevelUp(int level)
     {
         CameraFollow.Instance.SetSize(characterLevel.CalculatorSizeByLevel(level));
@@ -117,9 +112,35 @@ public class Player : Character,IData
         data.SaveSkin(characterVisual.CurrentSkin);
         Debug.Log("Save gold data" + gold);
     }
+    public void TryCloth(int index , SkinType type)
+    {
+        if (skinSetters == null) InitSkinSetters();
+
+        if (skinSetters.TryGetValue(type, out Action<int> setter))
+        {
+            setter(index);
+            characterVisual.ApplySkin();
+        }
+    }
+    public void ReloadCloth()
+    {
+        characterVisual.ApplyNewSkin(DataManager.Instance.GetSkinEquipped());
+    }
     //TODO xoa 
     public void SaveMe()
     {
         OnInit();
+    }
+
+    private void InitSkinSetters()
+    {
+        skinSetters = new Dictionary<SkinType, Action<int>>
+        {
+            { SkinType.skinColor, value => characterVisual.CurrentSkin.color = (ColorType)value },
+            { SkinType.Pant, value => characterVisual.CurrentSkin.pant = (PantType)value },
+            { SkinType.Hair, value => characterVisual.CurrentSkin.hairType = (HairType)value },
+            { SkinType.Weapon, value => characterVisual.CurrentSkin.weapon = (WeaponType)value },
+            { SkinType.Shield, value => characterVisual.CurrentSkin.shieldType = (ShieldType)value }
+        };
     }
 }

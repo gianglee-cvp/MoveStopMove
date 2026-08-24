@@ -43,4 +43,16 @@ public class LevelManager : Singleton<LevelManager>
         int nextLevelIndex = (currentLevelIndex + 1) % levelData.Count;
         LoadLevel(nextLevelIndex);
     }
+    public void ChangeAnimPlayer(CharacterAnimType type)
+    {
+        player.ChangeAnim(type);
+    }
+    public void PlayerTrySkin(int index , SkinType type)
+    {
+        player.TryCloth(index , type);
+    }
+    public void ReloadCloth()
+    {
+        player.ReloadCloth();
+    }
 }

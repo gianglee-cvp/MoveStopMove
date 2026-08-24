@@ -4,7 +4,6 @@ public class CanvasMainMenu : UICanvas
     public override void Setup()
     {
         base.Setup();
-        CameraFollow.Instance.ChangeByState(Enum_GameState.MainMenu, true);
     }
     public void ButtonPlay()
     {
@@ -14,6 +13,7 @@ public class CanvasMainMenu : UICanvas
     {
         //TODO lam transition di ra ngoai 
         Close(0);
+        GameManager.Instance.ChangeGameState(Enum_GameState.ShopSkin);
         UIManager.Instance.OpenUI<CanvasShopSkin>();
     }
 }
