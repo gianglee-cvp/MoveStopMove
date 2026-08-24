@@ -220,5 +220,5 @@ public class CharacterVisual : MonoBehaviour
         if (boosterData == null || itemData == null || character == null) return;
         boosterData.Apply(character, itemData.Value);
     }
-
+    
 }

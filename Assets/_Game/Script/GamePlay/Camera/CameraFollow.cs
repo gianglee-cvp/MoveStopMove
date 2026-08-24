@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollow : Singleton<CameraFollow>
@@ -23,6 +24,7 @@ public class CameraFollow : Singleton<CameraFollow>
     [Header("Follow")]
     [SerializeField] private float followSpeed = 5f;
     [SerializeField] private float rotateSpeed = 5f;
+    private Dictionary<Enum_GameState, CameraConfig> stateConfigs;
     private Transform tf;
     public Transform TF
     {
@@ -45,6 +47,7 @@ public class CameraFollow : Singleton<CameraFollow>
 
     public void OnInit()
     {
+        BuildStateConfigs();
         desiredPosition = TF.position;
         desiredRotation = TF.rotation;
         ChangeByState(Enum_GameState.Loading, true);
@@ -64,20 +67,14 @@ public class CameraFollow : Singleton<CameraFollow>
 
     public void ChangeByState(Enum_GameState state, bool instant = false)
     {
-        switch (state)
+        if (stateConfigs == null)
         {
-            case Enum_GameState.MainMenu:
-                ApplyConfig(mainMenuConfig, instant);
-                break;
-            case Enum_GameState.ShopWeapon:
-                ApplyConfig(shopWeaponConfig, instant);
-                break;
-            case Enum_GameState.ShopSkin:
-                ApplyConfig(shopSkinConfig, instant);
-                break;
-            case Enum_GameState.Play:
-                ApplyConfig(playConfig, instant);
-                break;
+            BuildStateConfigs();
+        }
+
+        if (stateConfigs != null && stateConfigs.TryGetValue(state, out CameraConfig config))
+        {
+            ApplyConfig(config, instant);
         }
     }
 
@@ -125,5 +122,16 @@ public class CameraFollow : Singleton<CameraFollow>
             baseOffset.y + (size - 1f) * offsetYPerSize,
             baseOffset.z - (size - 1f) * offsetZPerSize
         );
+    }
+
+    private void BuildStateConfigs()
+    {
+        stateConfigs = new Dictionary<Enum_GameState, CameraConfig>
+        {
+            { Enum_GameState.MainMenu, mainMenuConfig },
+            { Enum_GameState.ShopWeapon, shopWeaponConfig },
+            { Enum_GameState.ShopSkin, shopSkinConfig },
+            { Enum_GameState.Play, playConfig }
+        };
     }
 }

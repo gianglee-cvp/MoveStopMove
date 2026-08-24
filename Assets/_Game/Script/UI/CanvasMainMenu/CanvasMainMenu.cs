@@ -1,6 +1,11 @@
 using UnityEngine;
 public class CanvasMainMenu : UICanvas
 {
+    public override void Setup()
+    {
+        base.Setup();
+        CameraFollow.Instance.ChangeByState(Enum_GameState.MainMenu, true);
+    }
     public void ButtonPlay()
     {
         GameManager.Instance.PlayGame();

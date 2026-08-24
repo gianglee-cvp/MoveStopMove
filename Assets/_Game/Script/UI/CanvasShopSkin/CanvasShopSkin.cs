@@ -17,6 +17,7 @@ public class CanvasShopSkin : UICanvas
     public override void Setup()
     {
         base.Setup();
+        CameraFollow.Instance.ChangeByState(Enum_GameState.ShopSkin, false);
         for(int i = 0 ; i < listCard.Count; i++)
         {
             listCard[i].OnInit();

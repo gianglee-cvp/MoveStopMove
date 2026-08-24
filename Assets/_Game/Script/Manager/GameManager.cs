@@ -51,7 +51,6 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForSeconds(fadeTime);
         UIManager.Instance.OpenUI<CanvasMainMenu>();
         currentGameState = Enum_GameState.MainMenu;
-        CameraFollow.Instance.ChangeByState(Enum_GameState.MainMenu, true);
     }
     public void PlayGame()
     {
@@ -69,5 +68,4 @@ public class GameManager : Singleton<GameManager>
     {
         return currentGameState == state;
     }
-
 }

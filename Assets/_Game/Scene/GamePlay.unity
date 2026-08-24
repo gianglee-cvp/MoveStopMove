@@ -172,7 +172,7 @@ MonoBehaviour:
   inMapBotCount: 0
   characterLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!114 &112272330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,12 +749,12 @@ MonoBehaviour:
     rotation: {x: 20, y: 0, z: 0}
     followTarget: 0
   shopWeaponConfig:
-    offset: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 2.5, z: -8.99}
+    rotation: {x: 10, y: 0, z: 0}
     followTarget: 0
   shopSkinConfig:
-    offset: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0}
+    offset: {x: 0, y: 1, z: -8.99}
+    rotation: {x: 10, y: 0, z: 0}
     followTarget: 0
   playConfig:
     offset: {x: 0, y: 14.7, z: -14.4}
