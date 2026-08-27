@@ -220,104 +220,116 @@ MonoBehaviour:
     shieldType: 2
     shieldPrefab: {fileID: 5702515387144607853, guid: 18c8fc1dffc14d544bc23073ed40d2d0, type: 3}
   listWeapon:
-  - itemName: 
+  - itemName: Arrow
     value: 3
     icon: {fileID: 0}
     price: 200
-    des: 
+    des: Arrow
     weaponType: 0
+    prefabShop: {fileID: 4499393284463433718, guid: 1a2ba53ecadc3b64191cadb037a8e438, type: 3}
     weaponPrefab: {fileID: 6915618295734539982, guid: b2d2e79211f23db428108b2b33b5f8c6, type: 3}
     bulletPrefab: {fileID: 7445563168623899420, guid: 1038ee923aa48034395aea504bd8b2e2, type: 3}
-  - itemName: 
+  - itemName: Axe_0
     value: 3
     icon: {fileID: 0}
     price: 300
-    des: 
+    des: Axe_0
     weaponType: 1
+    prefabShop: {fileID: 3655450674175606019, guid: 02b703efffad46a42ac320c433ada2e8, type: 3}
     weaponPrefab: {fileID: 8735105719471333574, guid: 820ae8adf74ec904d8ba4cd5d754f73e, type: 3}
     bulletPrefab: {fileID: 276168288825024153, guid: 1d035d2eaa13a1545ae59e3bb8996c52, type: 3}
-  - itemName: 
+  - itemName: Axe_1
     value: 3
     icon: {fileID: 0}
     price: 400
-    des: 
+    des: Axe_1
     weaponType: 2
+    prefabShop: {fileID: 4841759847249434716, guid: 022a08c7f89cd744cbeee0f32cfc40a3, type: 3}
     weaponPrefab: {fileID: 4680284755597491780, guid: 6a75f5be7399fbe48803b12808a25fb8, type: 3}
     bulletPrefab: {fileID: 3099864463117172736, guid: fb54c9950909a0742a056fb2fe7f3868, type: 3}
-  - itemName: 
+  - itemName: Boomerang
     value: 3
     icon: {fileID: 0}
     price: 500
-    des: 
+    des: Boomerang
     weaponType: 3
+    prefabShop: {fileID: 1874241376965017094, guid: b27da7eaf0a2d2646a948c41e5c52409, type: 3}
     weaponPrefab: {fileID: 3200212324680886219, guid: eb2324b2a4a888c438ad8298f84567b2, type: 3}
     bulletPrefab: {fileID: 4007530091295269805, guid: 1f402054716ffd44bb304ec3f5f8caeb, type: 3}
-  - itemName: 
+  - itemName: 1
     value: 3
     icon: {fileID: 0}
     price: 600
-    des: 
+    des: 1
     weaponType: 4
+    prefabShop: {fileID: 2196021002664571, guid: c3f74b76ce858024a8acf45e7eab8d70, type: 3}
     weaponPrefab: {fileID: 1022731544581345455, guid: 8ffdf019a101c0c46944f921801bdaae, type: 3}
     bulletPrefab: {fileID: -5543674963607660766, guid: df338877a925fbe4f9081b549597f943, type: 3}
-  - itemName: 
+  - itemName: 1
     value: 3
     icon: {fileID: 0}
     price: 700
-    des: 
+    des: 1
     weaponType: 5
+    prefabShop: {fileID: 2999843570741522309, guid: cfd0831460d9a2f4fadc449e58b25bd6, type: 3}
     weaponPrefab: {fileID: 5826876145273330223, guid: e43efc5eb91d3cb48968fcad6cd85afc, type: 3}
     bulletPrefab: {fileID: -6948816327226830810, guid: 1100ea3983c86404c931f03dd2910d4d, type: 3}
-  - itemName: 
+  - itemName: 1
     value: 3
     icon: {fileID: 0}
     price: 800
-    des: 
+    des: 1
     weaponType: 6
+    prefabShop: {fileID: 1541314800134384159, guid: 4e1ccac6740cfb34dbc0a39b5d008210, type: 3}
     weaponPrefab: {fileID: 8749210501114359891, guid: 9251c19cfaa0e304bb0fb054ec8be655, type: 3}
     bulletPrefab: {fileID: 8302399409961057082, guid: afcd94584f283774cb5a94c8a53399d1, type: 3}
-  - itemName: 
+  - itemName: 1
     value: 3
     icon: {fileID: 0}
     price: 900
-    des: 
+    des: 1
     weaponType: 7
+    prefabShop: {fileID: 3505444230162825047, guid: 8cb84c3ac88919344bc5274a1213e39a, type: 3}
     weaponPrefab: {fileID: 6142305076785521704, guid: 159856494ce084749902b7af51c1103f, type: 3}
     bulletPrefab: {fileID: 6555293461561086449, guid: e44d4afd11a27234faafe16792ba0809, type: 3}
-  - itemName: 
+  - itemName: 1
     value: 3
     icon: {fileID: 0}
     price: 1000
-    des: 
+    des: 1
     weaponType: 8
+    prefabShop: {fileID: 1676000675431245933, guid: a0ae4a7b756c23249bf332a7cf36224b, type: 3}
     weaponPrefab: {fileID: 7362689096459500483, guid: b3d5e2ff81418bf47a9db0f38972049d, type: 3}
     bulletPrefab: {fileID: 8920024679641870541, guid: 5a9e00ce5be893a4baa0d110921e91d7, type: 3}
-  - itemName: 
+  - itemName: 1
     value: 3
     icon: {fileID: 0}
     price: 1100
-    des: 
+    des: 1
     weaponType: 9
+    prefabShop: {fileID: 465042398356520168, guid: 20887e9e49e0aa948ae52f1c0fac7389, type: 3}
     weaponPrefab: {fileID: 5182058332075780331, guid: 6a26675224f70c14eb7062ef7b71a768, type: 3}
     bulletPrefab: {fileID: 4637542047208886707, guid: 8f73dd4863eec8b429841c95e73958a2, type: 3}
-  - itemName: 
+  - itemName: 1
     value: 3
     icon: {fileID: 0}
     price: 1200
-    des: 
+    des: 1
     weaponType: 10
+    prefabShop: {fileID: 1055443537818566462, guid: 39c3370ddaf7f554b8a3a4798ebbac51, type: 3}
     weaponPrefab: {fileID: 8691526972672586635, guid: 1ea67e085fbcf6e4bbc5625a8f53a29c, type: 3}
     bulletPrefab: {fileID: 5314848872641331304, guid: ce59a4364c1d3dc44a61ef4e1c0733d1, type: 3}
-  - itemName: 
+  - itemName: 1
     value: 3
     icon: {fileID: 0}
     price: 1300
-    des: 
+    des: 1
     weaponType: 11
+    prefabShop: {fileID: 152331292252124577, guid: 60bfbd337f093e84ca0ece942fb77599, type: 3}
     weaponPrefab: {fileID: 7777685987702666417, guid: 399021544ed7ad547aeec25ed6ccaeb4, type: 3}
     bulletPrefab: {fileID: 2815668707289687956, guid: 5ca40236d2999c5489e2f8556839bcd1, type: 3}
   colorBooster: {fileID: 0}
-  pantBooster: {fileID: 0}
-  hairBooster: {fileID: 0}
-  shieldBooster: {fileID: 0}
+  pantBooster: {fileID: 11400000, guid: 4298679526da5124590c38473051a74f, type: 2}
+  hairBooster: {fileID: 11400000, guid: c35bd6bcf906cab4ea120c97985ac16a, type: 2}
+  shieldBooster: {fileID: 11400000, guid: 7805f4ba5ff59ab44adb3f431d842ba8, type: 2}
   weaponBooster: {fileID: 0}

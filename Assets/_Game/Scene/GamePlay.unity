@@ -1546,7 +1546,6 @@ MonoBehaviour:
   isDead: 0
   listTarget: []
   currentTarget: {fileID: 0}
-  gold: 0
   level: 0
 --- !u!4 &2007295252668262655
 Transform:

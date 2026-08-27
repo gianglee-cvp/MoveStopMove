@@ -13,6 +13,12 @@ public class BotManager : Singleton<BotManager>
     protected List<Bot> listBotActive = new List<Bot>();
     protected float respawnTimer;
 
+    public void Init()
+    {
+        respawnTimer = 0f;
+        ClearBots();
+        SpawnBot(inMapBotCount);
+    }
     void Update()
     {
         if (currentBotCount >= inMapBotCount || totalBotCount <= currentBotCount)
@@ -30,13 +36,6 @@ public class BotManager : Singleton<BotManager>
         respawnTimer = 0f;
         // RespawnMissingBots();
         
-    }
-
-    public void Init()
-    {
-        respawnTimer = 0f;
-        ClearBots();
-        SpawnBot(inMapBotCount);
     }
     public void ApplyLevelData(SingleLevelData data)
     {

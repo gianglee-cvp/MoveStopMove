@@ -10,11 +10,13 @@ public enum Enum_ShopState
 public interface IData
 {
     void LoadGame(GameData data);
-    void SaveGame(ref GameData gameData);
+    void SaveGame(GameData gameData);
 }
 [System.Serializable]
+// data nao dung rieng thi duoc lay luon tham chieu, bien nao dung chung thi chi duoc thay doi thong qua datamanager
 public class GameData
 {
+    //TODO chinh thanh private
     public int gold;
     public ColorType colorEquippedID;
     public WeaponType weaponEquippedID;
@@ -30,7 +32,7 @@ public class GameData
     {
         gold = 0;
         colorEquippedID = ColorType.White;
-        weaponEquippedID = WeaponType.Axe_0;
+        weaponEquippedID = WeaponType.Arrow;
         hairEquippedID = HairType.None;
         pantEquippedID = PantType.None;
         shieldEquippedID = ShieldType.None;
@@ -38,6 +40,7 @@ public class GameData
         weaponShopState = new List<Enum_ShopState>(
             new Enum_ShopState[Enum.GetValues(typeof(WeaponType)).Length]
         );
+        weaponShopState[(int)weaponEquippedID] = Enum_ShopState.equipped;
         hairShopState = new List<Enum_ShopState>(
             new Enum_ShopState[Enum.GetValues(typeof(HairType)).Length]
         );

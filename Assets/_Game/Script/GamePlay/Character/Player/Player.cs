@@ -105,7 +105,7 @@ public class Player : Character,IData
     {
         characterVisual.ApplyNewSkin(data.GetSkinEquipped());
     }
-    public void SaveGame(ref GameData data)
+    public void SaveGame(GameData data)
     {
         data.SaveSkin(characterVisual.CurrentSkin);
     }

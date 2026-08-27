@@ -76,12 +76,14 @@ public class ShieldItemData : ItemData
 public class WeaponItemData : ItemData
 {
     [SerializeField] private WeaponType weaponType;
+    [SerializeField] private GameObject prefabShop;
     [SerializeField] private WeaponBase weaponPrefab;
     [SerializeField] private BulletBase bulletPrefab;
 
     public WeaponType WeaponType => weaponType;
     public WeaponBase WeaponPrefab => weaponPrefab;
     public BulletBase BulletPrefab => bulletPrefab;
+    public GameObject PrefabShop => prefabShop;
     public override int Index => (int)weaponType;
     public override SkinType Type => SkinType.Weapon;
 }

@@ -65,7 +65,7 @@ public class ScrollView : MonoBehaviour, IData
         shopStates = data.GetShopStateByType(type);
     }
     //TODO them logic buy
-    public  void SaveGame(ref GameData gameData)
+    public  void SaveGame(GameData gameData)
     {
     }
     public void RefreshItemState(int index)

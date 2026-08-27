@@ -31,10 +31,10 @@ public class LevelManager : Singleton<LevelManager>
 
         currentLevelIndex = index;
         BotManager.Instance.ApplyLevelData(level);
-        BotManager.Instance.Init();
     }
     public void StartGame()
     {
+        BotManager.Instance.Init();
         player.ShowRangeUI();
     }
 

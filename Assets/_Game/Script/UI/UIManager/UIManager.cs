@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : Singleton<UIManager> 
+public class UIManager : Singleton<UIManager>
 {
     Dictionary<System.Type , UICanvas> canvasActives  = new Dictionary<System.Type, UICanvas>() ;
     Dictionary<System.Type , UICanvas> canvasPrefabs  = new Dictionary<System.Type, UICanvas>() ;

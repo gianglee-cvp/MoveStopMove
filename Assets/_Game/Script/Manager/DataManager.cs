@@ -16,6 +16,7 @@ public class DataManager : Singleton<DataManager>
     {
         //Note : cac IData phai duoc tao truoc datamanager va init sau data manager neu co ham load trong init
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        // Debug.Log(Application.persistentDataPath);
         itemData.OnInit();
         allDataObject = FindAllDataObject();
         Debug.Log("All object" + allDataObject.Count);
@@ -52,7 +53,7 @@ public class DataManager : Singleton<DataManager>
         // lay data ve
         foreach(IData dataObject in allDataObject)
         {
-            dataObject.SaveGame(ref gameData);
+            dataObject.SaveGame(gameData);
         }
         //luu vao json
         dataHandler.Save(gameData);
@@ -87,19 +88,46 @@ public class DataManager : Singleton<DataManager>
     {
         List<Enum_ShopState> shopStates = gameData.GetShopStateByType(item.Type);
 
-        if (shopStates[item.Index] != Enum_ShopState.buy || !TrySpendGold(item.Price)) return false;
+        if (shopStates[item.Index] != Enum_ShopState.buy)
+            return false;
+
+        if (!TrySpendGold(item.Price))
+            return false;
+
+        shopStates[item.Index] = Enum_ShopState.bought;
+
+        SelectItem(item);
+        return true;
+    }
+    public bool BuyItem(SkinType type , int index)
+    {
+        ItemData item = GetItemData<ItemData>(type , index);
+        return BuyItem(item); 
+    }
+    public bool SelectItem(ItemData item)
+    {
+        List<Enum_ShopState> shopStates = gameData.GetShopStateByType(item.Type);
+
+        if (shopStates[item.Index] != Enum_ShopState.bought)
+            return false;
 
         int oldEquippedIndex = gameData.GetEquippedID(item.Type);
-        if (oldEquippedIndex >= 0 && oldEquippedIndex < shopStates.Count && oldEquippedIndex != item.Index)
+
+        if (oldEquippedIndex >= 0 &&
+            oldEquippedIndex < shopStates.Count &&
+            oldEquippedIndex != item.Index)
         {
             shopStates[oldEquippedIndex] = Enum_ShopState.bought;
         }
 
         shopStates[item.Index] = Enum_ShopState.equipped;
         gameData.SetEquippedID(item.Type, item.Index);
-
-        SaveGame();
+        
         return true;
+    }
+    public bool SelectItem(SkinType type , int index)
+    {
+        return SelectItem(GetItemData<ItemData>(type , index));
     }
     #endregion
     private List<IData> FindAllDataObject()
