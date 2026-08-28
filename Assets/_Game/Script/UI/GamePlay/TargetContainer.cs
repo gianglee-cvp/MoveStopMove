@@ -4,6 +4,7 @@ using UnityEngine;
 public class TargetContainer : MonoBehaviour
 {
     [SerializeField] protected Camera cam;
+    [SerializeField] protected CanvasGroup canvasGroup;
     [SerializeField] protected RectTransform canvasRect;
     [SerializeField] protected TargetIndicator indicatorPrefab;
     [SerializeField] protected float borderPadding = 200f;
@@ -144,5 +145,9 @@ public class TargetContainer : MonoBehaviour
             (screenPos.x / Screen.width) * canvasSize.x - screenCenter.x,
             (screenPos.y / Screen.height) * canvasSize.y - screenCenter.y
         );
+    }
+    public void SetActiveTarget(bool isActive)
+    {
+        canvasGroup.alpha = isActive ? 1 : 0;
     }
 }

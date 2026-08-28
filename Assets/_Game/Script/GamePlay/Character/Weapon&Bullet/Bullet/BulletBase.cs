@@ -74,9 +74,9 @@ public class BulletBase : GameUnit
         owner = null;
     }
     public virtual void OnObstacle()
-    {
-        Invoke(nameof(DeSpawn) , 2f);
+    {   
         col.enabled = false;
+        Invoke(nameof(DeSpawn),2f);
     }
 
     public void CollectExp(Character ch)
