@@ -71,14 +71,13 @@ public class CanvasShopWeapon : UICanvas,IData
         objectToShow[currentIndex].SetActive(false);
         objectToShow[index].SetActive(true);
 
-        WeaponInfor wp  = weaponItemDatas[currentIndex] ;
+        WeaponInfor wp  = weaponItemDatas[index];
         priceText.text = wp.Price.ToString();
         nameWeapon.text = wp.Name;
         desWeapon.text = wp.Des;
         
         ChangeButtonBuy(weaponShopState[index]);
         currentIndex = index;
-
     }
     public void ButtonChangeIndex(bool next)
     {

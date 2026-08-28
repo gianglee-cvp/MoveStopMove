@@ -47,8 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Knight
   poolType: 207
+  owner: {fileID: 0}
   speed: 7
   range: 0
+  col: {fileID: 8552167523191192080}
 --- !u!65 &8552167523191192080
 BoxCollider:
   m_ObjectHideFlags: 0

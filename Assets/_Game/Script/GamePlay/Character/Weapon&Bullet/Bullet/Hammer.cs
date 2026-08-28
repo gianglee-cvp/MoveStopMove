@@ -5,6 +5,7 @@ public class Hammer : BulletBase
     [SerializeField] float rotationSpeed = 500f;
     void Update()
     {
+        if (isOnObstacle) return;
         TF.position = Vector3.MoveTowards(TF.position,target,speedScale * Time.deltaTime);
         TF.Rotate(Vector3.down * rotationSpeed * Time.deltaTime);
         if (CheckDisTance())

@@ -16,8 +16,10 @@ public class BulletBase : GameUnit
     protected float size;
     protected float speedScale => size * speed;
     [SerializeField] protected float range;
+    [SerializeField] protected Collider col;
     protected Vector3 target;
     protected Vector3 rootPos;
+    protected bool isOnObstacle;
 
     public virtual void Init(Vector3 startDir, float rangeAttack, Vector3 rootPosion, Character ch)
     {
@@ -27,16 +29,29 @@ public class BulletBase : GameUnit
         target = Helper.CopyPositionXZ(TF.position + startDir * rangeAttack, TF.position);
         rootPos = rootPosion;
         owner = ch;
+        isOnObstacle = false;
+        col.enabled = true;
     }
 
     public virtual void OnTriggerEnter(Collider other)
     {
+        Debug.Log("check name " + other.gameObject.name);
         Character target = CacheComponent<Collider, Character>.Get(other);
-        if (owner == null || target == null || target == owner || target.IsDead) return;
-
-        CollectExp(target);
-        target.OnDead();
-        DeSpawn();
+        if(target != null && target != owner)
+        {
+            if(owner == null || target.IsDead ) return;
+            CollectExp(target);
+            target.OnDead();
+            DeSpawn();
+            return;
+        }
+        Obstacle obstacle = CacheComponent<Collider , Obstacle>.Get(other);
+        if(obstacle != null)
+        {
+            Debug.Log("check obstacle");
+            isOnObstacle = true;
+            OnObstacle();
+        }
     }
 
     public virtual void Throw()
@@ -57,6 +72,11 @@ public class BulletBase : GameUnit
         }
         SimplePool.DeSpawn(this);
         owner = null;
+    }
+    public virtual void OnObstacle()
+    {
+        Invoke(nameof(DeSpawn) , 2f);
+        col.enabled = false;
     }
 
     public void CollectExp(Character ch)

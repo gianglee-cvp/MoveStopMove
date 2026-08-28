@@ -137,10 +137,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boomerang
   poolType: 203
+  owner: {fileID: 0}
   speed: 6
   range: 0
+  col: {fileID: 1631539495891190060}
   rotationSpeed: 600
   targetPos: {x: 0, y: 0, z: 0}
+  isNullOwner: 0
 --- !u!65 &1631539495891190060
 BoxCollider:
   m_ObjectHideFlags: 0

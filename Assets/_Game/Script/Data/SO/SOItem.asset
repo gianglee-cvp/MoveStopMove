@@ -65,63 +65,63 @@ MonoBehaviour:
     texture: {fileID: 0}
   - itemName: BatMan
     value: 8
-    icon: {fileID: 21300000, guid: 265493bb0b16111499c1924b8a4eb75d, type: 3}
+    icon: {fileID: 1710956067, guid: 0df0924298fa7b2498931bc673987891, type: 3}
     price: 100
     des: 8% Speed Increase
     pantType: 1
     texture: {fileID: 2800000, guid: 274b961dfb542504c9302e84f0e738aa, type: 3}
   - itemName: ChamBi
     value: 8
-    icon: {fileID: 21300000, guid: 2c917541e723e454884bec49ecf3c367, type: 3}
+    icon: {fileID: 470699876, guid: 4b11c1139f119d1479ad7b6714111049, type: 3}
     price: 120
     des: 8% Speed Increase
     pantType: 2
     texture: {fileID: 2800000, guid: 7ac843fb4fe30e343a72a12eb7abb609, type: 3}
   - itemName: CoMy
     value: 8
-    icon: {fileID: 21300000, guid: e190d46ca50c54c41abe87d9070fec21, type: 3}
+    icon: {fileID: -1118003851, guid: 29e98435a80d00d4a84f3b3026170c9a, type: 3}
     price: 140
     des: 8% Speed Increase
     pantType: 3
     texture: {fileID: 2800000, guid: 32a8507d8f6e11e459f61ed4f0a9ab26, type: 3}
   - itemName: DaBao
     value: 8
-    icon: {fileID: 21300000, guid: f1aa98fdbae58584eb8046737f3e56b4, type: 3}
+    icon: {fileID: -1853116747, guid: e7684fffb2c276f45b6a64a61cc93427, type: 3}
     price: 160
     des: 8% Speed Increase
     pantType: 4
     texture: {fileID: 2800000, guid: 93f7aa5547149b14bb6fd9c4d1ee0e81, type: 3}
   - itemName: Onion
     value: 8
-    icon: {fileID: 21300000, guid: 50668d9ff6bfcfb43a559b9e7d2b2997, type: 3}
+    icon: {fileID: -427242067, guid: cafde3d2b6a97874185fbbccdf59cccd, type: 3}
     price: 180
     des: 8% Speed Increase
     pantType: 5
     texture: {fileID: 2800000, guid: 8a53df293d2bb964380fae8df1dc7b15, type: 3}
   - itemName: Pokemon
     value: 8
-    icon: {fileID: 21300000, guid: 09027755f7a9dc94aaba7a0c9d1a7687, type: 3}
+    icon: {fileID: 557014422, guid: 5ba97558c3d13c5448c802f6fc86416e, type: 3}
     price: 200
     des: 8% Speed Increase
     pantType: 6
     texture: {fileID: 2800000, guid: c310723632b91344cb0b8e65adcef077, type: 3}
   - itemName: Rainbow
     value: 8
-    icon: {fileID: 21300000, guid: ef89e46c5197fc24ba387503b6af09ea, type: 3}
+    icon: {fileID: 683152443, guid: de282638cc62a3d4798067cb7517861b, type: 3}
     price: 220
     des: 8% Speed Increase
     pantType: 7
     texture: {fileID: 2800000, guid: dee6dfc71353a41449ed00481650f338, type: 3}
   - itemName: Skull
     value: 8
-    icon: {fileID: 21300000, guid: 6f51d675023a7e747a620b00f951a837, type: 3}
+    icon: {fileID: -879324383, guid: 5aed0ae28fd3d0241b580af0d9c7fd57, type: 3}
     price: 250
     des: 8% Speed Increase
     pantType: 8
     texture: {fileID: 2800000, guid: a43eb2f6a77e8b04ba74817f5ae20dbf, type: 3}
   - itemName: VanTim
     value: 8
-    icon: {fileID: 21300000, guid: 42d7166723614b147bb1fa6a3f3819f8, type: 3}
+    icon: {fileID: 1001641182, guid: b03ad5fb0b5643b438ae74270d6ac3c1, type: 3}
     price: 1000
     des: 8% Speed Increase
     pantType: 9
@@ -136,63 +136,63 @@ MonoBehaviour:
     hairPrefab: {fileID: 5332694473796280020, guid: 5768644dfd20b6b4bbd6ecfeaff6e5fa, type: 3}
   - itemName: 
     value: 5
-    icon: {fileID: 21300000, guid: 811e82bf2185b15439d6bcc9f56bc263, type: 3}
+    icon: {fileID: 1158721628, guid: 24b32d6aaeacd444fa4595cf13ba8303, type: 3}
     price: 100
     des: 5% Range Increase
     hairType: 1
     hairPrefab: {fileID: 8516437510350735140, guid: 32657e94508c4d44eadfe7372541de2e, type: 3}
   - itemName: 
     value: 5
-    icon: {fileID: 21300000, guid: 042ab01ac1fea044b894cf0af89bf222, type: 3}
+    icon: {fileID: -208944572, guid: b5c054022e3af6d439e5a5ad8c79671b, type: 3}
     price: 200
     des: 5% Range Increase
     hairType: 2
     hairPrefab: {fileID: 5866759198610321229, guid: c5faf70f415bd4f45850eb4e7559c951, type: 3}
   - itemName: 
     value: 5
-    icon: {fileID: 21300000, guid: 3e233e2048ca2ca43a0f102dc1daff68, type: 3}
+    icon: {fileID: 1175996399, guid: 6faf52af58a77b549934f7f84bff49e9, type: 3}
     price: 300
     des: 5% Range Increase
     hairType: 3
     hairPrefab: {fileID: 4305453555964838013, guid: a289b26757484244ba7cddbe19a0bd9e, type: 3}
   - itemName: 
     value: 5
-    icon: {fileID: 21300000, guid: dd87e004ea34c96438e399ef9f452b86, type: 3}
+    icon: {fileID: -1342354059, guid: 52199bc123db79c41953aceec4d837e6, type: 3}
     price: 400
     des: 5% Range Increase
     hairType: 4
     hairPrefab: {fileID: 4057299177044902991, guid: 63edcedf775c60d4494aef2e46779e60, type: 3}
   - itemName: 
     value: 5
-    icon: {fileID: 21300000, guid: e509695950a543b4884fe8665b57a583, type: 3}
+    icon: {fileID: -583753621, guid: 66bcc102aa92be84bb13cbd832c87e42, type: 3}
     price: 500
     des: 5% Range Increase
     hairType: 5
     hairPrefab: {fileID: 3355452349553435357, guid: 6caa6d65f5beb3846b133abcc141b17c, type: 3}
   - itemName: 
     value: 5
-    icon: {fileID: 21300000, guid: 4c5e6090efb0fbe4cb5d90c71987c760, type: 3}
+    icon: {fileID: -725386257, guid: 2d3814978a7f42f48a5ce3e886f6cd17, type: 3}
     price: 600
     des: 5% Range Increase
     hairType: 6
     hairPrefab: {fileID: 3368489568895190754, guid: cd341452944b27348afb1c11c34b7954, type: 3}
   - itemName: 
     value: 5
-    icon: {fileID: 21300000, guid: 67a8f1d44dbac0f4bb8e4ac7181f6578, type: 3}
+    icon: {fileID: -2146595628, guid: ab8f6413bea6a6e42b3d52b1edbe7109, type: 3}
     price: 700
     des: 5% Range Increase
     hairType: 7
     hairPrefab: {fileID: 3100426827475560397, guid: 7bbd07f1fed51b44f8ca84f97e15ce3b, type: 3}
   - itemName: 
     value: 5
-    icon: {fileID: 21300000, guid: 60756b0a12b2b3f4b9cb5e828c38c39b, type: 3}
+    icon: {fileID: 740346062, guid: 689e2c8ae59b09f499d957e2ad3c34ff, type: 3}
     price: 800
     des: 5% Range Increase
     hairType: 8
     hairPrefab: {fileID: 6772560507305005228, guid: 919acabcae009574aadda15c34978d6c, type: 3}
   - itemName: 
     value: 5
-    icon: {fileID: 21300000, guid: bd098ce8559134b4fb348f47d074c585, type: 3}
+    icon: {fileID: 419460662, guid: 983e5065ab4b4974e805e1139e9df215, type: 3}
     price: 1000
     des: 5% Range Increase
     hairType: 9
@@ -256,80 +256,80 @@ MonoBehaviour:
     prefabShop: {fileID: 1874241376965017094, guid: b27da7eaf0a2d2646a948c41e5c52409, type: 3}
     weaponPrefab: {fileID: 3200212324680886219, guid: eb2324b2a4a888c438ad8298f84567b2, type: 3}
     bulletPrefab: {fileID: 4007530091295269805, guid: 1f402054716ffd44bb304ec3f5f8caeb, type: 3}
-  - itemName: 1
+  - itemName: Candy_0
     value: 3
     icon: {fileID: 0}
     price: 600
-    des: 1
+    des: Candy_0
     weaponType: 4
     prefabShop: {fileID: 2196021002664571, guid: c3f74b76ce858024a8acf45e7eab8d70, type: 3}
     weaponPrefab: {fileID: 1022731544581345455, guid: 8ffdf019a101c0c46944f921801bdaae, type: 3}
     bulletPrefab: {fileID: -5543674963607660766, guid: df338877a925fbe4f9081b549597f943, type: 3}
-  - itemName: 1
+  - itemName: Candy_1
     value: 3
     icon: {fileID: 0}
     price: 700
-    des: 1
+    des: Candy_1
     weaponType: 5
     prefabShop: {fileID: 2999843570741522309, guid: cfd0831460d9a2f4fadc449e58b25bd6, type: 3}
     weaponPrefab: {fileID: 5826876145273330223, guid: e43efc5eb91d3cb48968fcad6cd85afc, type: 3}
     bulletPrefab: {fileID: -6948816327226830810, guid: 1100ea3983c86404c931f03dd2910d4d, type: 3}
-  - itemName: 1
+  - itemName: Candy_2
     value: 3
     icon: {fileID: 0}
     price: 800
-    des: 1
+    des: Candy_2
     weaponType: 6
     prefabShop: {fileID: 1541314800134384159, guid: 4e1ccac6740cfb34dbc0a39b5d008210, type: 3}
     weaponPrefab: {fileID: 8749210501114359891, guid: 9251c19cfaa0e304bb0fb054ec8be655, type: 3}
     bulletPrefab: {fileID: 8302399409961057082, guid: afcd94584f283774cb5a94c8a53399d1, type: 3}
-  - itemName: 1
+  - itemName: Candy_4
     value: 3
     icon: {fileID: 0}
     price: 900
-    des: 1
+    des: Candy_4
     weaponType: 7
     prefabShop: {fileID: 3505444230162825047, guid: 8cb84c3ac88919344bc5274a1213e39a, type: 3}
     weaponPrefab: {fileID: 6142305076785521704, guid: 159856494ce084749902b7af51c1103f, type: 3}
     bulletPrefab: {fileID: 6555293461561086449, guid: e44d4afd11a27234faafe16792ba0809, type: 3}
-  - itemName: 1
+  - itemName: Hammer
     value: 3
     icon: {fileID: 0}
     price: 1000
-    des: 1
+    des: Hammer
     weaponType: 8
     prefabShop: {fileID: 1676000675431245933, guid: a0ae4a7b756c23249bf332a7cf36224b, type: 3}
     weaponPrefab: {fileID: 7362689096459500483, guid: b3d5e2ff81418bf47a9db0f38972049d, type: 3}
     bulletPrefab: {fileID: 8920024679641870541, guid: 5a9e00ce5be893a4baa0d110921e91d7, type: 3}
-  - itemName: 1
+  - itemName: Knife
     value: 3
     icon: {fileID: 0}
     price: 1100
-    des: 1
+    des: Knife
     weaponType: 9
     prefabShop: {fileID: 465042398356520168, guid: 20887e9e49e0aa948ae52f1c0fac7389, type: 3}
     weaponPrefab: {fileID: 5182058332075780331, guid: 6a26675224f70c14eb7062ef7b71a768, type: 3}
     bulletPrefab: {fileID: 4637542047208886707, guid: 8f73dd4863eec8b429841c95e73958a2, type: 3}
-  - itemName: 1
+  - itemName: Uzi
     value: 3
     icon: {fileID: 0}
     price: 1200
-    des: 1
+    des: Uzi
     weaponType: 10
     prefabShop: {fileID: 1055443537818566462, guid: 39c3370ddaf7f554b8a3a4798ebbac51, type: 3}
     weaponPrefab: {fileID: 8691526972672586635, guid: 1ea67e085fbcf6e4bbc5625a8f53a29c, type: 3}
     bulletPrefab: {fileID: 5314848872641331304, guid: ce59a4364c1d3dc44a61ef4e1c0733d1, type: 3}
-  - itemName: 1
+  - itemName: Z
     value: 3
     icon: {fileID: 0}
     price: 1300
-    des: 1
+    des: Z
     weaponType: 11
     prefabShop: {fileID: 152331292252124577, guid: 60bfbd337f093e84ca0ece942fb77599, type: 3}
     weaponPrefab: {fileID: 7777685987702666417, guid: 399021544ed7ad547aeec25ed6ccaeb4, type: 3}
     bulletPrefab: {fileID: 2815668707289687956, guid: 5ca40236d2999c5489e2f8556839bcd1, type: 3}
   colorBooster: {fileID: 0}
-  pantBooster: {fileID: 11400000, guid: 4298679526da5124590c38473051a74f, type: 2}
-  hairBooster: {fileID: 11400000, guid: c35bd6bcf906cab4ea120c97985ac16a, type: 2}
-  shieldBooster: {fileID: 11400000, guid: 7805f4ba5ff59ab44adb3f431d842ba8, type: 2}
+  pantBooster: {fileID: 0}
+  hairBooster: {fileID: 0}
+  shieldBooster: {fileID: 0}
   weaponBooster: {fileID: 0}

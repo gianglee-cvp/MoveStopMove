@@ -20,15 +20,19 @@ public class CanvasShopSkin : UICanvas
     protected CardType currentCard = CardType.Init;
     protected ItemData selectedItem;
     protected ScrollView selectedScrollView;
-    public override void Setup()
+    [SerializeField] protected List<Button> buttonsSelect = new List<Button>();
+    void Awake()
     {
-        base.Setup();
         selectedItem = null;
         selectedScrollView = null;
         for(int i = 0 ; i < listCard.Count; i++)
         {
             listCard[i].OnInit();
         }
+    }
+    public override void Setup()
+    {
+        base.Setup();
         SelectCard(0);
         LevelManager.Instance.ChangeAnimPlayer(CharacterAnimType.Dance);
     }
@@ -78,6 +82,23 @@ public class CanvasShopSkin : UICanvas
         {
             selectedScrollView.RefreshItemState(oldEquippedIndex);
             selectedScrollView.RefreshItemState(targetItem.Index);
+        }
+        ChangeButtonBuy(Enum_ShopState.equipped);
+
+    }
+    public void ChangeButtonBuy(Enum_ShopState type)
+    {
+        for(int i = 0 ; i < buttonsSelect.Count ; i++)
+        {
+            buttonsSelect[i].gameObject.SetActive(false);
+        }
+        buttonsSelect[(int)type].gameObject.SetActive(true);
+    }
+    public void ButtonSelect()
+    {
+        if (selectedScrollView.SelectItem(selectedItem.Index))
+        {
+            ChangeButtonBuy(Enum_ShopState.equipped);
         }
     }
     public override void CloseDirectly()

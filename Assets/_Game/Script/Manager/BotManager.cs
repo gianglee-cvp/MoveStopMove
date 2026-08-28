@@ -21,6 +21,7 @@ public class BotManager : Singleton<BotManager>
     }
     void Update()
     {
+        if(!GameManager.Instance.IsGameState(Enum_GameState.Play)) return;
         if (currentBotCount >= inMapBotCount || totalBotCount <= currentBotCount)
         {
             return;

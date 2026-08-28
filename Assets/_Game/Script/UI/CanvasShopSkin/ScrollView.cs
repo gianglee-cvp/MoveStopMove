@@ -46,6 +46,7 @@ public class ScrollView : MonoBehaviour, IData
     public void CallBackTryCloth(int index , string desText , int price)
     {
         canvasHolder.TryCloth(index , type , desText , price, this);   
+        canvasHolder.ChangeButtonBuy(shopStates[index]);
     }
     public void SelectInitialItem()
     {
@@ -59,6 +60,8 @@ public class ScrollView : MonoBehaviour, IData
         if (item == null) return;
 
         canvasHolder.TryCloth(initialIndex, type, item.Des, item.Price, this);
+        canvasHolder.ChangeButtonBuy(shopStates[initialIndex]);
+        
     }
     public  void LoadGame(GameData data)
     {
@@ -75,5 +78,8 @@ public class ScrollView : MonoBehaviour, IData
 
         cards[cardIndex].SetImgLock(shopStates[index] == Enum_ShopState.buy);
     }
-
+    public bool SelectItem(int index)
+    {
+        return DataManager.Instance.SelectItem(type, index);
+    }
 }

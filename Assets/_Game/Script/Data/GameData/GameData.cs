@@ -6,7 +6,7 @@ public enum Enum_ShopState
     buy = 0,
     bought = 1,
     equipped = 2
-}
+}   
 public interface IData
 {
     void LoadGame(GameData data);

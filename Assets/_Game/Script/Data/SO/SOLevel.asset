@@ -15,4 +15,4 @@ MonoBehaviour:
   datas:
   - totalBotCount: 100
     inMapBotCount: 10
-    map: {fileID: 2286442003401111601, guid: 55dd2a74078544b4495730835aecdee6, type: 3}
+    map: {fileID: 6477808105438729768, guid: 6e4092132dba0d842bb787e013d94818, type: 3}

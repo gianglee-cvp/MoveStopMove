@@ -159,6 +159,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hammer
   poolType: 211
+  owner: {fileID: 0}
   speed: 6
   range: 0
+  col: {fileID: 6693575345807479494}
   rotationSpeed: 600

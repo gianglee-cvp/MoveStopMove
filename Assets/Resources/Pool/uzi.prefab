@@ -68,8 +68,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hammer
   poolType: 210
+  owner: {fileID: 0}
   speed: 6
   range: 0
+  col: {fileID: 5854594846911513710}
   rotationSpeed: 600
 --- !u!1 &6556751035858368719
 GameObject:

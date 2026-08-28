@@ -19,6 +19,7 @@ public class Boomerang : BulletBase
     
     void Update()
     {
+        if (isOnObstacle) return;
         //TODO doi thanh isdead
         if(owner == null || !owner.gameObject.activeSelf)
         {
