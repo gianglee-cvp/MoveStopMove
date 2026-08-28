@@ -1,9 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class UICanvas : MonoBehaviour
 {
     [SerializeField] bool isDestroyOnClose = false ;
+    [SerializeField] protected List<UIAnimation> uiElement = new List<UIAnimation>();
+
+    private Coroutine closeCoroutine;
+
     private void Awake()
     {
         RectTransform rect = GetComponent<RectTransform>(); 
@@ -28,14 +33,53 @@ public class UICanvas : MonoBehaviour
 
     public virtual void Open()
     {
+        StopCloseCoroutine();
+
         gameObject.SetActive(true); 
+
+        foreach (var element in uiElement)
+        {
+            if (element != null)
+            {
+                element.Play();
+            }
+        }
     }
     public virtual void Close(float time)
     {
-        Invoke(nameof(CloseDirectly), time) ; 
+        StopCloseCoroutine();
+        closeCoroutine = StartCoroutine(CloseWithAnimation(time));
     }
+
+    private IEnumerator CloseWithAnimation(float delay)
+    {
+        if (delay > 0f)
+        {
+            yield return new WaitForSeconds(delay);
+        }
+
+        foreach (var element in uiElement)
+        {
+            if (element != null)
+            {
+                element.PlayReverse();
+            }
+        }
+
+        yield return null;
+
+        yield return new WaitUntil(() =>
+            uiElement.TrueForAll(element =>
+                element == null || !element.IsPlaying));
+
+        closeCoroutine = null;
+        CloseDirectly();
+    }
+
     public virtual void CloseDirectly()
     {
+        StopCloseCoroutine();
+
         if (isDestroyOnClose)
         {
             Destroy(gameObject); 
@@ -43,6 +87,15 @@ public class UICanvas : MonoBehaviour
         else
         {
             gameObject.SetActive(false); 
+        }
+    }
+
+    private void StopCloseCoroutine()
+    {
+        if (closeCoroutine != null)
+        {
+            StopCoroutine(closeCoroutine);
+            closeCoroutine = null;
         }
     }
 }

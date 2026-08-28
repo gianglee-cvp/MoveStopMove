@@ -590,6 +590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CanvasShopWeapon
   isDestroyOnClose: 0
+  uiElement: []
   priceText: {fileID: 5095874249260350599}
   nameWeapon: {fileID: 1594911743443153966}
   desWeapon: {fileID: 884346981746085429}

@@ -1723,6 +1723,8 @@ GameObject:
   - component: {fileID: 3667496061094438844}
   - component: {fileID: 1429001204335074975}
   - component: {fileID: 3568345333865422567}
+  - component: {fileID: 2358723441456477815}
+  - component: {fileID: 513197535560035249}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1789,6 +1791,69 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &2358723441456477815
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5650803839547504253}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &513197535560035249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5650803839547504253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4187b7b2bc2ed9145b85ab4fa7c141fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIAnimation
+  duration: 0.3
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  useScale: 0
+  scaleFrom: {x: 0.9, y: 0.9, z: 0.9}
+  scaleTo: {x: 1, y: 1, z: 1}
+  useFade: 1
+  alphaFrom: 0
+  alphaTo: 1
+  useMove: 0
+  positionFrom: {x: 0, y: 0}
+  positionTo: {x: 0, y: 0}
+  useRotate: 0
+  rotationFrom: {x: 0, y: 0, z: 0}
+  rotationTo: {x: 0, y: 0, z: 0}
+  rectTransform: {fileID: 0}
+  canvasGroup: {fileID: 0}
 --- !u!1 &5782107608886040240
 GameObject:
   m_ObjectHideFlags: 0
@@ -3314,6 +3379,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CanvasShopSkin
   isDestroyOnClose: 0
+  uiElement:
+  - {fileID: 513197535560035249}
   listCard:
   - {fileID: 6591877491944886887}
   - {fileID: 4263761330188826004}
