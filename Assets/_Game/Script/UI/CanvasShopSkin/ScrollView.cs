@@ -8,18 +8,15 @@ public class ScrollView : MonoBehaviour, IData
     [SerializeField] protected CardItem cardPrefab;
     [SerializeField] protected RectTransform cardHolder;
     [SerializeField] protected CanvasShopSkin canvasHolder;
-    protected List<Enum_ShopState> shopStates; 
+    protected IReadOnlyList<Enum_ShopState> shopStates; 
     public void OnInit()
     {
         DataManager.Instance.LoadGame(this);
         ItemData[] items = DataManager.Instance.GetListData(type);
-        if (items.Length > shopStates.Count)
+        if (items != null)
         {
-            int missingCount = items.Length - shopStates.Count;
-            for (int i = 0; i < missingCount; i++)
-            {
-                shopStates.Add(Enum_ShopState.buy);
-            }
+            DataManager.Instance.EnsureShopStateCount(type, items.Length);
+            shopStates = DataManager.Instance.GetShopStateByType(type);
         }
         for(int i = 1 ; i < items.Length ; i++)
         {

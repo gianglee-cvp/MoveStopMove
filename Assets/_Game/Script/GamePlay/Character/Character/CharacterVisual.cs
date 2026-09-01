@@ -184,8 +184,11 @@ public class CharacterVisual : MonoBehaviour
     {
         currentBullet = null;
         SimplePool.DeSpawn(currentWeapon);
+        currentWeapon = null;
         SimplePool.DeSpawn(currentHair);
+        currentHair = null;
         SimplePool.DeSpawn(currentShield);
+        currentShield = null;
     }
     //TODO xoa
     public float distance = 10f;

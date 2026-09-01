@@ -58,7 +58,7 @@ public class DataManager : Singleton<DataManager>
         //luu vao json
         dataHandler.Save(gameData);
     }
-    public int Gold => gameData != null ? gameData.gold : 0;
+    public int Gold => gameData != null ? gameData.GetGold() : 0;
     public Skin GetSkinEquipped() => gameData.GetSkinEquipped();
     public void OnApplicationQuit()
     {
@@ -71,30 +71,42 @@ public class DataManager : Singleton<DataManager>
     #region BuyItem
     public void AddGold(int amount)
     {
-        gameData.gold += amount;
+        gameData.SetGold(gameData.GetGold() + amount);
     }
     public bool TrySpendGold(int amount)
     {
-        if (gameData.gold < amount) return false;
+        if (gameData.GetGold() < amount) return false;
 
-        gameData.gold -= amount;
+        gameData.SetGold(gameData.GetGold() - amount);
         return true;
     }
     public int GetEquippedID(SkinType type)
     {
         return gameData.GetEquippedID(type);
     }
+    public IReadOnlyList<Enum_ShopState> GetShopStateByType(SkinType type)
+    {
+        return gameData.GetShopStateByType(type);
+    }
+    public void SetShopState(SkinType type, int index, Enum_ShopState state)
+    {
+        gameData.SetShopState(type, index, state);
+    }
+    public void EnsureShopStateCount(SkinType type, int requiredCount)
+    {
+        gameData.EnsureShopStateCount(type, requiredCount);
+    }
     public bool BuyItem(ItemData item)
     {
-        List<Enum_ShopState> shopStates = gameData.GetShopStateByType(item.Type);
+        IReadOnlyList<Enum_ShopState> shopStates = gameData.GetShopStateByType(item.Type);
 
-        if (shopStates[item.Index] != Enum_ShopState.buy)
+        if (shopStates == null || shopStates[item.Index] != Enum_ShopState.buy)
             return false;
 
         if (!TrySpendGold(item.Price))
             return false;
 
-        shopStates[item.Index] = Enum_ShopState.bought;
+        gameData.SetShopState(item.Type, item.Index, Enum_ShopState.bought);
 
         SelectItem(item);
         return true;
@@ -106,9 +118,9 @@ public class DataManager : Singleton<DataManager>
     }
     public bool SelectItem(ItemData item)
     {
-        List<Enum_ShopState> shopStates = gameData.GetShopStateByType(item.Type);
+        IReadOnlyList<Enum_ShopState> shopStates = gameData.GetShopStateByType(item.Type);
 
-        if (shopStates[item.Index] != Enum_ShopState.bought)
+        if (shopStates == null || shopStates[item.Index] != Enum_ShopState.bought)
             return false;
 
         int oldEquippedIndex = gameData.GetEquippedID(item.Type);
@@ -117,10 +129,10 @@ public class DataManager : Singleton<DataManager>
             oldEquippedIndex < shopStates.Count &&
             oldEquippedIndex != item.Index)
         {
-            shopStates[oldEquippedIndex] = Enum_ShopState.bought;
+            gameData.SetShopState(item.Type, oldEquippedIndex, Enum_ShopState.bought);
         }
 
-        shopStates[item.Index] = Enum_ShopState.equipped;
+        gameData.SetShopState(item.Type, item.Index, Enum_ShopState.equipped);
         gameData.SetEquippedID(item.Type, item.Index);
         
         return true;

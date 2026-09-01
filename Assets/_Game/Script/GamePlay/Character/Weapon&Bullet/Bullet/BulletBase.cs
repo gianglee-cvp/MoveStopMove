@@ -35,7 +35,6 @@ public class BulletBase : GameUnit
 
     public virtual void OnTriggerEnter(Collider other)
     {
-        Debug.Log("check name " + other.gameObject.name);
         Character target = CacheComponent<Collider, Character>.Get(other);
         if(target != null && target != owner)
         {

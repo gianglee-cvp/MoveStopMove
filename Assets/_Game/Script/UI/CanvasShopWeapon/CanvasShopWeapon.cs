@@ -30,7 +30,7 @@ public class CanvasShopWeapon : UICanvas,IData
     [SerializeField] protected TextMeshProUGUI unlock; //TODO add logic
     [SerializeField] protected Transform spawnPoint;
     protected int currentIndex;
-    protected List<Enum_ShopState> weaponShopState;
+    protected IReadOnlyList<Enum_ShopState> weaponShopState;
     public List<WeaponInfor> weaponItemDatas = new List<WeaponInfor>();
     public Dictionary<int , GameObject> objectToShow = new Dictionary<int, GameObject>();
     public List<Button> buttonsSelect = new List<Button>();
@@ -58,7 +58,7 @@ public class CanvasShopWeapon : UICanvas,IData
     }
     public void LoadGame(GameData gameData)
     {
-        weaponShopState = gameData.weaponShopState;
+        weaponShopState = gameData.GetShopStateByType(SkinType.Weapon);
     }
     public void SaveGame(GameData gameData)
     {
