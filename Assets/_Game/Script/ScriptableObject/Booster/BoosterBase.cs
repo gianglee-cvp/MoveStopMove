@@ -10,10 +10,14 @@ public enum BoosterType
 [CreateAssetMenu(fileName = "BoosterData",menuName = "Game/Booster/Booster Data")]
 public abstract class BoosterData : ScriptableObject
 {
-    public BoosterType type;
+    [SerializeField] protected BoosterType type;
 
     [Header("Value")]
-    public float value;
+    [SerializeField] protected float value;
+
+    public BoosterType Type => type;
+    public float Value => value;
+
     public abstract void Apply(Character ch, float itemValue);
 }
 [CreateAssetMenu(fileName = "SpeedBooster",menuName = "Game/Booster/Booster Speed")]

@@ -26,8 +26,8 @@ public class Character : GameUnit
     public bool IsDead{get => isDead;}
     //attack
     protected Coroutine attackCO;
-    //TODO đổi thành protected
-    public List<Character> listTarget = new List<Character>();
+    [SerializeField] protected List<Character> listTarget = new List<Character>();
+    public IReadOnlyList<Character> ListTarget => listTarget;
     [SerializeField] protected Character currentTarget;
 
     public Vector3 Pos => TF.position;

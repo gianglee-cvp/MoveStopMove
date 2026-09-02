@@ -21,7 +21,11 @@ public class LevelData : ScriptableObject
 [System.Serializable]
 public class SingleLevelData
 {
-    public int totalBotCount;
-    public int inMapBotCount;
-    public GameObject map;
+    [SerializeField] private int totalBotCount;
+    [SerializeField] private int inMapBotCount;
+    [SerializeField] private GameObject map;
+
+    public int TotalBotCount => totalBotCount;
+    public int InMapBotCount => inMapBotCount;
+    public GameObject Map => map;
 }

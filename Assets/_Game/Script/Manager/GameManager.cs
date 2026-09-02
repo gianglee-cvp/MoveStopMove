@@ -11,8 +11,7 @@ public enum Enum_GameState
 }
 public class GameManager : Singleton<GameManager>
 {
-    public List<Character> list = new List<Character>();
-    public PoolControl poolControl;
+    [SerializeField] protected PoolControl poolControl;
     [SerializeField] private bool isLoaded;
     [SerializeField] private float loadingFadeDuration = 0.25f;
     protected Enum_GameState  currentGameState;
@@ -38,10 +37,6 @@ public class GameManager : Singleton<GameManager>
         poolControl.OnInit();
         DataManager.Instance.OnInit();
         InputManager.Instance.OnInit();
-        foreach (var ch in list)
-        {
-            ch.OnInit();
-        }
         LevelManager.Instance.OnInit();
 
         isLoaded = true;

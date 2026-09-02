@@ -10,6 +10,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnInit()
     {
+        player.OnInit();
         LoadLevel(currentLevelIndex);
     }
 
@@ -24,9 +25,9 @@ public class LevelManager : Singleton<LevelManager>
             Destroy(currentMap);
         }
 
-        if (level.map != null)
+        if (level.Map != null)
         {
-            currentMap = Instantiate(level.map, Vector3.zero, Quaternion.identity);
+            currentMap = Instantiate(level.Map, Vector3.zero, Quaternion.identity);
         }
 
         currentLevelIndex = index;

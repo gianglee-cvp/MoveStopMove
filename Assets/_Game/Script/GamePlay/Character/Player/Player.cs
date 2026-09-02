@@ -10,7 +10,6 @@ public class Player : Character,IData
     protected InputAction moveAction;
     protected Vector2 moveAmount;
     protected Dictionary<SkinType, Action<int>> skinSetters;
-    public int level = 0; // TODO xoa 
     public override void OnInit()
     {
         base.OnInit();
@@ -35,7 +34,6 @@ public class Player : Character,IData
         }
         if (Keyboard.current.kKey.wasPressedThisFrame)
         {
-            LevelUp(level);
             if(isDead) SaveMe();
         } //TODO xoa 
         if (GameManager.Instance.IsGameState(Enum_GameState.Play))

@@ -44,8 +44,8 @@ public class BotManager : Singleton<BotManager>
         {
             return;
         }
-        totalBotCount = Mathf.Max(0, data.totalBotCount);
-        inMapBotCount = Mathf.Clamp(data.inMapBotCount, 0, totalBotCount);
+        totalBotCount = Mathf.Max(0, data.TotalBotCount);
+        inMapBotCount = Mathf.Clamp(data.InMapBotCount, 0, totalBotCount);
         respawnTimer = 0f;
     }
     public void SpawnBot(int cnt)

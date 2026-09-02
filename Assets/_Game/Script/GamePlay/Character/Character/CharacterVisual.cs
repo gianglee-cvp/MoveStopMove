@@ -190,15 +190,15 @@ public class CharacterVisual : MonoBehaviour
         SimplePool.DeSpawn(currentShield);
         currentShield = null;
     }
-    //TODO xoa
-    public float distance = 10f;
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Vector3 start = transform.position;
-        Vector3 end = start + transform.forward * distance;
-        Gizmos.DrawLine(start, end);
-    }
+    // //TODO xoa
+    // public float distance = 10f;
+    // void OnDrawGizmos()
+    // {
+    //     Gizmos.color = Color.green;
+    //     Vector3 start = transform.position;
+    //     Vector3 end = start + transform.forward * distance;
+    //     Gizmos.DrawLine(start, end); 
+    // }
 
     private void ResetAndApplyBoosters()
     {

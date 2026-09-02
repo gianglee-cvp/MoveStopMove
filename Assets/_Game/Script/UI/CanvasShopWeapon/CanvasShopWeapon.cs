@@ -31,9 +31,9 @@ public class CanvasShopWeapon : UICanvas,IData
     [SerializeField] protected Transform spawnPoint;
     protected int currentIndex;
     protected IReadOnlyList<Enum_ShopState> weaponShopState;
-    public List<WeaponInfor> weaponItemDatas = new List<WeaponInfor>();
-    public Dictionary<int , GameObject> objectToShow = new Dictionary<int, GameObject>();
-    public List<Button> buttonsSelect = new List<Button>();
+    protected List<WeaponInfor> weaponItemDatas = new List<WeaponInfor>();
+    protected Dictionary<int , GameObject> objectToShow = new Dictionary<int, GameObject>();
+    [SerializeField] protected List<Button> buttonsSelect = new List<Button>();
 
     public void Awake()
     {
