@@ -34,6 +34,7 @@ public class CanvasShopSkin : UICanvas
     {
         base.Setup();
         SelectCard(0);
+        //TODO chuyen logic sang cho khac 
         LevelManager.Instance.ChangeAnimPlayer(CharacterAnimType.Dance);
     }
     public void SelectCard(int cardType)

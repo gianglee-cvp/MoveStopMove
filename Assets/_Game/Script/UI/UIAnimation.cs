@@ -1,23 +1,24 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIAnimation : MonoBehaviour
 {
     [Header("Animation")]
     [SerializeField] private float duration = 0.25f;
 
-    [SerializeField]
-    private AnimationCurve curve =
-        AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
-
     [Header("Scale")]
     [SerializeField] private bool useScale = true;
+    [SerializeField] private AnimationCurve scaleCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
     [SerializeField] private Vector3 scaleFrom = Vector3.zero;
     [SerializeField] private Vector3 scaleTo = Vector3.one;
 
     [Header("Fade")]
     [SerializeField] private bool useFade = false;
+    [SerializeField] private bool useCanvasGroup = true;
+    [SerializeField] private AnimationCurve fadeCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
 
     [SerializeField, Range(0f, 1f)]
     private float alphaFrom = 0f;
@@ -27,17 +28,20 @@ public class UIAnimation : MonoBehaviour
 
     [Header("Move")]
     [SerializeField] private bool useMove = false;
+    [SerializeField] private AnimationCurve moveCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
     [SerializeField] private Vector2 positionFrom;
     [SerializeField] private Vector2 positionTo;
 
     [Header("Rotate")]
     [SerializeField] private bool useRotate = false;
+    [SerializeField] private AnimationCurve rotateCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
     [SerializeField] private Vector3 rotationFrom;
     [SerializeField] private Vector3 rotationTo;
 
     [Header("References")]
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private List<Graphic> targetGraphics = new List<Graphic>();
 
     private Coroutine animationCoroutine;
 
@@ -58,7 +62,7 @@ public class UIAnimation : MonoBehaviour
             rectTransform = GetComponent<RectTransform>();
         }
 
-        if (canvasGroup == null && useFade)
+        if (useFade && useCanvasGroup && canvasGroup == null)
         {
             canvasGroup = GetComponent<CanvasGroup>();
         }
@@ -116,17 +120,10 @@ public class UIAnimation : MonoBehaviour
         {
             time += Time.deltaTime;
 
-            float normalizedTime =
-                Mathf.Clamp01(time / duration);
+            float normalizedTime = Mathf.Clamp01(time / duration);
+            float progress = reverse ? (1f - normalizedTime) : normalizedTime;
 
-            float t = curve.Evaluate(normalizedTime);
-
-            if (reverse)
-            {
-                t = 1f - t;
-            }
-
-            UpdateAnimation(t);
+            UpdateAnimation(progress);
 
             yield return null;
         }
@@ -147,25 +144,29 @@ public class UIAnimation : MonoBehaviour
     // UPDATE
     // =========================================================
 
-    private void UpdateAnimation(float t)
+    private void UpdateAnimation(float progress)
     {
         if (useScale)
         {
+            float t = scaleCurve != null ? scaleCurve.Evaluate(progress) : progress;
             UpdateScale(t);
         }
 
         if (useFade)
         {
+            float t = fadeCurve != null ? fadeCurve.Evaluate(progress) : progress;
             UpdateFade(t);
         }
 
         if (useMove)
         {
+            float t = moveCurve != null ? moveCurve.Evaluate(progress) : progress;
             UpdateMove(t);
         }
 
         if (useRotate)
         {
+            float t = rotateCurve != null ? rotateCurve.Evaluate(progress) : progress;
             UpdateRotate(t);
         }
     }
@@ -190,17 +191,27 @@ public class UIAnimation : MonoBehaviour
 
     private void UpdateFade(float t)
     {
-        if (canvasGroup == null)
-        {
-            return;
-        }
+        float currentAlpha = Mathf.Lerp(alphaFrom, alphaTo, t);
 
-        canvasGroup.alpha =
-            Mathf.Lerp(
-                alphaFrom,
-                alphaTo,
-                t
-            );
+        if (useCanvasGroup)
+        {
+            if (canvasGroup != null)
+            {
+                canvasGroup.alpha = currentAlpha;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < targetGraphics.Count; i++)
+            {
+                if (targetGraphics[i] != null)
+                {
+                    Color color = targetGraphics[i].color;
+                    color.a = currentAlpha;
+                    targetGraphics[i].color = color;
+                }
+            }
+        }
     }
 
     // =========================================================
