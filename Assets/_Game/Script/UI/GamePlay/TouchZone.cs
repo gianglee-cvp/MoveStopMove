@@ -9,6 +9,7 @@ public class TouchZone : MonoBehaviour, IPointerDownHandler , IDragHandler , IPo
     [SerializeField] protected OnScreenStick joyStickVisual; 
     void Awake()
     {
+        ActiveJoyStick();
         SetJoystickVisible(false);
     }
     public void OnPointerDown(PointerEventData eventData)
@@ -49,5 +50,15 @@ public class TouchZone : MonoBehaviour, IPointerDownHandler , IDragHandler , IPo
         // tat trong inspector
         // joyStickCanvasGroup.blocksRaycasts = false;
         // joyStickCanvasGroup.interactable = false;
+    }
+    public void ReleaseJoystick()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        OnPointerUp(eventData);
+        joyStickHolder.gameObject.SetActive(false);
+    }
+    public void ActiveJoyStick()
+    {
+        joyStickHolder.gameObject.SetActive(true);
     }
 }

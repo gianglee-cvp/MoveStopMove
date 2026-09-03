@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    [SerializeField] LevelData levelData;
-    [SerializeField] int currentLevelIndex = 0;
+    [SerializeField] protected LevelData levelData;
+    [SerializeField] protected int currentLevelIndex = 0;
     [SerializeField] protected Player player;
 
     protected GameObject currentMap;
@@ -12,6 +12,9 @@ public class LevelManager : Singleton<LevelManager>
     {
         player.OnInit();
         LoadLevel(currentLevelIndex);
+        Vector3 position = levelData.GetPlayerPosition();
+        Vector3 rotation = levelData.GetPlayerRotation();
+        player.TF.SetLocalPositionAndRotation(position, Quaternion.Euler(rotation));
     }
 
     public void LoadLevel(int index)
@@ -56,4 +59,19 @@ public class LevelManager : Singleton<LevelManager>
     {
         player.ReloadCloth();
     }
+    public void RevivePlayer()
+    {
+        if (player != null)
+        {
+            player.SaveMe();
+        }
+    }
+
+    public void EndGame()
+    {
+        BotManager.Instance.ClearBots();
+        CacheManager.ClearNavMeshCache();
+        player.OnInit();
+    }
 }
+

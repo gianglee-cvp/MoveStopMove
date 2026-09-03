@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class DataManager : Singleton<DataManager>
 {
@@ -16,7 +17,7 @@ public class DataManager : Singleton<DataManager>
     {
         //Note : cac IData phai duoc tao truoc datamanager va init sau data manager neu co ham load trong init
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-        // Debug.Log(Application.persistentDataPath);
+        Debug.Log(Application.persistentDataPath);
         itemData.OnInit();
         allDataObject = FindAllDataObject();
         Debug.Log("All object" + allDataObject.Count);
@@ -96,6 +97,33 @@ public class DataManager : Singleton<DataManager>
     {
         gameData.EnsureShopStateCount(type, requiredCount);
     }
+    public ItemData UnlockRandomItem()
+    {
+        SkinType[] unlockableTypes = { SkinType.Pant, SkinType.Hair, SkinType.Shield, SkinType.Weapon };
+
+        // Gom tất cả (type, index) đang bị khoá
+        var locked = new List<(SkinType type, int index)>();
+        foreach (SkinType type in unlockableTypes)
+        {
+            IReadOnlyList<Enum_ShopState> states = gameData.GetShopStateByType(type);
+            if (states == null) continue;
+            for (int i = 0; i < states.Count; i++)
+            {
+                if (states[i] == Enum_ShopState.buy)
+                    locked.Add((type, i));
+            }
+        }
+
+        if (locked.Count == 0) return null;
+
+        // Chọn ngẫu nhiên 1 item
+        var chosen = locked[UnityEngine.Random.Range(0, locked.Count)];
+        gameData.SetShopState(chosen.type, chosen.index, Enum_ShopState.bought);
+        SaveGame();
+
+        return GetItemData<ItemData>(chosen.type, chosen.index);
+    }
+
     public bool BuyItem(ItemData item)
     {
         IReadOnlyList<Enum_ShopState> shopStates = gameData.GetShopStateByType(item.Type);

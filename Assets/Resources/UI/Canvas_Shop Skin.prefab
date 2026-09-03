@@ -3993,6 +3993,7 @@ MonoBehaviour:
   - {fileID: 5587404404581539847}
   desText: {fileID: 2110703561260005528}
   priceText: {fileID: 633299970363349351}
+  goldText: {fileID: 2915710167312758617}
   buttonsSelect:
   - {fileID: 1142208298665191649}
   - {fileID: 1891284814429004994}

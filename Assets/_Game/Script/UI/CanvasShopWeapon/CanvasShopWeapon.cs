@@ -24,6 +24,7 @@ public class WeaponInfor
 }
 public class CanvasShopWeapon : UICanvas,IData
 {
+    [SerializeField] protected TextMeshProUGUI goldText;
     [SerializeField] protected TextMeshProUGUI priceText;
     [SerializeField] protected TextMeshProUGUI nameWeapon;
     [SerializeField] protected TextMeshProUGUI desWeapon;
@@ -55,6 +56,11 @@ public class CanvasShopWeapon : UICanvas,IData
         }
         currentIndex = 0;
         ChangeIndex(currentIndex);
+    }
+    public override void Setup()
+    {
+        base.Setup();
+        goldText.text =  DataManager.Instance.Gold.ToString();
     }
     public void LoadGame(GameData gameData)
     {
@@ -108,6 +114,7 @@ public class CanvasShopWeapon : UICanvas,IData
         if (DataManager.Instance.BuyItem(SkinType.Weapon, currentIndex))
         {
             ChangeButtonBuy(Enum_ShopState.equipped);
+            goldText.text =  DataManager.Instance.Gold.ToString();
         }
     }
     public void ButtonSelect()

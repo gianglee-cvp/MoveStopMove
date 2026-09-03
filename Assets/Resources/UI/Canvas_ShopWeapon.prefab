@@ -331,7 +331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIAnimation
   duration: 0.01
-  curve:
+  useScale: 0
+  scaleCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -355,20 +356,93 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  useScale: 0
   scaleFrom: {x: 0, y: 0, z: 0}
   scaleTo: {x: 1, y: 1, z: 1}
   useFade: 1
+  useCanvasGroup: 1
+  fadeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   alphaFrom: 0
   alphaTo: 1
   useMove: 0
+  moveCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   positionFrom: {x: 0, y: 0}
   positionTo: {x: 0, y: 0}
   useRotate: 0
+  rotateCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   rotationFrom: {x: 0, y: 0, z: 0}
   rotationTo: {x: 0, y: 0, z: 0}
   rectTransform: {fileID: 994806732637620967}
   canvasGroup: {fileID: 7467520072498795665}
+  targetGraphics: []
 --- !u!225 &7467520072498795665
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -696,6 +770,7 @@ MonoBehaviour:
   isDestroyOnClose: 0
   uiElement:
   - {fileID: 394731237485049945}
+  goldText: {fileID: 9192588258776668728}
   priceText: {fileID: 5095874249260350599}
   nameWeapon: {fileID: 1594911743443153966}
   desWeapon: {fileID: 884346981746085429}
@@ -2259,7 +2334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
+  m_Color: {r: 0.23921569, g: 0.23921569, b: 0.23921569, a: 0.81960785}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

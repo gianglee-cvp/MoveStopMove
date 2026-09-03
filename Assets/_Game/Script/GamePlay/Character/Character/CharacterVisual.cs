@@ -49,6 +49,7 @@ public class CharacterVisual : MonoBehaviour
     public void OnInit()
     {
         currentBullet = null;
+        ActiveWeapon();
     }
     public void ApplyNewSkin(Skin skin)
     {

@@ -17,6 +17,7 @@ public class CanvasShopSkin : UICanvas
     [SerializeField] protected List<Button> listButtonCard;
     [SerializeField] protected TextMeshProUGUI desText;
     [SerializeField] protected TextMeshProUGUI priceText;
+    [SerializeField] protected TextMeshProUGUI goldText;
     protected CardType currentCard = CardType.Init;
     protected ItemData selectedItem;
     protected ScrollView selectedScrollView;
@@ -34,6 +35,7 @@ public class CanvasShopSkin : UICanvas
     {
         base.Setup();
         SelectCard(0);
+        goldText.text =  DataManager.Instance.Gold.ToString();
         //TODO chuyen logic sang cho khac 
         LevelManager.Instance.ChangeAnimPlayer(CharacterAnimType.Dance);
     }
@@ -85,6 +87,7 @@ public class CanvasShopSkin : UICanvas
             selectedScrollView.RefreshItemState(targetItem.Index);
         }
         ChangeButtonBuy(Enum_ShopState.equipped);
+        goldText.text =  DataManager.Instance.Gold.ToString();
 
     }
     public void ChangeButtonBuy(Enum_ShopState type)

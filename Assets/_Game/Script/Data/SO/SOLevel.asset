@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: SOLevel
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   datas:
-  - totalBotCount: 100
+  - totalBotCount: 99
     inMapBotCount: 10
     map: {fileID: 6477808105438729768, guid: 6e4092132dba0d842bb787e013d94818, type: 3}
+  playerPosition: {x: 0, y: 0.544, z: 0}
+  playerRotaion: {x: 0, y: 180, z: 0.0059974194}

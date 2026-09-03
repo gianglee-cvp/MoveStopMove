@@ -4,6 +4,8 @@ using UnityEngine;
 public class LevelData : ScriptableObject
 {
     [SerializeField] SingleLevelData[] datas;
+    [SerializeField] protected Vector3 playerPosition;
+    [SerializeField] protected Vector3 playerRotaion;
 
     public int Count => datas == null ? 0 : datas.Length;
 
@@ -15,6 +17,14 @@ public class LevelData : ScriptableObject
         }
 
         return datas[index];
+    }
+    public Vector3 GetPlayerPosition()
+    {
+        return playerPosition;
+    }
+    public Vector3 GetPlayerRotation()
+    {
+        return playerRotaion;
     }
 }
 

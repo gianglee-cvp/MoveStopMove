@@ -2873,6 +2873,7 @@ MonoBehaviour:
   - {fileID: 7809999381271445830}
   - {fileID: 9026305566714921914}
   - {fileID: 1423055228647090352}
+  goldText: {fileID: 5460412410756708057}
 --- !u!1 &8438890286860373943
 GameObject:
   m_ObjectHideFlags: 0

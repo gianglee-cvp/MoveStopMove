@@ -222,7 +222,7 @@ MonoBehaviour:
   listWeapon:
   - itemName: Arrow
     value: 3
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 641106c7d93b95f48a54d9f52e1afc2d, type: 3}
     price: 200
     des: Arrow
     weaponType: 0
@@ -231,7 +231,7 @@ MonoBehaviour:
     bulletPrefab: {fileID: 7445563168623899420, guid: 1038ee923aa48034395aea504bd8b2e2, type: 3}
   - itemName: Axe_0
     value: 3
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: cb070924a9616bc48964cecca600e330, type: 3}
     price: 300
     des: Axe_0
     weaponType: 1
@@ -240,7 +240,7 @@ MonoBehaviour:
     bulletPrefab: {fileID: 276168288825024153, guid: 1d035d2eaa13a1545ae59e3bb8996c52, type: 3}
   - itemName: Axe_1
     value: 3
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: a313b820c12f07f4f9d6185bb99f0f8b, type: 3}
     price: 400
     des: Axe_1
     weaponType: 2
@@ -249,7 +249,7 @@ MonoBehaviour:
     bulletPrefab: {fileID: 3099864463117172736, guid: fb54c9950909a0742a056fb2fe7f3868, type: 3}
   - itemName: Boomerang
     value: 3
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 763b978d8042a844d9fcf5e94d07903b, type: 3}
     price: 500
     des: Boomerang
     weaponType: 3
@@ -258,7 +258,7 @@ MonoBehaviour:
     bulletPrefab: {fileID: 4007530091295269805, guid: 1f402054716ffd44bb304ec3f5f8caeb, type: 3}
   - itemName: Candy_0
     value: 3
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 4f029b069ce34c149b0ce451077bbed1, type: 3}
     price: 600
     des: Candy_0
     weaponType: 4
@@ -267,7 +267,7 @@ MonoBehaviour:
     bulletPrefab: {fileID: -5543674963607660766, guid: df338877a925fbe4f9081b549597f943, type: 3}
   - itemName: Candy_1
     value: 3
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 36e9efdb0dd554e4a9f15bfb88f1285c, type: 3}
     price: 700
     des: Candy_1
     weaponType: 5
@@ -276,7 +276,7 @@ MonoBehaviour:
     bulletPrefab: {fileID: -6948816327226830810, guid: 1100ea3983c86404c931f03dd2910d4d, type: 3}
   - itemName: Candy_2
     value: 3
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: be62374de84f43141bdb1ac66b288982, type: 3}
     price: 800
     des: Candy_2
     weaponType: 6
@@ -285,7 +285,7 @@ MonoBehaviour:
     bulletPrefab: {fileID: 8302399409961057082, guid: afcd94584f283774cb5a94c8a53399d1, type: 3}
   - itemName: Candy_4
     value: 3
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: e491713abf3dd244dae392dbf5af22a4, type: 3}
     price: 900
     des: Candy_4
     weaponType: 7
@@ -294,7 +294,7 @@ MonoBehaviour:
     bulletPrefab: {fileID: 6555293461561086449, guid: e44d4afd11a27234faafe16792ba0809, type: 3}
   - itemName: Hammer
     value: 3
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: ee62d9d4d1f7eba4185d4282ff9f8324, type: 3}
     price: 1000
     des: Hammer
     weaponType: 8
@@ -303,7 +303,7 @@ MonoBehaviour:
     bulletPrefab: {fileID: 8920024679641870541, guid: 5a9e00ce5be893a4baa0d110921e91d7, type: 3}
   - itemName: Knife
     value: 3
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 1763fc2f40e91ae46b03a1b78987490a, type: 3}
     price: 1100
     des: Knife
     weaponType: 9
@@ -312,7 +312,7 @@ MonoBehaviour:
     bulletPrefab: {fileID: 4637542047208886707, guid: 8f73dd4863eec8b429841c95e73958a2, type: 3}
   - itemName: Uzi
     value: 3
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 231154379eecb35468ed65918498b584, type: 3}
     price: 1200
     des: Uzi
     weaponType: 10
@@ -321,7 +321,7 @@ MonoBehaviour:
     bulletPrefab: {fileID: 5314848872641331304, guid: ce59a4364c1d3dc44a61ef4e1c0733d1, type: 3}
   - itemName: Z
     value: 3
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 6dbc8cc7e6d4bd348b65310e7d58fa27, type: 3}
     price: 1300
     des: Z
     weaponType: 11

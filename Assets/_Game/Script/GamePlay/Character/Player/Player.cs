@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
@@ -36,7 +37,7 @@ public class Player : Character,IData
         {
             if(isDead) SaveMe();
         } //TODO xoa 
-        if (GameManager.Instance.IsGameState(Enum_GameState.Play))
+        if (GameManager.Instance.IsGameState(Enum_GameState.Play) && !isDead)
         {
             SetTarget();
             if (moveAction.enabled)
@@ -121,10 +122,29 @@ public class Player : Character,IData
     {
         characterVisual.ApplyNewSkin(DataManager.Instance.GetSkinEquipped());
     }
-    //TODO xoa 
     public void SaveMe()
     {
-        OnInit();
+        isDead = false;
+        isAttacking = false;
+        isMoving = false;
+        CancelAttack();
+        listTarget.Clear();
+        currentTarget = null;
+        characterVisual.ActiveWeapon();
+        characterVisual.ChangeAnim(CharacterAnimType.Idle);
+        ShowRangeUI();
+    }
+
+    public override void OnDead()
+    {
+        base.OnDead();
+        UIManager.Instance.GetUI<CanvasGamePlay>().ReleaseJoystick();
+        StartCoroutine(PlayerDeadCoroutine());
+    }
+    private IEnumerator PlayerDeadCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        UIManager.Instance.OpenUI<CanvasRevive>();
     }
     private void InitSkinSetters()
     {

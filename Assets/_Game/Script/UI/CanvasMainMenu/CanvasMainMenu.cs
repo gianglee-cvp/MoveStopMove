@@ -1,9 +1,13 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 public class CanvasMainMenu : UICanvas
 {
+    [SerializeField] TextMeshProUGUI goldText;
     public override void Setup()
     {
         base.Setup();
+        goldText.text =  DataManager.Instance.Gold.ToString();
     }
     public void ButtonPlay()
     {

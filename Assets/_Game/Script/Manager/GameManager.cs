@@ -63,4 +63,12 @@ public class GameManager : Singleton<GameManager>
     {
         return currentGameState == state;
     }
+    public void ReturnToMainMenu()
+    {
+        LevelManager.Instance.EndGame();
+        LevelManager.Instance.OnInit();
+        UIManager.Instance.CloseAllUI();
+        UIManager.Instance.OpenUI<CanvasMainMenu>();
+        ChangeGameState(Enum_GameState.MainMenu);
+    }
 }

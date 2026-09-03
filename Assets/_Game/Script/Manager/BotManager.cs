@@ -9,7 +9,7 @@ public class BotManager : Singleton<BotManager>
     [SerializeField] protected int totalBotCount;
     [SerializeField] protected int inMapBotCount;
     [SerializeField] protected LayerMask characterLayer;
-    protected int currentBotCount => listBotActive.Count;
+    protected int currentBotActiveInMapCount => listBotActive.Count;
     protected List<Bot> listBotActive = new List<Bot>();
     protected float respawnTimer;
 
@@ -22,11 +22,10 @@ public class BotManager : Singleton<BotManager>
     void Update()
     {
         if(!GameManager.Instance.IsGameState(Enum_GameState.Play)) return;
-        if (currentBotCount >= inMapBotCount || totalBotCount <= currentBotCount)
+        if (currentBotActiveInMapCount >= inMapBotCount || totalBotCount <= currentBotActiveInMapCount)
         {
             return;
         }
-        if(totalBotCount <= currentBotCount) return;
         SpawnOneBotRandom();
         respawnTimer += Time.deltaTime;
         if (respawnTimer >= respawnCheckInterval)
@@ -57,7 +56,7 @@ public class BotManager : Singleton<BotManager>
     }
     protected void RespawnMissingBots()
     {
-        int respawnCount = Mathf.Min(inMapBotCount - currentBotCount, totalBotCount - currentBotCount);
+        int respawnCount = Mathf.Min(inMapBotCount - currentBotActiveInMapCount, totalBotCount - currentBotActiveInMapCount);
         for (int i = 0; i < respawnCount; i++)
         {
             SpawnOneBotRandom();
@@ -120,5 +119,10 @@ public class BotManager : Singleton<BotManager>
         }
 
         return false;
+    }
+    public int BotActiveCount()
+    {
+        // return (totalBotCount > currentBotActiveInMapCount) ? totalBotCount : currentBotActiveInMapCount;
+        return (currentBotActiveInMapCount < inMapBotCount) ? currentBotActiveInMapCount : totalBotCount;
     }
 }
