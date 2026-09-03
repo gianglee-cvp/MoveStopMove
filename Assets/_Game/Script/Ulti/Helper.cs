@@ -46,16 +46,26 @@ public static class Helper
 
     public static Vector3 GetRandomPointOnNavMesh()
     {
-        if (!EnsureNavMeshCache(out Vector3[] vertices, out int[] indices))
+        if (!EnsureNavMeshCache(out Vector3[] vertices, out int[] indices, out float[] cumulativeAreas, out float totalArea))
         {
             return Vector3.zero;
         }
 
-        int triangleIndex = Random.Range(0, indices.Length / 3) * 3;
+        float randomArea = Random.Range(0f, totalArea);
+        int triangleIndex = 0;
+        for (int i = 0; i < cumulativeAreas.Length; i++)
+        {
+            if (randomArea <= cumulativeAreas[i])
+            {
+                triangleIndex = i;
+                break;
+            }
+        }
 
-        Vector3 a = vertices[indices[triangleIndex]];
-        Vector3 b = vertices[indices[triangleIndex + 1]];
-        Vector3 c = vertices[indices[triangleIndex + 2]];
+        int indexPtr = triangleIndex * 3;
+        Vector3 a = vertices[indices[indexPtr]];
+        Vector3 b = vertices[indices[indexPtr + 1]];
+        Vector3 c = vertices[indices[indexPtr + 2]];
 
         float r1 = Random.value;
         float r2 = Random.value;
@@ -69,9 +79,9 @@ public static class Helper
         return a + r1 * (b - a) + r2 * (c - a);
     }
 
-    private static bool EnsureNavMeshCache(out Vector3[] vertices, out int[] indices)
+    private static bool EnsureNavMeshCache(out Vector3[] vertices, out int[] indices, out float[] cumulativeAreas, out float totalArea)
     {
-        if (CacheManager.TryGetNavMeshCache(out vertices, out indices))
+        if (CacheManager.TryGetNavMeshCache(out vertices, out indices, out cumulativeAreas, out totalArea))
         {
             return true;
         }
@@ -82,9 +92,11 @@ public static class Helper
             Debug.LogWarning("[Helper] Khong tim thay du lieu NavMesh!");
             vertices = null;
             indices = null;
+            cumulativeAreas = null;
+            totalArea = 0f;
             return false;
         }
 
-        return CacheManager.TryGetNavMeshCache(out vertices, out indices);
+        return CacheManager.TryGetNavMeshCache(out vertices, out indices, out cumulativeAreas, out totalArea);
     }
 }

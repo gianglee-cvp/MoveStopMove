@@ -65,11 +65,11 @@ public class BotManager : Singleton<BotManager>
 
     protected void SpawnOneBotRandom()
     {
-        Vector3 spawnPosition  = Vector3.zero;
+        Vector3 spawnPosition = Vector3.zero;
         for (int i = 0; i < 20; i++)
         {
             spawnPosition = Helper.GetRandomPointOnNavMesh();
-            if (!IsNearAnyCharacter(spawnPosition))
+            if (!IsNearAnyCharacter(spawnPosition) && !IsInCameraView(spawnPosition))
             {
                 break;
             }
@@ -77,7 +77,19 @@ public class BotManager : Singleton<BotManager>
         Bot bot = SimplePool.Spawn<Bot>(PoolType.Enemy, spawnPosition, Quaternion.identity, null);
         listBotActive.Add(bot);
         bot.OnInit();
-        return;
+    }
+
+    private bool IsInCameraView(Vector3 position, float margin = 0.1f)
+    {
+        Camera mainCam = Camera.main;
+        if (mainCam == null) return false;
+
+        Vector3 viewportPoint = mainCam.WorldToViewportPoint(position);
+        bool inX = viewportPoint.x >= -margin && viewportPoint.x <= (1f + margin);
+        bool inY = viewportPoint.y >= -margin && viewportPoint.y <= (1f + margin);
+        bool inZ = viewportPoint.z > 0;
+
+        return inZ && inX && inY;
     }
 
     public void DeSpawnBot(Bot bot)
