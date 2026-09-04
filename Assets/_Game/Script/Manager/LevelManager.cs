@@ -10,17 +10,8 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnInit()
     {
-        
         LoadLevel(currentLevelIndex);
-        InitPlayer();
-    }
-    //todo cho vào player oninit
-    public void InitPlayer()
-    {
-        player.OnInit();
-        Vector3 position = levelData.GetPlayerPosition();
-        Vector3 rotation = levelData.GetPlayerRotation();
-        player.TF.SetLocalPositionAndRotation(position, Quaternion.Euler(rotation));
+        player.OnInit(levelData.GetPlayerPosition(), levelData.GetPlayerRotation());
     }
 
     public void LoadLevel(int index)
@@ -53,25 +44,6 @@ public class LevelManager : Singleton<LevelManager>
         int nextLevelIndex = (currentLevelIndex + 1) % levelData.Count;
         LoadLevel(nextLevelIndex);
     }
-    public void ChangeAnimPlayer(CharacterAnimType type)
-    {
-        player.ChangeAnim(type);
-    }
-    public void PlayerTrySkin(int index , SkinType type)
-    {
-        player.TryCloth(index , type);
-    }
-    public void ReloadCloth()
-    {
-        player.ReloadCloth();
-    }
-    public void RevivePlayer()
-    {
-        if (player != null)
-        {
-            player.SaveMe();
-        }
-    }
     public Player GetPlayer()
     {
         return player;
@@ -82,6 +54,11 @@ public class LevelManager : Singleton<LevelManager>
         BotManager.Instance.ClearBots();
         CacheManager.ClearNavMeshCache();
         player.OnInit();
+    }
+    public void Retry()
+    {
+        EndGame();
+        OnInit();
     }
 }
 

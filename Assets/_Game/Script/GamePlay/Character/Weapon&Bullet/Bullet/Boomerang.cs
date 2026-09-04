@@ -6,13 +6,12 @@ public class Boomerang : BulletBase
     [SerializeField] protected Vector3 targetPos;
     protected float catchDistance;
     protected bool isReturning;
-    [SerializeField] protected bool isNullOwner;
+    protected bool isNullOwner => owner == null || !owner.gameObject.activeSelf;
     protected float speedUpReturning = 2f;
     public override void Init(Vector3 startDir, float rangeAttack, Vector3 rootPosion, Character ch)
     {
         base.Init(startDir, rangeAttack, rootPosion, ch);
         isReturning = false;
-        isNullOwner = false;
         targetPos = Helper.CopyPositionXZ(owner.Pos , TF.position);
         catchDistance = owner.capsuleRadius;
     }
@@ -20,13 +19,14 @@ public class Boomerang : BulletBase
     void Update()
     {
         if (isOnObstacle) return;
-        //TODO doi thanh isdead
-        if(owner == null || !owner.gameObject.activeSelf)
-        {
-            isNullOwner = true;
-        }
+        
         if (!isNullOwner)
         {
+            if (owner.IsDead)
+            {
+                owner = null;
+                return;
+            }
             targetPos =  Helper.CopyPositionXZ(owner.Pos, TF.position);
             catchDistance = owner.capsuleRadius;
         }

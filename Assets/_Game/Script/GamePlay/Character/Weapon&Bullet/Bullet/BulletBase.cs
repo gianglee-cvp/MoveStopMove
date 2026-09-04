@@ -83,6 +83,10 @@ public class BulletBase : GameUnit
         if (owner == null || !owner.isActiveAndEnabled) return;
         owner.CollectExp(ch.Level);
     }
+    public void SetNullOwner()
+    {
+        owner = null;
+    }
 
     private void OnDrawGizmos()
     {

@@ -37,8 +37,7 @@ public class CanvasRevive : UICanvas
         {
             StopCountdown();
             Close(0);
-            LevelManager.Instance.RevivePlayer();
-            // UIManager.Instance.OpenUI<CanvasGamePlay>();
+            LevelManager.Instance.GetPlayer().SaveMe();
             UIManager.Instance.GetUI<CanvasGamePlay>().ActiveJoystick();
         }
         else

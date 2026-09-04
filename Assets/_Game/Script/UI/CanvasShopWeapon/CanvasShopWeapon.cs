@@ -107,7 +107,7 @@ public class CanvasShopWeapon : UICanvas,IData
         Close(0);
         GameManager.Instance.ChangeGameState(Enum_GameState.MainMenu);
         UIManager.Instance.OpenUI<CanvasMainMenu>();
-        LevelManager.Instance.ReloadCloth();
+        LevelManager.Instance.GetPlayer().ReloadCloth();
     }
     public void ButtonBuy()
     {

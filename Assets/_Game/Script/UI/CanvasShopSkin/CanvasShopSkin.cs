@@ -36,8 +36,6 @@ public class CanvasShopSkin : UICanvas
         base.Setup();
         SelectCard(0);
         goldText.text =  DataManager.Instance.Gold.ToString();
-        //TODO chuyen logic sang cho khac 
-        LevelManager.Instance.ChangeAnimPlayer(CharacterAnimType.Dance);
     }
     public void SelectCard(int cardType)
     {
@@ -61,7 +59,9 @@ public class CanvasShopSkin : UICanvas
     {
         selectedItem = DataManager.Instance.GetItemData<ItemData>(type, index);
         selectedScrollView = owner;
-        LevelManager.Instance.PlayerTrySkin(index, type);
+
+        LevelManager.Instance.GetPlayer().TryCloth(index,type);
+        
         desText.text = des;
         priceText.text = price.ToString();
     }
@@ -70,7 +70,7 @@ public class CanvasShopSkin : UICanvas
         Close(0);
         GameManager.Instance.ChangeGameState(Enum_GameState.MainMenu);
         UIManager.Instance.OpenUI<CanvasMainMenu>();
-        LevelManager.Instance.ReloadCloth();
+        LevelManager.Instance.GetPlayer().ReloadCloth();
     }
     public void BuyButton()
     {
@@ -79,7 +79,7 @@ public class CanvasShopSkin : UICanvas
         int oldEquippedIndex = DataManager.Instance.GetEquippedID(targetItem.Type);
         if (!DataManager.Instance.BuyItem(targetItem)) return;
 
-        LevelManager.Instance.ReloadCloth();
+        LevelManager.Instance.GetPlayer().ReloadCloth();
         selectedItem = targetItem;
         if (selectedScrollView != null)
         {
@@ -108,7 +108,7 @@ public class CanvasShopSkin : UICanvas
     public override void CloseDirectly()
     {
         base.CloseDirectly();
-        LevelManager.Instance.ChangeAnimPlayer(CharacterAnimType.Idle);
+        LevelManager.Instance.GetPlayer().ChangeAnim(CharacterAnimType.Idle);
     }
     public void SetDesText(String s)
     {

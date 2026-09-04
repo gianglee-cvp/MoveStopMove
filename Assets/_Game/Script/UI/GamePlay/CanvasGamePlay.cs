@@ -130,7 +130,7 @@ public class CanvasGamePlay : UICanvas
         ResetSettingButtons();
         if(LevelManager.Instance.GetPlayer().IsDead) return;
         
-        LevelManager.Instance.OnInit();
+        LevelManager.Instance.Retry();
         GameManager.Instance.PlayGame();
     }
 

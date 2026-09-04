@@ -48,7 +48,11 @@ public class CharacterVisual : MonoBehaviour
     
     public void OnInit()
     {
-        currentBullet = null;
+        if(currentBullet != null)
+        {
+            currentBullet.SetNullOwner();
+            currentBullet = null;
+        }
         ActiveWeapon();
     }
     public void ApplyNewSkin(Skin skin)

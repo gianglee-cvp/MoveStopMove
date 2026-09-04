@@ -19,6 +19,7 @@ public class CanvasMainMenu : UICanvas
         Close(0);
         GameManager.Instance.ChangeGameState(Enum_GameState.ShopSkin);
         UIManager.Instance.OpenUI<CanvasShopSkin>();
+        LevelManager.Instance.GetPlayer().ChangeAnim(CharacterAnimType.Dance);
     }
     public void ShopWeaponButton()
     {

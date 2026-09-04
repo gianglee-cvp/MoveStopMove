@@ -20,6 +20,11 @@ public class Player : Character,IData
         CanvasGamePlay canvas = UIManager.Instance.GetUI<CanvasGamePlay>();
         canvas.RegisterTarget(this);
     }
+    public void OnInit(Vector3 position, Vector3 rotation)
+    {
+        OnInit();
+        TF.SetLocalPositionAndRotation(position, Quaternion.Euler(rotation));
+    }
     public void ShowRangeUI()
     {
         characterLevel.ShowAttackRange();
