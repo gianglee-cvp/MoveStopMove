@@ -9,6 +9,7 @@ public class CanvasGamePlay : UICanvas
     [SerializeField] protected TouchZone touchZone;
     [SerializeField] protected TextMeshProUGUI rankTMP;
     [SerializeField] protected List<ButtonSeting> buttonSetings;
+    [SerializeField] protected Image imgTut;
     private int lastRank = -1;
     public void RegisterTarget(Character character)
     {
@@ -23,6 +24,7 @@ public class CanvasGamePlay : UICanvas
         base.Setup();
         ActiveJoystick();
         ResetSettingButtons();
+        SetActiveTut(true);
     }
     public override void CloseDirectly()
     {
@@ -139,5 +141,9 @@ public class CanvasGamePlay : UICanvas
         Debug.Log("Button Home");
         ResetSettingButtons();
         GameManager.Instance.ReturnToMainMenu();
+    }
+    public void SetActiveTut(bool isActive)
+    {
+        imgTut.gameObject.SetActive(isActive);
     }
 }
