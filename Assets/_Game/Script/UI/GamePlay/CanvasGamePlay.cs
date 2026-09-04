@@ -1,10 +1,14 @@
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 public class CanvasGamePlay : UICanvas
 {
     [SerializeField] protected TargetContainer targetContainer;
     [SerializeField] protected TouchZone touchZone;
     [SerializeField] protected TextMeshProUGUI rankTMP;
+    [SerializeField] protected List<ButtonSeting> buttonSetings;
     private int lastRank = -1;
     public void RegisterTarget(Character character)
     {
@@ -18,6 +22,12 @@ public class CanvasGamePlay : UICanvas
     {
         base.Setup();
         ActiveJoystick();
+        ResetSettingButtons();
+    }
+    public override void CloseDirectly()
+    {
+        base.CloseDirectly();
+        ResetSettingButtons();
     }
     void Update()
     {
@@ -50,5 +60,84 @@ public class CanvasGamePlay : UICanvas
             Close(0);
             UIManager.Instance.OpenUI<CanvasWin>();
         }
+    }
+    protected bool isSettingOpen = false;
+    protected bool isAnimating = false;
+
+    public void ResetSettingButtons()
+    {
+        isSettingOpen = false;
+        isAnimating = false;
+        
+        foreach (ButtonSeting but in buttonSetings)
+        {
+            if (but != null)
+            {
+                but.gameObject.SetActive(false);
+            }
+        }
+        
+    }
+
+    public void SettingButton()
+    {
+        if (isAnimating) return;
+        if (buttonSetings == null || buttonSetings.Count == 0) return;
+
+        isAnimating = true;
+        isSettingOpen = !isSettingOpen;
+
+        int total = buttonSetings.Count;
+        int completed = 0;
+
+        Action checkComplete = () =>
+        {
+            completed++;
+            if (completed >= total)
+            {
+                isAnimating = false;
+            }
+        };
+
+        foreach (ButtonSeting but in buttonSetings)
+        {
+            if (but != null)
+            {
+                if (isSettingOpen)
+                {
+                    but.Open(checkComplete);
+                }
+                else
+                {
+                    but.Close(checkComplete);
+                }
+            }
+            else
+            {
+                checkComplete();
+            }
+        }
+    }
+
+    public void ButtonSound()
+    {
+        Debug.Log("Button Sound");
+    }
+
+    public void ButtonRetry()
+    {
+        Debug.Log("Button Retry");
+        ResetSettingButtons();
+        if(LevelManager.Instance.GetPlayer().IsDead) return;
+        
+        LevelManager.Instance.OnInit();
+        GameManager.Instance.PlayGame();
+    }
+
+    public void ButtonHome()
+    {
+        Debug.Log("Button Home");
+        ResetSettingButtons();
+        GameManager.Instance.ReturnToMainMenu();
     }
 }

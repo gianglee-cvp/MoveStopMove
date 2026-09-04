@@ -10,8 +10,14 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnInit()
     {
-        player.OnInit();
+        
         LoadLevel(currentLevelIndex);
+        InitPlayer();
+    }
+    //todo cho vào player oninit
+    public void InitPlayer()
+    {
+        player.OnInit();
         Vector3 position = levelData.GetPlayerPosition();
         Vector3 rotation = levelData.GetPlayerRotation();
         player.TF.SetLocalPositionAndRotation(position, Quaternion.Euler(rotation));
@@ -65,6 +71,10 @@ public class LevelManager : Singleton<LevelManager>
         {
             player.SaveMe();
         }
+    }
+    public Player GetPlayer()
+    {
+        return player;
     }
 
     public void EndGame()
