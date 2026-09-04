@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -78,7 +79,6 @@ public class CanvasGamePlay : UICanvas
                 but.gameObject.SetActive(false);
             }
         }
-        
     }
 
     public void SettingButton()
@@ -87,37 +87,39 @@ public class CanvasGamePlay : UICanvas
         if (buttonSetings == null || buttonSetings.Count == 0) return;
 
         isAnimating = true;
-        isSettingOpen = !isSettingOpen;
+        // isSettingOpen = !isSettingOpen;
 
+        PlaySettingsAnimation(!isSettingOpen);
+    }
+    public void PlaySettingsAnimation(bool open)
+    {
+        
         int total = buttonSetings.Count;
         int completed = 0;
 
         Action checkComplete = () =>
         {
             completed++;
+
             if (completed >= total)
             {
                 isAnimating = false;
+                isSettingOpen = open;
             }
         };
 
         foreach (ButtonSeting but in buttonSetings)
         {
-            if (but != null)
-            {
-                if (isSettingOpen)
-                {
-                    but.Open(checkComplete);
-                }
-                else
-                {
-                    but.Close(checkComplete);
-                }
-            }
-            else
+            if (but == null)
             {
                 checkComplete();
+                continue;
             }
+
+            if (open)
+                but.Open(checkComplete);
+            else
+                but.Close(checkComplete);
         }
     }
 

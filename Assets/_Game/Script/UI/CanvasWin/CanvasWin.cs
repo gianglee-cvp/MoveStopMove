@@ -42,7 +42,7 @@ public class CanvasWin : UICanvas
 
     public void MainMenuButton()
     {
-        Close(0);
+        CloseDirectly();
         GameManager.Instance.ReturnToMainMenu();
     }
     protected IEnumerator Rotate()
@@ -55,10 +55,5 @@ public class CanvasWin : UICanvas
             timer += Time.deltaTime;
             yield return null;
         }
-    }
-    public override void CloseDirectly()
-    {
-        base.CloseDirectly();
-        StopAllCoroutines();
     }
 }

@@ -14,8 +14,8 @@ public class TouchZone : MonoBehaviour, IPointerDownHandler , IDragHandler , IPo
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        // joyStickHolder.gameObject.SetActive(true);
         UIManager.Instance.GetUI<CanvasGamePlay>().SetActiveTut(false);
+        UIManager.Instance.GetUI<CanvasGamePlay>().PlaySettingsAnimation(false);
         joyStickHolder.position = eventData.position;
         SetJoystickVisible(true);
 
