@@ -18,9 +18,11 @@ public class CanvasShopSkin : UICanvas
     [SerializeField] protected TextMeshProUGUI desText;
     [SerializeField] protected TextMeshProUGUI priceText;
     [SerializeField] protected TextMeshProUGUI goldText;
+    [SerializeField] protected RectTransform outlineCard;
     protected CardType currentCard = CardType.Init;
     protected ItemData selectedItem;
     protected ScrollView selectedScrollView;
+
     [SerializeField] protected List<Button> buttonsSelect = new List<Button>();
     void Awake()
     {
@@ -55,7 +57,7 @@ public class CanvasShopSkin : UICanvas
         color.a = al;
         button.image.color = color;
     }
-    public void TryCloth(int index , SkinType type, string des , int price, ScrollView owner)
+    public void TryCloth(int index , SkinType type, string des , int price, ScrollView owner , RectTransform item)
     {
         selectedItem = DataManager.Instance.GetItemData<ItemData>(type, index);
         selectedScrollView = owner;
@@ -64,6 +66,12 @@ public class CanvasShopSkin : UICanvas
         
         desText.text = des;
         priceText.text = price.ToString();
+        SetOutline(item);
+    }
+    public void SetOutline(RectTransform parent)
+    {
+        outlineCard.SetParent(parent);
+        outlineCard.anchoredPosition = Vector2.zero;
     }
     public void CloseButton()
     {

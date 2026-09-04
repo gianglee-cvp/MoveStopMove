@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,9 +8,11 @@ public class CardItem : MonoBehaviour
     [SerializeField] protected Image imgItem;
     [SerializeField] protected Button button;
     [SerializeField] protected ScrollView owner;
+    [SerializeField] protected RectTransform itemRect;
     protected string desText;
     protected int price;
     protected int itemIndex;
+    public RectTransform Rect => itemRect;
     public void Init(bool isLock , Sprite sprite , ScrollView target, int index , string s , int price)
     {
         AddImgItem(sprite);
@@ -44,6 +47,6 @@ public class CardItem : MonoBehaviour
     private void OnClickItem()
     {
         if (owner == null) return;
-        owner.CallBackTryCloth(itemIndex , desText , price);
+        owner.CallBackTryCloth(itemIndex , desText , price , itemRect);
     }
 }

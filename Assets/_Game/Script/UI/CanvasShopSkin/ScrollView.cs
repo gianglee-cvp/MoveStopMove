@@ -40,9 +40,9 @@ public class ScrollView : MonoBehaviour, IData
     {
         gameObject.SetActive(false);
     }
-    public void CallBackTryCloth(int index , string desText , int price)
+    public void CallBackTryCloth(int index , string desText , int price , RectTransform item)
     {
-        canvasHolder.TryCloth(index , type , desText , price, this);   
+        canvasHolder.TryCloth(index , type , desText , price, this , item);  
         canvasHolder.ChangeButtonBuy(shopStates[index]);
     }
     public void SelectInitialItem()
@@ -56,7 +56,7 @@ public class ScrollView : MonoBehaviour, IData
         ItemData item = items[initialIndex];
         if (item == null) return;
 
-        canvasHolder.TryCloth(initialIndex, type, item.Des, item.Price, this);
+        canvasHolder.TryCloth(initialIndex, type, item.Des, item.Price, this , cards[ChangeIndexSOToIndexShop(initialIndex)].Rect);
         canvasHolder.ChangeButtonBuy(shopStates[initialIndex]);
         
     }
@@ -70,7 +70,7 @@ public class ScrollView : MonoBehaviour, IData
     }
     public void RefreshItemState(int index)
     {
-        int cardIndex = index - 1;
+        int cardIndex = ChangeIndexSOToIndexShop(index);
         if (cardIndex < 0 || cardIndex >= cards.Count) return;
 
         cards[cardIndex].SetImgLock(shopStates[index] == Enum_ShopState.buy);
@@ -78,5 +78,9 @@ public class ScrollView : MonoBehaviour, IData
     public bool SelectItem(int index)
     {
         return DataManager.Instance.SelectItem(type, index);
+    }
+    public int ChangeIndexSOToIndexShop(int i)
+    {
+        return i-1;
     }
 }

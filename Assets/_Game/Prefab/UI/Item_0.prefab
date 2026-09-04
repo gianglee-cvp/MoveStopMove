@@ -290,6 +290,7 @@ MonoBehaviour:
   imgItem: {fileID: 1741031136048061485}
   button: {fileID: 5458017155270669498}
   owner: {fileID: 0}
+  itemRect: {fileID: 4917461509130321768}
 --- !u!1 &5637133594833129161
 GameObject:
   m_ObjectHideFlags: 0
