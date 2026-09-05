@@ -940,6 +940,7 @@ MonoBehaviour:
   uiElement:
   - {fileID: 6424415351401758798}
   - {fileID: 6115429287846136037}
+  goldTMP: {fileID: 1810854598559038014}
   unlockPanel: {fileID: 2390992176145813476}
   unlockIcon: {fileID: 7458924468972474217}
   rotateSpeed: -180

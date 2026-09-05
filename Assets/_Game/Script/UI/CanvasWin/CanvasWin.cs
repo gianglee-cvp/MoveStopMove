@@ -6,12 +6,29 @@ using UnityEngine.UI;
 
 public class CanvasWin : UICanvas
 {
+    [SerializeField] protected TextMeshProUGUI goldTMP;
     [Header("Unlock Item Display")]
     [SerializeField] private Image unlockPanel;
     [SerializeField] private Image unlockIcon;
     [SerializeField] private float rotateSpeed;
     // [SerializeField] private TextMeshProUGUI unlockNameTMP;
     // [SerializeField] private TextMeshProUGUI unlockTypeTMP;
+    Coroutine countCoroutine;
+
+    public void Init(int gold , int goldAfterBoost)
+    {
+        if(countCoroutine != null)
+        {
+            StopCoroutine(countCoroutine); 
+            countCoroutine = null;
+        }
+        countCoroutine = StartCoroutine(Helper.Count(gold , goldAfterBoost , 1f , SetGoldText ));
+        // goldTMP.text = gold.ToString();
+    }
+    public void SetGoldText(int value)
+    {
+        goldTMP.text = value.ToString();
+    }
 
     public override void Setup()
     {
@@ -55,5 +72,11 @@ public class CanvasWin : UICanvas
             timer += Time.deltaTime;
             yield return null;
         }
+    }
+    public override void CloseDirectly()
+    {
+        base.CloseDirectly();
+        StopCoroutine(countCoroutine);
+        countCoroutine = null;
     }
 }

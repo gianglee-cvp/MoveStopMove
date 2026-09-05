@@ -30,7 +30,19 @@ public class CanvasRevive : UICanvas
     {
         StopCountdown();
         Close(0);
-        UIManager.Instance.OpenUI<CanvasLose>();
+
+        int rank = BotManager.Instance.BotActiveCount() + 1;
+        Player player = LevelManager.Instance.GetPlayer();
+        int baseGold =  player.GetGoldInGamePlay();
+        float multiplier = player.GoldMultiplier;
+        int totalGold = Mathf.RoundToInt(baseGold * multiplier);
+        Debug.Log("check" + baseGold + multiplier + totalGold );
+
+        DataManager.Instance.AddGold(totalGold);
+        DataManager.Instance.SaveGame();
+
+        CanvasLose loseCanvas = UIManager.Instance.OpenUI<CanvasLose>();
+        loseCanvas.Init(rank, "Killer",baseGold ,  totalGold);
     }
     public void SaveMeButton()
     {

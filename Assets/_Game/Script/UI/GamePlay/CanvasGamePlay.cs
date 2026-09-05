@@ -61,7 +61,16 @@ public class CanvasGamePlay : UICanvas
         if (cnt == 1)
         {
             Close(0);
-            UIManager.Instance.OpenUI<CanvasWin>();
+            Player player = LevelManager.Instance.GetPlayer();
+            int baseGold =  player.GetGoldInGamePlay();
+            float multiplier =  player.GoldMultiplier;
+            int totalGold = Mathf.RoundToInt(baseGold * multiplier);
+
+            DataManager.Instance.AddGold(totalGold);
+            DataManager.Instance.SaveGame();
+
+            CanvasWin winCanvas = UIManager.Instance.OpenUI<CanvasWin>();
+            winCanvas.Init(baseGold,totalGold);
         }
     }
     protected bool isSettingOpen = false;

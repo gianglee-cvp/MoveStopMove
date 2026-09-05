@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -7,11 +6,22 @@ public class CanvasLose : UICanvas
     [SerializeField] protected TextMeshProUGUI rankTMP;
     [SerializeField] protected TextMeshProUGUI nameTMP;
     [SerializeField] protected TextMeshProUGUI goldTMP;
-    public void Init(int rank , string name ,  int gold)
+    Coroutine countCoroutine;
+    public void Init(int rank , string name ,  int gold , int goldAfterBoost)
     {
         rankTMP.text = rank.ToString();
         nameTMP.text = name;
-        goldTMP.text = gold.ToString();
+        if(countCoroutine != null)
+        {
+            StopCoroutine(countCoroutine);
+            countCoroutine = null;
+        }
+        countCoroutine = StartCoroutine(Helper.Count(gold , goldAfterBoost , 1f , SetGoldText ));
+        Debug.Log("gold" + gold + goldAfterBoost);
+    }
+    public void SetGoldText(int value)
+    {
+        goldTMP.text = value.ToString();
     }
     public override void Setup()
     {
@@ -28,4 +38,11 @@ public class CanvasLose : UICanvas
         Close(0);
         GameManager.Instance.ReturnToMainMenu();
     }
+    public override void CloseDirectly()
+    {
+        base.CloseDirectly();
+        StopCoroutine(countCoroutine);
+        countCoroutine = null;
+    }
+
 }

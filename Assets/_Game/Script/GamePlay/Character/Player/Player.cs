@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Xml.XPath;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ public class Player : Character,IData
     protected InputAction moveAction;
     protected Vector2 moveAmount;
     protected Dictionary<SkinType, Action<int>> skinSetters;
+    [SerializeField] protected int goldInGamePlay;
     public override void OnInit()
     {
         base.OnInit();
@@ -19,6 +21,7 @@ public class Player : Character,IData
         characterLevel.HideAttackRange();
         CanvasGamePlay canvas = UIManager.Instance.GetUI<CanvasGamePlay>();
         canvas.RegisterTarget(this);
+        goldInGamePlay = 0;
     }
     public void OnInit(Vector3 position, Vector3 rotation)
     {
@@ -139,7 +142,15 @@ public class Player : Character,IData
         characterVisual.ChangeAnim(CharacterAnimType.Idle);
         ShowRangeUI();
     }
-
+    public override void CollectExp(int exp)
+    {
+        base.CollectExp(exp);
+        goldInGamePlay += (exp + 1) * 3;
+    }
+    public int GetGoldInGamePlay()
+    {
+        return goldInGamePlay;
+    }
     public override void OnDead()
     {
         base.OnDead();

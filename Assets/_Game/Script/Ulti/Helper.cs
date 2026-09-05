@@ -1,6 +1,7 @@
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.AI;
+using System;
+using System.Collections;
 
 public static class Helper
 {
@@ -8,7 +9,7 @@ public static class Helper
     {
         for (int i = 0; i < 8; i++)
         {
-            Vector2 offset2D = Random.insideUnitCircle * radius;
+            Vector2 offset2D = UnityEngine.Random.insideUnitCircle * radius;
             Vector3 randomPoint = new Vector3(offset2D.x, 0f, offset2D.y);
 
             if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, radius, NavMesh.AllAreas))
@@ -51,7 +52,7 @@ public static class Helper
             return Vector3.zero;
         }
 
-        float randomArea = Random.Range(0f, totalArea);
+        float randomArea = UnityEngine.Random.Range(0f, totalArea);
         int triangleIndex = 0;
         for (int i = 0; i < cumulativeAreas.Length; i++)
         {
@@ -67,8 +68,8 @@ public static class Helper
         Vector3 b = vertices[indices[indexPtr + 1]];
         Vector3 c = vertices[indices[indexPtr + 2]];
 
-        float r1 = Random.value;
-        float r2 = Random.value;
+        float r1 = UnityEngine.Random.value;
+        float r2 = UnityEngine.Random.value;
 
         if (r1 + r2 > 1f)
         {
@@ -99,4 +100,24 @@ public static class Helper
 
         return CacheManager.TryGetNavMeshCache(out vertices, out indices, out cumulativeAreas, out totalArea);
     }
+
+    public static IEnumerator Count(int from,int to,float duration, Action<int> onValue, Action onComplete = null)
+        {
+            float time = 0f;
+
+            while (time < duration)
+            {
+                time += Time.deltaTime;
+
+                float t = Mathf.Clamp01(time / duration);
+                int value = Mathf.RoundToInt(Mathf.Lerp(from, to, t));
+
+                onValue?.Invoke(value);
+
+                yield return null;
+            }
+
+            onValue?.Invoke(to);
+            onComplete?.Invoke();
+        }
 }
