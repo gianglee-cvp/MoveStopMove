@@ -14,7 +14,7 @@ public class TargetContainer : MonoBehaviour
 
     void Awake()
     {
-        cam = Camera.main;
+        cam = CameraFollow.Instance.GetMainCam();
     }
 
     public void RegisterTarget(Character target)

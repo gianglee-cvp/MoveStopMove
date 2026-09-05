@@ -81,7 +81,7 @@ public class BotManager : Singleton<BotManager>
 
     private bool IsInCameraView(Vector3 position, float margin = 0.1f)
     {
-        Camera mainCam = Camera.main;
+        Camera mainCam = CameraFollow.Instance.GetMainCam();
         if (mainCam == null) return false;
 
         Vector3 viewportPoint = mainCam.WorldToViewportPoint(position);

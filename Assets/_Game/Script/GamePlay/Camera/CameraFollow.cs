@@ -10,7 +10,7 @@ public class CameraFollow : Singleton<CameraFollow>
         public Vector3 rotation;
         public bool followTarget;
     }
-
+    [SerializeField] private Camera cam;
     [SerializeField] private Transform target;
     [SerializeField] private CameraConfig mainMenuConfig;
     [SerializeField] private CameraConfig shopWeaponConfig;
@@ -123,6 +123,10 @@ public class CameraFollow : Singleton<CameraFollow>
             baseOffset.z - (size - 1f) * offsetZPerSize
         );
     }
+    public Camera GetMainCam()
+    {
+        return cam;
+    }
 
     private void BuildStateConfigs()
     {
@@ -134,4 +138,5 @@ public class CameraFollow : Singleton<CameraFollow>
             { Enum_GameState.Play, playConfig }
         };
     }
+
 }

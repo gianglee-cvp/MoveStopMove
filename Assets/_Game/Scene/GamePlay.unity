@@ -1099,6 +1099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4f31b687b1f2b42b69aaaba54fdd4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
+  cam: {fileID: 1544035831}
   target: {fileID: 7050902312851643992}
   mainMenuConfig:
     offset: {x: 0, y: 3.99, z: -8.99}
