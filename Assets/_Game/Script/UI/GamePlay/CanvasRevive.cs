@@ -21,6 +21,8 @@ public class CanvasRevive : UICanvas
     {
         base.Open();
         isCountDown = true;
+        UIManager.Instance.GetUI<CanvasGamePlay>().SetActiveTut(false);
+        UIManager.Instance.GetUI<CanvasGamePlay>().PlaySettingsAnimation(false);
         StartCoroutine(Countdown());
         StartCoroutine(Rotate());
     }
@@ -42,7 +44,7 @@ public class CanvasRevive : UICanvas
         }
         else
         {
-            Debug.Log("Không đủ gold");
+            Debug.Log("dont enough gold");
         }
     }
     public IEnumerator Countdown()
