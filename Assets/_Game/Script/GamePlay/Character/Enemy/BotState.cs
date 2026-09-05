@@ -54,7 +54,7 @@ public partial class Bot
             return;
         }
 
-        if (agent == null || IsDestionation)
+        if (botAI.IsDestionation)
         {
             ChangeState(idleState);
         }

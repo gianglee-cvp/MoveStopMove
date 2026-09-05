@@ -41,9 +41,20 @@ public class Boomerang : BulletBase
     public override void OnTriggerEnter(Collider other)
     {
         Character target = CacheComponent<Collider,Character>.Get(other);
-        if( owner == null || target == null || target == owner || target.IsDead ) return;
-        CollectExp(target);
-        target.OnDead();
+        if(target != null && target != owner)
+        {
+            if(owner == null || target.IsDead ) return;
+            CollectExp(target);
+            target.OnDead();
+            return;
+        }
+        Obstacle obstacle = CacheComponent<Collider , Obstacle>.Get(other);
+        if(obstacle != null)
+        {
+            Debug.Log("check obstacle");
+            isOnObstacle = true;
+            OnObstacle();
+        }
     }
     public void FlyOut()
     {

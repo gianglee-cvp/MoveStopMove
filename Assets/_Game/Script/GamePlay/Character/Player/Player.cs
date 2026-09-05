@@ -149,7 +149,10 @@ public class Player : Character,IData
     private IEnumerator PlayerDeadCoroutine()
     {
         yield return new WaitForSeconds(2f);
-        UIManager.Instance.OpenUI<CanvasRevive>();
+        if (GameManager.Instance.IsGameState(Enum_GameState.Play))
+        {
+            UIManager.Instance.OpenUI<CanvasRevive>();
+        }
     }
     private void InitSkinSetters()
     {

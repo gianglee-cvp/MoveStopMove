@@ -420,6 +420,7 @@ GameObject:
   - component: {fileID: 2548683797592784084}
   - component: {fileID: 1361216709600304708}
   - component: {fileID: 7005229665193718593}
+  - component: {fileID: 6935967942844231166}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -541,7 +542,7 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   patrolRadius: 20
   patrolSampleAttempts: 8
-  agent: {fileID: 2548683797592784084}
+  botAI: {fileID: 6935967942844231166}
   indicator: {fileID: 5035426733651049509}
 --- !u!114 &7005229665193718593
 MonoBehaviour:
@@ -563,6 +564,19 @@ MonoBehaviour:
   attackRange: {fileID: 281628613755058813}
   characterVisual: {fileID: 2982400422128992246}
   physicCollider: {fileID: 2518058213644499525}
+--- !u!114 &6935967942844231166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113394877978306106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86e7e945d7744b46b55d5c2af4467fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BotNavMesh
+  agent: {fileID: 2548683797592784084}
 --- !u!1 &2195994932492785641
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,7 +2138,6 @@ MonoBehaviour:
   currentHair: {fileID: 0}
   currentShield: {fileID: 0}
   currentColorType: 0
-  distance: 10
 --- !u!1 &7095665643557632272
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,9 +6,10 @@ public partial class Bot : Character
     [SerializeField] protected float patrolRadius = 20f;
     [SerializeField] protected int patrolSampleAttempts = 8;
 
-    [SerializeField] protected NavMeshAgent agent ;
-    private Vector3 destination;
-    public bool IsDestionation => Vector3.Distance(TF.position, destination + (TF.position.y - destination.y) * Vector3.up) < 0.1f;
+    // [SerializeField] protected NavMeshAgent agent ;
+    [SerializeField] protected BotNavMesh botAI;
+    // private Vector3 destination;
+    // public bool IsDestionation => Vector3.Distance(TF.position, destination + (TF.position.y - destination.y) * Vector3.up) < 0.1f;
 
     protected Vector3 spawnPos;
 
@@ -27,7 +28,6 @@ public partial class Bot : Character
     public override void OnInit()
     {
         base.OnInit();
-        SyncMoveSpeed();
         spawnPos = TF.position;
         characterVisual.ApplyRandomSkin();
         ChangeState(idleState);
@@ -67,8 +67,11 @@ public partial class Bot : Character
     }
     public void SetDestination(Vector3 destination)
     {
-        this.destination = destination;
-        agent.SetDestination(destination);
+        botAI.SetDestination(destination);
+    }
+    private void SyncMoveSpeed()
+    {
+        botAI.SyncMoveSpeed(characterLevel.MoveSpeed);
     }
     public override void LevelUp(int level)
     {
@@ -102,10 +105,5 @@ public partial class Bot : Character
     {
         characterVisual.DespawnSkin();
         BotManager.Instance.DeSpawnBot(this);
-    }
-    private void SyncMoveSpeed()
-    {
-        if (agent == null) return;
-        agent.speed = characterLevel.MoveSpeed;
     }
 }   

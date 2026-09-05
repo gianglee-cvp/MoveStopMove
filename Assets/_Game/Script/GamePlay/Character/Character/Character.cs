@@ -42,6 +42,7 @@ public class Character : GameUnit
     #region State
     public virtual void OnInit()
     {
+        characterLevel.OnInit();
         characterVisual.OnInit();
         listTarget.Clear();
         isDead = false;
@@ -152,7 +153,7 @@ public class Character : GameUnit
         characterLevel.PowerUp(level);
         if(level != 0)
         {
-            SimplePool.Spawn<ParticleEffect>(PoolType.ParticleEffectLevelUp,spawnEffectPoint.position,Quaternion.identity,spawnEffectPoint).Play(characterVisual.color, 1f);
+            SimplePool.Spawn<ParticleEffect>(PoolType.ParticleEffectLevelUp,spawnEffectPoint.position,Quaternion.identity,spawnEffectPoint).Play(characterVisual.Color, 1f);
         }
     }
     public virtual void CollectExp(int exp)
@@ -182,7 +183,7 @@ public class Character : GameUnit
     #endregion
     public ColorType GetColor()
     {
-        return characterVisual.color;
+        return characterVisual.Color;
     }
     public virtual Vector3 GetHeadPos()
     {

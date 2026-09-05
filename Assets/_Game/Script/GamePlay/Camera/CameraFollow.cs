@@ -67,12 +67,7 @@ public class CameraFollow : Singleton<CameraFollow>
 
     public void ChangeByState(Enum_GameState state, bool instant = false)
     {
-        if (stateConfigs == null)
-        {
-            BuildStateConfigs();
-        }
-
-        if (stateConfigs != null && stateConfigs.TryGetValue(state, out CameraConfig config))
+        if (stateConfigs.TryGetValue(state, out CameraConfig config))
         {
             ApplyConfig(config, instant);
         }

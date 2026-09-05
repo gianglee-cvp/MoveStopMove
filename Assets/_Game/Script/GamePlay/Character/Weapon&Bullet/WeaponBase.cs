@@ -2,14 +2,12 @@ using UnityEngine;
 
 public class WeaponBase : GameUnit
 {
-    [SerializeField] protected Vector3 localTF; 
-    [SerializeField] protected Vector3 localRT;
-    public void OnInit(Transform rightHandTf)
+    public void OnInit()
     {
         gameObject.SetActive(true);
         // tf.SetParent(rightHandTf , false);
-        tf.localPosition = localTF;
-        tf.localRotation = Quaternion.Euler(localRT); 
+        tf.localPosition = Vector3.zero;
+        tf.localRotation = Quaternion.Euler(Vector3.zero); 
         tf.localScale = Vector3.one;
     }
     public void OnDeactive()

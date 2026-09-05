@@ -19,19 +19,8 @@ public class CharacterLevel : MonoBehaviour
     protected float bonusGold = 0;
     protected float baseMoveSpeed = 0;
     protected float goldMultiplier = 1f;
-
-    private void Awake()
-    {
-        if (moveSpeed <= 0f)
-        {
-            moveSpeed = Constant.MOVE_SPEED_DEFAULT;
-        }
-
-        baseMoveSpeed = moveSpeed;
-        SetMoveSpeed(baseMoveSpeed);
-    }
     
-
+    
     public int Level => level;
     public float MoveSpeed => moveSpeed;
     public float Range => range;
@@ -40,12 +29,19 @@ public class CharacterLevel : MonoBehaviour
     public int Exp => exp;
     public float GoldBonusPercent => bonusGold;
     public float GoldMultiplier => goldMultiplier;
+
+    public void OnInit()
+    {
+        moveSpeed  = Constant.MOVE_SPEED_DEFAULT;
+        baseMoveSpeed = moveSpeed;
+        SetMoveSpeed(baseMoveSpeed);
+    }
     public void PowerUp(int level)
     {
         this.level = level;
         SetRange(CalculateRangeByLevel(level));
         SetSize(CalculatorSizeByLevel(level));
-        ApplyBooster();
+        ApplyRangeBooster();
         ApplyMoveSpeedBooster();
     }
     public void SetLevel(int level)
@@ -106,7 +102,7 @@ public class CharacterLevel : MonoBehaviour
     {
         return CalculateRangeByLevel(level) / Constant.RANGE_DEFAULT;
     }
-    public void ApplyBooster()
+    public void ApplyRangeBooster()
     {
         float boostedRange = CalculateRangeByLevel(level) * (1 + bonusRange / 100f);
         SetRange(boostedRange);
@@ -123,21 +119,21 @@ public class CharacterLevel : MonoBehaviour
     public void InitBooster(float rangeBonusPercent)
     {
         bonusRange = rangeBonusPercent;
-        ApplyBooster();
+        ApplyRangeBooster();
     }
     public void ResetBoosters()
     {
         bonusRange = 0f;
         bonusMoveSpeed = 0f;
         bonusGold = 0f;
-        ApplyBooster();
+        ApplyRangeBooster();
         ApplyMoveSpeedBooster();
         ApplyGoldBooster();
     }
     public void AddRangeBonus(float rangeBonusPercent)
     {
         bonusRange += rangeBonusPercent;
-        ApplyBooster();
+        ApplyRangeBooster();
     }
     public void AddMoveSpeedBonus(float moveSpeedBonusPercent)
     {

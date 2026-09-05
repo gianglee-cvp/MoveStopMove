@@ -41,7 +41,7 @@ public class CharacterVisual : MonoBehaviour
     [SerializeField] protected SpawnObject currentHair;
     [SerializeField] protected SpawnObject currentShield;
     [SerializeField] protected ColorType currentColorType;
-    public ColorType color => currentColorType;
+    public ColorType Color => currentColorType;
     public Transform HeadTF => headTF;
     public Vector3 HeadPos => headTF.position;
     public bool CheckWeaponActive => currentWeapon != null && currentWeapon.gameObject.activeSelf;
@@ -133,7 +133,7 @@ public class CharacterVisual : MonoBehaviour
         WeaponItemData weaponData = DataManager.Instance.GetItemData<WeaponItemData>(SkinType.Weapon, (int)newWeapon);
         currentWeaponPoolType = weaponData.WeaponPrefab.poolType;
         currentWeapon = SimplePool.Spawn<WeaponBase>(currentWeaponPoolType, righHandTF.position, Quaternion.identity, righHandTF);
-        currentWeapon.OnInit(righHandTF);
+        currentWeapon.OnInit();
     }
     public void ChangeBulletType(WeaponType newWeapon)
     {
